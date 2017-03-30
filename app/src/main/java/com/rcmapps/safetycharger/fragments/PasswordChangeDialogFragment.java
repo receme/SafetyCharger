@@ -2,6 +2,7 @@ package com.rcmapps.safetycharger.fragments;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
@@ -33,13 +34,21 @@ public class PasswordChangeDialogFragment extends AppCompatDialogFragment implem
     @BindView(R.id.confirmPasswordEdtxt)
     EditText confirmPasswordEdtxt;
 
-    MainPresenter presenter;
+    private MainPresenter presenter;
+    private String newPassword ="";
+    private String confirmNewPassword ="";
 
     public PasswordChangeDialogFragment(){
     }
 
     public PasswordChangeDialogFragment(MainPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    public PasswordChangeDialogFragment(MainPresenter presenter, @NonNull String newPassword, @NonNull String confirmNewPassword) {
+        this.presenter = presenter;
+        this.newPassword = newPassword;
+        this.confirmNewPassword = confirmNewPassword;
     }
 
     @Nullable
@@ -58,6 +67,10 @@ public class PasswordChangeDialogFragment extends AppCompatDialogFragment implem
         confirmBtn.setOnClickListener(this);
         cancelBtn.setOnClickListener(this);
 
+        newPasswordEdtxt.setText(newPassword);
+        confirmPasswordEdtxt.setText(confirmNewPassword);
+
+        setCancelable(false);
     }
 
     @Override
