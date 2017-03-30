@@ -5,4 +5,5 @@ package com.rcmapps.safetycharger.interfaces;
  */
 public interface MainView {
     void defineClickListener();
+    void showPasswordChangeDialog(String prevPassword);
 }

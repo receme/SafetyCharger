@@ -1,10 +1,8 @@
 package com.rcmapps.safetycharger.activites;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.interfaces.MainView;
@@ -15,7 +13,7 @@ import com.rcmapps.safetycharger.presenters.MainPresenter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements MainView {
+public class MainActivity extends BaseActivity implements MainView {
 
     @BindView(R.id.enableAlarmCB)
     CheckBox enableAlarmCB;
@@ -41,8 +39,14 @@ public class MainActivity extends AppCompatActivity implements MainView {
     public void defineClickListener() {
 
         enableAlarmCB.setOnCheckedChangeListener(new AlarmStateListener(presenter));
-        chooseAlarmBtn.setOnClickListener(new ButtonClickListener(presenter));
-        setPasswrodBtn.setOnClickListener(new ButtonClickListener(presenter));
+        chooseAlarmBtn.setOnClickListener(new ButtonClickListener(presenter, sharedPreferenceUtils));
+        setPasswrodBtn.setOnClickListener(new ButtonClickListener(presenter, sharedPreferenceUtils));
+    }
+
+    @Override
+    public void showPasswordChangeDialog(String prevPassword) {
+
+        
     }
 
 }

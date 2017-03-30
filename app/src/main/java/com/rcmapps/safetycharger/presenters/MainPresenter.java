@@ -2,9 +2,6 @@ package com.rcmapps.safetycharger.presenters;
 
 import com.rcmapps.safetycharger.interfaces.MainView;
 
-/**
- * Created by receme on 12/1/16.
- */
 public class MainPresenter {
 
     MainView view;
@@ -17,4 +14,12 @@ public class MainPresenter {
         view.defineClickListener();
     }
 
+    public void setPassword(String prevPassword) throws IllegalArgumentException {
+
+        if(prevPassword == null){
+            throw new IllegalArgumentException("previous password cannot be null");
+        }
+
+        view.showPasswordChangeDialog(prevPassword);
+    }
 }
