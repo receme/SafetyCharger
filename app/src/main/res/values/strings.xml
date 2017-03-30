@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Safety Charger</string>
+    <string name="current_password">Current password:</string>
+    <string name="new_password">New password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
 </resources>

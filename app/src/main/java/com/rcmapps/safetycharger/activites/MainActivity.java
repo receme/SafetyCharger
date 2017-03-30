@@ -5,6 +5,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 
 import com.rcmapps.safetycharger.R;
+import com.rcmapps.safetycharger.fragments.PasswordChangeDialogFragment;
 import com.rcmapps.safetycharger.interfaces.MainView;
 import com.rcmapps.safetycharger.listeners.AlarmStateListener;
 import com.rcmapps.safetycharger.listeners.ButtonClickListener;
@@ -46,7 +47,8 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public void showPasswordChangeDialog(String prevPassword) {
 
-        
+        PasswordChangeDialogFragment fragment = new PasswordChangeDialogFragment(presenter);
+        fragment.show(getSupportFragmentManager(),PasswordChangeDialogFragment.class.getSimpleName());
     }
 
 }

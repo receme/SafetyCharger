@@ -4,7 +4,8 @@ import com.rcmapps.safetycharger.interfaces.MainView;
 
 public class MainPresenter {
 
-    MainView view;
+    private MainView view;
+    private String prevPassword;
 
     public MainPresenter(MainView _view){
         this.view = _view;
@@ -21,5 +22,23 @@ public class MainPresenter {
         }
 
         view.showPasswordChangeDialog(prevPassword);
+    }
+
+    public String getPreviousPassword() {
+
+        if(prevPassword == null){
+            return "";
+        }
+
+        return prevPassword;
+    }
+
+    public void confirmNewPassword(String newPassword, String confirmNewPassword) {
+
+    }
+
+    public void cancelPasswordChange() {
+
+
     }
 }
