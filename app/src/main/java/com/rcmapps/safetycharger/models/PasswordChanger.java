@@ -46,7 +46,7 @@ public class PasswordChanger {
 
     }
 
-    class Response {
+    public class Response {
         public boolean isValid;
         public String message;
 

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.rcmapps.safetycharger.R;
+import com.rcmapps.safetycharger.models.PasswordChanger;
 import com.rcmapps.safetycharger.presenters.MainPresenter;
 
 import butterknife.BindView;
@@ -76,7 +77,7 @@ public class PasswordChangeDialogFragment extends AppCompatDialogFragment implem
     @Override
     public void onClick(View view) {
         if(view.equals(confirmBtn)){
-            presenter.confirmNewPassword(newPasswordEdtxt.getText().toString(),confirmPasswordEdtxt.getText().toString());
+            presenter.confirmNewPassword(new PasswordChanger(newPasswordEdtxt.getText().toString(),confirmPasswordEdtxt.getText().toString()));
         }
         else if(view.equals(cancelBtn)){
             presenter.cancelPasswordChange();

@@ -2,6 +2,7 @@ package com.rcmapps.safetycharger.presenters;
 
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.interfaces.MainView;
+import com.rcmapps.safetycharger.models.PasswordChanger;
 
 public class MainPresenter {
 
@@ -34,8 +35,13 @@ public class MainPresenter {
         return prevPassword;
     }
 
-    public void confirmNewPassword(String newPassword, String confirmNewPassword) {
+    public void confirmNewPassword(PasswordChanger passwordChanger) {
+        PasswordChanger.Response response = passwordChanger.isValid();
 
+        if(!response.isValid){
+            view.showError("",response.message);
+            return;
+        }
 
     }
 
