@@ -10,10 +10,10 @@ public class PasswordChanger {
     private String confirmPassword;
     private BaseView baseView;
 
-    public PasswordChanger(String newPassword, String confirmPassword) {
-        this.newPassword = newPassword;
-        this.confirmPassword = confirmPassword;
-    }
+//    public PasswordChanger(String newPassword, String confirmPassword) {
+//        this.newPassword = newPassword;
+//        this.confirmPassword = confirmPassword;
+//    }
 
     public PasswordChanger(BaseView baseView, String newPassword, String confirmPassword) {
         this.baseView = baseView;

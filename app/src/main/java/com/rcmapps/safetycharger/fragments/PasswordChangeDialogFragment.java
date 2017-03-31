@@ -1,6 +1,5 @@
 package com.rcmapps.safetycharger.fragments;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,15 +13,15 @@ import android.widget.EditText;
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.models.PasswordChanger;
 import com.rcmapps.safetycharger.presenters.MainPresenter;
+import com.rcmapps.safetycharger.utils.PreferenceContants;
+import com.rcmapps.safetycharger.utils.SharedPreferenceUtils;
+import com.rcmapps.safetycharger.utils.UtilMethods;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by receme on 3/31/17.
- */
 
-public class PasswordChangeDialogFragment extends AppCompatDialogFragment implements View.OnClickListener{
+public class PasswordChangeDialogFragment extends AppCompatDialogFragment implements View.OnClickListener {
 
     @BindView(R.id.confirmBtn)
     Button confirmBtn;
@@ -36,27 +35,21 @@ public class PasswordChangeDialogFragment extends AppCompatDialogFragment implem
     EditText confirmPasswordEdtxt;
 
     private MainPresenter presenter;
-    private String newPassword ="";
-    private String confirmNewPassword ="";
+    private String newPassword = "";
+    private String confirmNewPassword = "";
 
-    public PasswordChangeDialogFragment(){
+    public PasswordChangeDialogFragment() {
     }
 
     public PasswordChangeDialogFragment(MainPresenter presenter) {
         this.presenter = presenter;
     }
 
-    public PasswordChangeDialogFragment(MainPresenter presenter, @NonNull String newPassword, @NonNull String confirmNewPassword) {
-        this.presenter = presenter;
-        this.newPassword = newPassword;
-        this.confirmNewPassword = confirmNewPassword;
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.fragment_password_change,container,false);
-        ButterKnife.bind(this,view);
+        View view = inflater.inflate(R.layout.fragment_password_change, container, false);
+        ButterKnife.bind(this, view);
 
         init();
         return view;
@@ -64,7 +57,7 @@ public class PasswordChangeDialogFragment extends AppCompatDialogFragment implem
 
     private void init() {
 
-        prevPasswordEdtxt.setText(presenter.getPreviousPassword());
+        prevPasswordEdtxt.setText(SharedPreferenceUtils.getInstance(getActivity()).getString(PreferenceContants.KEY_PASSWORD,""));
         confirmBtn.setOnClickListener(this);
         cancelBtn.setOnClickListener(this);
 
@@ -76,10 +69,12 @@ public class PasswordChangeDialogFragment extends AppCompatDialogFragment implem
 
     @Override
     public void onClick(View view) {
-        if(view.equals(confirmBtn)){
-            presenter.confirmNewPassword(new PasswordChanger(newPasswordEdtxt.getText().toString(),confirmPasswordEdtxt.getText().toString()));
-        }
-        else if(view.equals(cancelBtn)){
+        if (view.equals(confirmBtn)) {
+            presenter.confirmNewPassword(new PasswordChanger(presenter.getMainView(),
+                    newPasswordEdtxt.getText().toString(),
+                    confirmPasswordEdtxt.getText().toString()));
+
+        } else if (view.equals(cancelBtn)) {
             presenter.cancelPasswordChange();
         }
     }

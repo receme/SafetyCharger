@@ -10,6 +10,7 @@ import org.junit.Test;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.only;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -51,4 +52,31 @@ public class MainPresenterTest {
         verify(mockView, times(1)).showError(anyString(), anyString());
     }
 
+    @Test
+    public void confirmPassword_whenNewPasswordValidationSucceed_passwordChanged() {
+        when(mockView.getResourceString(anyInt())).thenReturn("");
+        String newPassword = "11111111";
+        String confirmPassword = newPassword;
+        PasswordChanger changer = new PasswordChanger(mockView, newPassword, confirmPassword);
+        presenter.confirmNewPassword(changer);
+        verify(mockView,times(1)).saveNewPassword(newPassword);
+    }
+
+    @Test
+    public void confirmPassword_whenNewPasswordValidationSucceed_passwordChangeDialogWillBeClosed() {
+        when(mockView.getResourceString(anyInt())).thenReturn("");
+        String newPassword = "11111111";
+        String confirmPassword = newPassword;
+        PasswordChanger changer = new PasswordChanger(mockView, newPassword, confirmPassword);
+        presenter.confirmNewPassword(changer);
+        verify(mockView,times(1)).closePasswordChangeDialog();
+        verify(mockView,times(1)).showConfirmation(anyString());
+    }
+
+    @Test
+    public void cancelPasswordChange_willClosePasswordChangeDialog() {
+
+        presenter.cancelPasswordChange();
+        verify(mockView,times(1)).closePasswordChangeDialog();
+    }
 }

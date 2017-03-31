@@ -26,15 +26,6 @@ public class MainPresenter {
         view.showPasswordChangeDialog(prevPassword);
     }
 
-    public String getPreviousPassword() {
-
-        if(prevPassword == null){
-            return "";
-        }
-
-        return prevPassword;
-    }
-
     public void confirmNewPassword(PasswordChanger passwordChanger) {
         PasswordChanger.Response response = passwordChanger.isValid();
 
@@ -43,10 +34,16 @@ public class MainPresenter {
             return;
         }
 
+        view.saveNewPassword(passwordChanger.getNewPassword());
+        view.closePasswordChangeDialog();
+        view.showConfirmation(view.getResourceString(R.string.password_change_successful));
     }
 
     public void cancelPasswordChange() {
+        view.closePasswordChangeDialog();
+    }
 
-
+    public MainView getMainView(){
+        return view;
     }
 }

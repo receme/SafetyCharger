@@ -10,6 +10,8 @@ import com.rcmapps.safetycharger.interfaces.MainView;
 import com.rcmapps.safetycharger.listeners.AlarmStateListener;
 import com.rcmapps.safetycharger.listeners.ButtonClickListener;
 import com.rcmapps.safetycharger.presenters.MainPresenter;
+import com.rcmapps.safetycharger.utils.PreferenceContants;
+import com.rcmapps.safetycharger.utils.UtilMethods;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +27,7 @@ public class MainActivity extends BaseActivity implements MainView {
 
 
     private MainPresenter presenter;
+    private PasswordChangeDialogFragment passwordChangeDialogFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +50,31 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public void showPasswordChangeDialog(String prevPassword) {
 
-        PasswordChangeDialogFragment fragment = new PasswordChangeDialogFragment(presenter);
-        fragment.show(getSupportFragmentManager(),PasswordChangeDialogFragment.class.getSimpleName());
+        passwordChangeDialogFragment = new PasswordChangeDialogFragment(presenter);
+        passwordChangeDialogFragment.show(getSupportFragmentManager(),PasswordChangeDialogFragment.class.getSimpleName());
+    }
+
+    @Override
+    public void saveNewPassword(String newPassword) {
+        sharedPreferenceUtils.putString(PreferenceContants.KEY_PASSWORD,newPassword);
+    }
+
+    @Override
+    public void closePasswordChangeDialog() {
+
+        if(passwordChangeDialogFragment!=null){
+            passwordChangeDialogFragment.dismiss();
+        }
+    }
+
+    @Override
+    public void showConfirmation(String message) {
+        UtilMethods.showToastMessage(this,message);
     }
 
     @Override
     public void showError(String title, String message) {
-
+        UtilMethods.showSimpleAlertWithMessage(this,title,message);
     }
 
     @Override
