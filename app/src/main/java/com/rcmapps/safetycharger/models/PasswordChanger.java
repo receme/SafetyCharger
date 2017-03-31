@@ -1,8 +1,6 @@
 package com.rcmapps.safetycharger.models;
 
 
-import android.util.Pair;
-
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.interfaces.BaseView;
 
@@ -17,7 +15,7 @@ public class PasswordChanger {
         this.confirmPassword = confirmPassword;
     }
 
-    public PasswordChanger(BaseView baseView,String newPassword, String confirmPassword) {
+    public PasswordChanger(BaseView baseView, String newPassword, String confirmPassword) {
         this.baseView = baseView;
         this.newPassword = newPassword;
         this.confirmPassword = confirmPassword;
@@ -33,18 +31,18 @@ public class PasswordChanger {
 
     public Response isValid() {
         if (newPassword == null || confirmPassword == null || newPassword.isEmpty() || confirmPassword.isEmpty()) {
-            return new Response(false,baseView.getResourceString(R.string.newpassword_notnull));
+            return new Response(false, baseView.getResourceString(R.string.newpassword_notnull));
         }
 
-        if(newPassword.length()<8){
-            return new Response(false,baseView.getResourceString(R.string.password_length));
+        if (newPassword.length() < 8) {
+            return new Response(false, baseView.getResourceString(R.string.password_length));
         }
 
         if (!newPassword.equals(confirmPassword)) {
-            return new Response(false,baseView.getResourceString(R.string.password_not_match));
+            return new Response(false, baseView.getResourceString(R.string.password_not_match));
         }
 
-        return new Response(true,"");
+        return new Response(true, "");
 
     }
 
