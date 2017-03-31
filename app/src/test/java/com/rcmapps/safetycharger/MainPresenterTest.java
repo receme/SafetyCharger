@@ -44,4 +44,5 @@ public class MainPresenterTest {
         verify(mockView,times(1)).showPasswordChangeDialog(anyString());
     }
 
+
 }

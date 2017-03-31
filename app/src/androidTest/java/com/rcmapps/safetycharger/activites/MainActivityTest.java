@@ -27,17 +27,6 @@ public class MainActivityTest {
 
     @Test
     public void mainActivityTest() {
-        ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.setPasswordBtn), withText("Set Password"), isDisplayed()));
-        appCompatButton.perform(click());
-
-        ViewInteraction appCompatButton2 = onView(
-                allOf(withId(R.id.confirmBtn), withText("Confirm"), isDisplayed()));
-        appCompatButton2.perform(click());
-
-        ViewInteraction appCompatButton3 = onView(
-                allOf(withId(R.id.cancelBtn), withText("Cancel"), isDisplayed()));
-        appCompatButton3.perform(click());
 
     }
 
