@@ -5,4 +5,8 @@
     <string name="confirm_password">Confirm password</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
+    <string name="newpassword_notnull">Password cannot be empty</string>
+    <string name="confirmpassword_notnull">Password must be confirmed</string>
+    <string name="password_not_match">Password does not match</string>
+    <string name="password_length">Password shouble be at least 8 character long</string>
 </resources>

@@ -51,4 +51,13 @@ public class MainActivity extends BaseActivity implements MainView {
         fragment.show(getSupportFragmentManager(),PasswordChangeDialogFragment.class.getSimpleName());
     }
 
+    @Override
+    public void showError(String title, String message) {
+
+    }
+
+    @Override
+    public String getResourceString(int stringId) {
+        return getString(stringId);
+    }
 }

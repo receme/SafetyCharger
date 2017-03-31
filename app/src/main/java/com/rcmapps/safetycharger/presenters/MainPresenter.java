@@ -1,5 +1,6 @@
 package com.rcmapps.safetycharger.presenters;
 
+import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.interfaces.MainView;
 
 public class MainPresenter {
@@ -34,6 +35,7 @@ public class MainPresenter {
     }
 
     public void confirmNewPassword(String newPassword, String confirmNewPassword) {
+
 
     }
 
