@@ -7,6 +7,13 @@ import android.content.Intent;
 import android.os.BatteryManager;
 
 public class PowerConnectionReceiver extends BroadcastReceiver {
+
+    SafetyAlarmService safetyAlarmService;
+
+    public PowerConnectionReceiver(SafetyAlarmService safetyAlarmService) {
+        this.safetyAlarmService = safetyAlarmService;
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
         int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);

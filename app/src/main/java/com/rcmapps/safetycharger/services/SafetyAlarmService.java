@@ -7,7 +7,9 @@ import android.content.IntentFilter;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-public class SafetyAlarmService extends Service {
+import com.rcmapps.safetycharger.interfaces.SafetyAlarm;
+
+public class SafetyAlarmService extends Service implements SafetyAlarm{
 
     private PowerConnectionReceiver powerConnectionReceiver;
 
@@ -19,7 +21,7 @@ public class SafetyAlarmService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        powerConnectionReceiver = new PowerConnectionReceiver();
+        powerConnectionReceiver = new PowerConnectionReceiver(this);
         registerReceiver(powerConnectionReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
         return START_STICKY;
@@ -37,5 +39,10 @@ public class SafetyAlarmService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    @Override
+    public void onPowerCableDisconnected() {
+
     }
 }
