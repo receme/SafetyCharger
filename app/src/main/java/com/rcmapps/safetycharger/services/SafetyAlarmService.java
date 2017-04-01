@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 public class SafetyAlarmService extends Service {
 
     private PowerConnectionReceiver powerConnectionReceiver;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -19,7 +20,7 @@ public class SafetyAlarmService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         powerConnectionReceiver = new PowerConnectionReceiver();
-        registerReceiver(powerConnectionReceiver,new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        registerReceiver(powerConnectionReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
         return START_STICKY;
     }
@@ -27,7 +28,7 @@ public class SafetyAlarmService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(powerConnectionReceiver!=null){
+        if (powerConnectionReceiver != null) {
             unregisterReceiver(powerConnectionReceiver);
         }
     }
