@@ -68,17 +68,23 @@ public class MainActivity extends BaseActivity implements MainView {
     }
 
     @Override
-    public void showConfirmation(String message) {
-        UtilMethods.showToastMessage(this,message);
+    public void setSafetyAlarm() {
+
     }
 
     @Override
-    public void showError(String title, String message) {
-        UtilMethods.showSimpleAlertWithMessage(this,title,message);
+    public void stopSafetyAlarm() {
+
     }
 
     @Override
-    public String getResourceString(int stringId) {
-        return getString(stringId);
+    public boolean isPasswordSet() {
+        return sharedPreferenceUtils.getString(PreferenceContants.KEY_PASSWORD,"").length()>0;
     }
+
+    @Override
+    public void uncheckAlarmSwitch() {
+        enableAlarmCB.setChecked(false);
+    }
+
 }

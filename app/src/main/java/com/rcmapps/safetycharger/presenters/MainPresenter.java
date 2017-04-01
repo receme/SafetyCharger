@@ -7,10 +7,9 @@ import com.rcmapps.safetycharger.models.PasswordChanger;
 public class MainPresenter {
 
     private MainView view;
-    private String prevPassword;
 
-    public MainPresenter(MainView _view){
-        this.view = _view;
+    public MainPresenter(MainView view){
+        this.view = view;
     }
 
     public void init() {
@@ -36,11 +35,27 @@ public class MainPresenter {
 
         view.saveNewPassword(passwordChanger.getNewPassword());
         view.closePasswordChangeDialog();
-        view.showConfirmation(view.getResourceString(R.string.password_change_successful));
+        view.showToast(view.getResourceString(R.string.password_change_successful));
     }
 
     public void cancelPasswordChange() {
         view.closePasswordChangeDialog();
+    }
+
+    public void onCheckedChanged(boolean isChecked) {
+        if(isChecked){
+
+            if(view.isPasswordSet()){
+                view.setSafetyAlarm();
+            }
+            else{
+                view.showToast(view.getResourceString(R.string.set_password_first));
+                view.uncheckAlarmSwitch();
+            }
+        }
+        else{
+            view.stopSafetyAlarm();
+        }
     }
 
     public MainView getMainView(){

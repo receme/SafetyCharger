@@ -1,7 +1,5 @@
 package com.rcmapps.safetycharger.listeners;
 
-import android.os.Debug;
-import android.util.Log;
 import android.widget.CompoundButton;
 
 import com.rcmapps.safetycharger.presenters.MainPresenter;
@@ -17,12 +15,6 @@ public class AlarmStateListener implements CompoundButton.OnCheckedChangeListene
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-
-        if(isChecked){
-            UtilMethods.printLog("Checked");
-        }
-        else{
-            UtilMethods.printLog("UnChecked");
-        }
+        presenter.onCheckedChanged(isChecked);
     }
 }

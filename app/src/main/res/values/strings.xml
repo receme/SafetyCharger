@@ -11,4 +11,5 @@
     <string name="password_not_match">Password does not match</string>
     <string name="password_length">Password shouble be at least 8 character long</string>
     <string name="password_change_successful">Password is changed successfully</string>
+    <string name="set_password_first">Set a password first to enable safety alarm</string>
 </resources>

@@ -7,10 +7,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.only;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -70,7 +70,7 @@ public class MainPresenterTest {
         PasswordChanger changer = new PasswordChanger(mockView, newPassword, confirmPassword);
         presenter.confirmNewPassword(changer);
         verify(mockView,times(1)).closePasswordChangeDialog();
-        verify(mockView,times(1)).showConfirmation(anyString());
+        verify(mockView,times(1)).showToast(anyString());
     }
 
     @Test
@@ -78,5 +78,30 @@ public class MainPresenterTest {
 
         presenter.cancelPasswordChange();
         verify(mockView,times(1)).closePasswordChangeDialog();
+    }
+
+    @Test
+    public void onCheckedChanged_withisCheckedFalse_willStopSafetyAlarm(){
+        presenter.onCheckedChanged(false);
+        verify(mockView,times(1)).stopSafetyAlarm();
+    }
+
+    @Test
+    public void onCheckedChanged_withisCheckedTrueButPasswordNotSet_willShowErrorMessageAndUncheckCheckbox(){
+        when(mockView.isPasswordSet()).thenReturn(false);
+        when(mockView.getResourceString(anyInt())).thenReturn("");
+        presenter.onCheckedChanged(true);
+        verify(mockView,times(0)).setSafetyAlarm();
+        verify(mockView,times(1)).showToast(anyString());
+        verify(mockView,times(1)).uncheckAlarmSwitch();
+    }
+
+    @Test
+    public void onCheckedChanged_withisCheckedTrueAndPasswordSet_willSetSafetyAlarm(){
+        when(mockView.isPasswordSet()).thenReturn(true);
+        presenter.onCheckedChanged(true);
+        verify(mockView,times(1)).setSafetyAlarm();
+        verify(mockView,times(0)).showToast(anyString());
+        verify(mockView,times(0)).uncheckAlarmSwitch();
     }
 }
