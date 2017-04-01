@@ -21,7 +21,7 @@ project.afterEvaluate {
                 sourceName = "${productFlavorName}${buildTypeName.capitalize()}"
                 sourcePath = "${productFlavorName}/${buildTypeName}"
             }
-            def testTaskName = "jacoco${sourceName.capitalize()}UnitTest"
+            def testTaskName = "test${sourceName.capitalize()}UnitTest"
 
             // Create coverage task of form 'testFlavorTypeCoverage' depending on 'testFlavorTypeUnitTest'
             task "${testTaskName}Coverage" (type:JacocoReport, dependsOn: "$testTaskName") {
@@ -48,7 +48,7 @@ project.afterEvaluate {
                 executionData = files("${project.buildDir}/jacoco/${testTaskName}.exec")
 
                 reports {
-                    xml.enabled = false
+                    xml.enabled = true
                     html.enabled = true
                 }
             }

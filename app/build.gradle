@@ -26,6 +26,9 @@ android {
         // I prefer avoiding a build fail if there is any warning, for they are only warnings
         abortOnError false
     }
+    productFlavors {
+        red {}
+    }
 }
 
 dependencies {
