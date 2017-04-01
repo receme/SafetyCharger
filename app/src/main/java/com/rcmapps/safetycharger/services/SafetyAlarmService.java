@@ -8,6 +8,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 import com.rcmapps.safetycharger.interfaces.SafetyAlarm;
+import com.rcmapps.safetycharger.utils.UtilMethods;
 
 public class SafetyAlarmService extends Service implements SafetyAlarm{
 
@@ -43,6 +44,6 @@ public class SafetyAlarmService extends Service implements SafetyAlarm{
 
     @Override
     public void onPowerCableDisconnected() {
-
+        UtilMethods.printLog("power cable disconnected");
     }
 }
