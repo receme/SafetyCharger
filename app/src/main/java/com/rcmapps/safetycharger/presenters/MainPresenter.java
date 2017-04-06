@@ -13,6 +13,7 @@ public class MainPresenter {
     }
 
     public void init() {
+        view.initView();
         view.defineClickListener();
     }
 

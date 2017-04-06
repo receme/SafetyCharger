@@ -6,9 +6,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.BatteryManager;
 
+import com.rcmapps.safetycharger.utils.UtilMethods;
+
 public class PowerConnectionReceiver extends BroadcastReceiver {
 
     SafetyAlarmService safetyAlarmService;
+
+    public PowerConnectionReceiver(){
+
+    }
 
     public PowerConnectionReceiver(SafetyAlarmService safetyAlarmService) {
         this.safetyAlarmService = safetyAlarmService;
@@ -23,5 +29,16 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         int chargePlug = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
         boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
         boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
+
+        if(safetyAlarmService!=null){
+
+            if(usbCharge | acCharge){
+                safetyAlarmService.onPowerCableConnected();
+            }
+            else{
+                safetyAlarmService.onPowerCableDisconnected();
+            }
+        }
+
     }
 }
