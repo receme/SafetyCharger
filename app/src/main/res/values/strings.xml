@@ -12,4 +12,6 @@
     <string name="password_length">Password shouble be at least 8 character long</string>
     <string name="password_change_successful">Password is changed successfully</string>
     <string name="set_password_first">Set a password first to enable safety alarm</string>
+    <string name="to_stop_alarm">To stop the alarm, enter password</string>
+    <string name="hint_password">Password</string>
 </resources>

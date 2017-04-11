@@ -1,6 +1,7 @@
 package com.rcmapps.safetycharger.utils;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.interfaces.AlertActionCallback;
+
+import java.util.List;
 
 public class UtilMethods {
 
@@ -126,6 +129,18 @@ public class UtilMethods {
 
     public static void printLog(String message){
         Log.d("DEBUG",message);
+    }
+
+    public static boolean isServiceRunning(Context context,Class<?> serviceClass){
+        final ActivityManager activityManager = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
+        final List<ActivityManager.RunningServiceInfo> services = activityManager.getRunningServices(Integer.MAX_VALUE);
+
+        for (ActivityManager.RunningServiceInfo runningServiceInfo : services) {
+            if (runningServiceInfo.service.getClassName().equals(serviceClass.getName())){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 
 import com.rcmapps.safetycharger.R;
+import com.rcmapps.safetycharger.fragments.EnterPasswordDialogFragment;
 import com.rcmapps.safetycharger.fragments.PasswordChangeDialogFragment;
 import com.rcmapps.safetycharger.interfaces.MainView;
 import com.rcmapps.safetycharger.listeners.AlarmStateListener;
@@ -40,6 +41,16 @@ public class MainActivity extends BaseActivity implements MainView {
 
         presenter = new MainPresenter(this);
         presenter.init();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_ALARM_STARTED,false)){
+            EnterPasswordDialogFragment fragment = new EnterPasswordDialogFragment();
+            fragment.show(getSupportFragmentManager(),"EnterPasswordDialogFragment");
+        }
     }
 
     @Override
@@ -79,9 +90,16 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void setSafetyAlarm() {
-        Intent intent = new Intent(this, SafetyAlarmService.class);
-        startService(intent);
-        sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, true);
+
+        if(!UtilMethods.isServiceRunning(this,SafetyAlarmService.class)){
+            UtilMethods.printLog("Starting service");
+            Intent intent = new Intent(this, SafetyAlarmService.class);
+            startService(intent);
+            sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, true);
+        }
+        else{
+            UtilMethods.printLog("Service is already running");
+        }
     }
 
     @Override
