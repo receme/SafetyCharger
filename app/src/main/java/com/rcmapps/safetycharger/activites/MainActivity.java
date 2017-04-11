@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
 
+import com.crashlytics.android.Crashlytics;
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.fragments.EnterPasswordDialogFragment;
 import com.rcmapps.safetycharger.fragments.PasswordChangeDialogFragment;
@@ -16,6 +17,7 @@ import com.rcmapps.safetycharger.services.SafetyAlarmService;
 import com.rcmapps.safetycharger.utils.PreferenceContants;
 import com.rcmapps.safetycharger.utils.UtilMethods;
 
+import io.fabric.sdk.android.Fabric;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -42,6 +44,7 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
