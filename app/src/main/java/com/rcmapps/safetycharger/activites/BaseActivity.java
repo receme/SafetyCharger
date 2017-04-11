@@ -33,4 +33,9 @@ public class BaseActivity extends AppCompatActivity implements BaseView{
     public void showToast(String message) {
         UtilMethods.showToastMessage(this,message);
     }
+
+    @Override
+    public void closeApp() {
+        finish();
+    }
 }

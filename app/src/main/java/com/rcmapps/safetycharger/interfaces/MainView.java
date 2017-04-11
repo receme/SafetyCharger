@@ -12,4 +12,7 @@ public interface MainView extends BaseView{
     void stopSafetyAlarm();
     boolean isPasswordSet();
     void uncheckAlarmSwitch();
+
+
+    String getSavedPassword();
 }

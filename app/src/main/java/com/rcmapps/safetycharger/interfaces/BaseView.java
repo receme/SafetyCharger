@@ -6,4 +6,6 @@ public interface BaseView {
     String getResourceString(int stringId);
 
     void showToast(String message);
+
+    void closeApp();
 }

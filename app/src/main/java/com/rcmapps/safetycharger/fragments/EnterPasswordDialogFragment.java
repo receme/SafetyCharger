@@ -8,16 +8,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.rcmapps.safetycharger.R;
+import com.rcmapps.safetycharger.presenters.MainPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class EnterPasswordDialogFragment extends AppCompatDialogFragment {
 
+    @BindView(R.id.confirmBtn)
+    Button confirmBtn;
     @BindView(R.id.cancelBtn)
     Button cancelBtn;
+    @BindView(R.id.passwordEdtxt)
+    EditText passwordEdtxt;
+
+    private MainPresenter presenter;
+
+    public EnterPasswordDialogFragment() {
+    }
+
+    public EnterPasswordDialogFragment(MainPresenter presenter) {
+        this.presenter = presenter;
+    }
 
     @Nullable
     @Override
@@ -27,14 +42,24 @@ public class EnterPasswordDialogFragment extends AppCompatDialogFragment {
         ButterKnife.bind(this,view);
         setCancelable(false);
         defineClickListener();
+
         return view;
     }
 
     private void defineClickListener() {
+
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.validatePassword(passwordEdtxt.getText().toString());
+            }
+        });
+
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
+                presenter.closeApp();
             }
         });
     }

@@ -80,4 +80,23 @@ public class MainPresenter {
             view.showEnterPasswordDialog();
         }
     }
+
+    public void closeApp() {
+        view.closeApp();
+    }
+
+    public void validatePassword(String password) {
+
+        if(password==null|| password.isEmpty()){
+            return;
+        }
+
+        if(password.equals(view.getSavedPassword())){
+            view.closeEnterPasswordDialog();
+            view.stopSafetyAlarm();
+        }
+        else{
+            view.showToast(view.getResourceString(R.string.password_not_match));
+        }
+    }
 }

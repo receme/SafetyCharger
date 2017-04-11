@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends BaseActivity implements MainView {
 
     @BindView(R.id.enableAlarmCB)
-    CheckBox enableAlarmCB;
+    CheckBox alarmCb;
     @BindView(R.id.setPasswordBtn)
     Button setPasswrodBtn;
     @BindView(R.id.chooseAlarmToneBtn)
@@ -71,14 +71,14 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public void initView() {
 
-        enableAlarmCB.setChecked(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, false));
+        alarmCb.setChecked(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, false));
 
     }
 
     @Override
     public void defineClickListener() {
 
-        enableAlarmCB.setOnCheckedChangeListener(new AlarmStateListener(presenter));
+        alarmCb.setOnCheckedChangeListener(new AlarmStateListener(presenter));
         chooseAlarmBtn.setOnClickListener(new ButtonClickListener(presenter, sharedPreferenceUtils));
         setPasswrodBtn.setOnClickListener(new ButtonClickListener(presenter, sharedPreferenceUtils));
     }
@@ -93,7 +93,7 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public void showEnterPasswordDialog() {
         if(enterPasswordDialogFragment!=null && !enterPasswordDialogFragment.isAdded()){
-            enterPasswordDialogFragment = new EnterPasswordDialogFragment();
+            enterPasswordDialogFragment = new EnterPasswordDialogFragment(presenter);
             enterPasswordDialogFragment.show(getSupportFragmentManager(),"EnterPasswordDialogFragment");
         }
 
@@ -138,6 +138,7 @@ public class MainActivity extends BaseActivity implements MainView {
         Intent intent = new Intent(this, SafetyAlarmService.class);
         stopService(intent);
         sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, false);
+        alarmCb.setChecked(false);
     }
 
     @Override
@@ -147,7 +148,12 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void uncheckAlarmSwitch() {
-        enableAlarmCB.setChecked(false);
+        alarmCb.setChecked(false);
+    }
+
+    @Override
+    public String getSavedPassword() {
+        return sharedPreferenceUtils.getString(PreferenceContants.KEY_PASSWORD,PreferenceContants.KEY_PASSWORD_DEFAULT_VALUE);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
