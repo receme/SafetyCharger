@@ -11,10 +11,13 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 import com.rcmapps.safetycharger.R;
+import com.rcmapps.safetycharger.activites.MainActivity;
 import com.rcmapps.safetycharger.interfaces.SafetyAlarm;
 import com.rcmapps.safetycharger.utils.PreferenceContants;
 import com.rcmapps.safetycharger.utils.SharedPreferenceUtils;
 import com.rcmapps.safetycharger.utils.UtilMethods;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class SafetyAlarmService extends Service implements SafetyAlarm {
 
@@ -69,6 +72,7 @@ public class SafetyAlarmService extends Service implements SafetyAlarm {
         //volumeObserver = new VolumeObserver(this,new Handler());
         //getApplicationContext().getContentResolver().registerContentObserver(Settings.System.CONTENT_URI, true, volumeObserver);
         SharedPreferenceUtils.getInstance(this).putBoolean(PreferenceContants.KEY_IS_ALARM_STARTED, true);
+        EventBus.getDefault().post(new MainActivity.MessageEvent(false));
     }
 
     @Override
@@ -76,6 +80,8 @@ public class SafetyAlarmService extends Service implements SafetyAlarm {
         stopMediaPlayer();
         SharedPreferenceUtils.getInstance(this).putBoolean(PreferenceContants.KEY_IS_ALARM_STARTED, false);
         UtilMethods.printLog("power cable connected");
+
+        EventBus.getDefault().post(new MainActivity.MessageEvent(true));
     }
 
     private void stopMediaPlayer() {

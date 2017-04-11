@@ -62,4 +62,22 @@ public class MainPresenter {
     public MainView getMainView(){
         return view;
     }
+
+    public void checkIfAlarmStarted(boolean isAlarmOn) {
+        if(isAlarmOn){
+            view.showEnterPasswordDialog();
+        }
+        else {
+            view.closeEnterPasswordDialog();
+        }
+    }
+
+    public void checkCableStatus(boolean cableConnected) {
+        if(cableConnected){
+            view.closeEnterPasswordDialog();
+        }
+        else{
+            view.showEnterPasswordDialog();
+        }
+    }
 }

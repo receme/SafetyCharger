@@ -11,6 +11,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.only;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -104,4 +106,33 @@ public class MainPresenterTest {
         verify(mockView,times(0)).showToast(anyString());
         verify(mockView,times(0)).uncheckAlarmSwitch();
     }
+
+    @Test
+    public void checkIfAlarmStarted_withAlarmOn_willShowEnterPasswordDialog(){
+        presenter.checkIfAlarmStarted(true);
+        verify(mockView,only()).showEnterPasswordDialog();
+        verify(mockView,never()).closeEnterPasswordDialog();
+    }
+
+    @Test
+    public void checkIfAlarmStarted_withAlarmOff_willCloseEnterPasswordDialog(){
+        presenter.checkIfAlarmStarted(false);
+        verify(mockView,only()).closeEnterPasswordDialog();
+        verify(mockView,never()).showEnterPasswordDialog();
+    }
+
+    @Test
+    public void checkCableStatus_withCableConnected_willShowEnterPasswordDialog(){
+        presenter.checkCableStatus(true);
+        verify(mockView,only()).closeEnterPasswordDialog();
+        verify(mockView,never()).showEnterPasswordDialog();
+    }
+
+    @Test
+    public void checkCableStatus_withCableDisconnected_willCloseEnterPasswordDialog(){
+        presenter.checkCableStatus(false);
+        verify(mockView,only()).showEnterPasswordDialog();
+        verify(mockView,never()).closeEnterPasswordDialog();
+    }
+
 }

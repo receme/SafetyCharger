@@ -6,6 +6,8 @@ public interface MainView extends BaseView{
     void showPasswordChangeDialog(String prevPassword);
     void saveNewPassword(String newPassword);
     void closePasswordChangeDialog();
+    void showEnterPasswordDialog();
+    void closeEnterPasswordDialog();
     void setSafetyAlarm();
     void stopSafetyAlarm();
     boolean isPasswordSet();

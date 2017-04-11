@@ -14,8 +14,11 @@ import com.rcmapps.safetycharger.listeners.ButtonClickListener;
 import com.rcmapps.safetycharger.presenters.MainPresenter;
 import com.rcmapps.safetycharger.services.SafetyAlarmService;
 import com.rcmapps.safetycharger.utils.PreferenceContants;
-import com.rcmapps.safetycharger.utils.SharedPreferenceUtils;
 import com.rcmapps.safetycharger.utils.UtilMethods;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,7 +34,10 @@ public class MainActivity extends BaseActivity implements MainView {
 
 
     private MainPresenter presenter;
-    private PasswordChangeDialogFragment passwordChangeDialogFragment;
+    private PasswordChangeDialogFragment passwordChangeDialogFragment = new PasswordChangeDialogFragment();
+    private EnterPasswordDialogFragment enterPasswordDialogFragment = new EnterPasswordDialogFragment();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +52,20 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     protected void onResume() {
         super.onResume();
+        presenter.checkIfAlarmStarted(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_ALARM_STARTED,false));
+    }
 
-        if(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_ALARM_STARTED,false)){
-            EnterPasswordDialogFragment fragment = new EnterPasswordDialogFragment();
-            fragment.show(getSupportFragmentManager(),"EnterPasswordDialogFragment");
-        }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+
     }
 
     @Override
@@ -73,6 +88,22 @@ public class MainActivity extends BaseActivity implements MainView {
 
         passwordChangeDialogFragment = new PasswordChangeDialogFragment(presenter);
         passwordChangeDialogFragment.show(getSupportFragmentManager(), PasswordChangeDialogFragment.class.getSimpleName());
+    }
+
+    @Override
+    public void showEnterPasswordDialog() {
+        if(enterPasswordDialogFragment!=null && !enterPasswordDialogFragment.isAdded()){
+            enterPasswordDialogFragment = new EnterPasswordDialogFragment();
+            enterPasswordDialogFragment.show(getSupportFragmentManager(),"EnterPasswordDialogFragment");
+        }
+
+    }
+
+    @Override
+    public void closeEnterPasswordDialog() {
+        if(enterPasswordDialogFragment!=null && enterPasswordDialogFragment.isAdded()){
+            enterPasswordDialogFragment.dismiss();
+        }
     }
 
     @Override
@@ -119,5 +150,21 @@ public class MainActivity extends BaseActivity implements MainView {
         enableAlarmCB.setChecked(false);
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event){
+        presenter.checkCableStatus(event.isCableConnected());
+    }
 
+
+    public static class MessageEvent {
+        private boolean cableConnected;
+
+        public MessageEvent(boolean cableConnected){
+            this.cableConnected = cableConnected;
+        }
+
+        public boolean isCableConnected() {
+            return cableConnected;
+        }
+    }
 }
