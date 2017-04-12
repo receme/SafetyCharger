@@ -141,6 +141,7 @@ public class MainActivity extends BaseActivity implements MainView {
         Intent intent = new Intent(this, SafetyAlarmService.class);
         stopService(intent);
         sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, false);
+        sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_IS_ALARM_STARTED, false);
         alarmCb.setChecked(false);
     }
 
