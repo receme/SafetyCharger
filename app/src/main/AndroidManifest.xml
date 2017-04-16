@@ -16,6 +16,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activites.SettingsActivity">
+        </activity>
         <service android:name=".services.SafetyAlarmService"/>
 
         <receiver android:name=".services.PowerConnectionReceiver">

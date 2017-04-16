@@ -1,8 +1,10 @@
 package com.rcmapps.safetycharger.listeners;
 
+import android.content.Intent;
 import android.view.View;
 
 import com.rcmapps.safetycharger.R;
+import com.rcmapps.safetycharger.activites.SettingsActivity;
 import com.rcmapps.safetycharger.presenters.MainPresenter;
 import com.rcmapps.safetycharger.utils.PreferenceContants;
 import com.rcmapps.safetycharger.utils.SharedPreferenceUtils;
@@ -22,11 +24,18 @@ public class ButtonClickListener implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.setPasswordBtn:
-                presenter.setPassword(sharedPreferenceUtils.getString(PreferenceContants.KEY_PASSWORD,PreferenceContants.KEY_PASSWORD_DEFAULT_VALUE));
+            case R.id.toggleAlarmBtn:
+                boolean state = sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING,false);
+                state = !state;
+                presenter.onCheckedChanged(state);
                 break;
             case R.id.chooseAlarmToneBtn:
                 UtilMethods.printLog("pressed chooseAlarm btn");
+
+                break;
+            case R.id.settingsBtn:
+                presenter.onClickSettingsBtn();
+                //presenter.setPassword(sharedPreferenceUtils.getString(PreferenceContants.KEY_PASSWORD,PreferenceContants.KEY_PASSWORD_DEFAULT_VALUE));
                 break;
         }
     }

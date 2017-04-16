@@ -15,4 +15,8 @@ public interface MainView extends BaseView{
 
 
     String getSavedPassword();
+
+    void updateToggleButton(int resource);
+
+    void showSettingsScreen();
 }

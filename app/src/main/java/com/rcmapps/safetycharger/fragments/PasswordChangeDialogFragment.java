@@ -41,7 +41,7 @@ public class PasswordChangeDialogFragment extends AppCompatDialogFragment implem
     public PasswordChangeDialogFragment() {
     }
 
-    public PasswordChangeDialogFragment(MainPresenter presenter) {
+    public void  setPresenter (MainPresenter presenter) {
         this.presenter = presenter;
     }
 

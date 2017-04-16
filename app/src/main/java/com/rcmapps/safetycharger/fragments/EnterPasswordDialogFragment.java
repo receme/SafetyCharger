@@ -30,7 +30,7 @@ public class EnterPasswordDialogFragment extends AppCompatDialogFragment {
     public EnterPasswordDialogFragment() {
     }
 
-    public EnterPasswordDialogFragment(MainPresenter presenter) {
+    public void  setPresenter (MainPresenter presenter) {
         this.presenter = presenter;
     }
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 
 import com.crashlytics.android.Crashlytics;
 import com.rcmapps.safetycharger.R;
@@ -27,12 +28,12 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements MainView {
 
-    @BindView(R.id.enableAlarmCB)
-    CheckBox alarmCb;
-    @BindView(R.id.setPasswordBtn)
-    Button setPasswrodBtn;
+    @BindView(R.id.toggleAlarmBtn)
+    ImageView toggleAlarmBtn;
+    @BindView(R.id.settingsBtn)
+    ImageView settingsBtn;
     @BindView(R.id.chooseAlarmToneBtn)
-    Button chooseAlarmBtn;
+    ImageView chooseAlarmToneBtn;
 
 
     private MainPresenter presenter;
@@ -45,7 +46,7 @@ public class MainActivity extends BaseActivity implements MainView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main);
         ButterKnife.bind(this);
 
         presenter = new MainPresenter(this);
@@ -74,29 +75,35 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public void initView() {
 
-        alarmCb.setChecked(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, false));
+        //alarmCb.setChecked(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, false));
+        presenter.setAlarmToggleBtnState(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, false));
 
     }
 
     @Override
     public void defineClickListener() {
 
-        alarmCb.setOnCheckedChangeListener(new AlarmStateListener(presenter));
-        chooseAlarmBtn.setOnClickListener(new ButtonClickListener(presenter, sharedPreferenceUtils));
-        setPasswrodBtn.setOnClickListener(new ButtonClickListener(presenter, sharedPreferenceUtils));
+//        alarmCb.setOnCheckedChangeListener(new AlarmStateListener(presenter));
+//        chooseAlarmBtn.setOnClickListener(new ButtonClickListener(presenter, sharedPreferenceUtils));
+//        setPasswrodBtn.setOnClickListener(new ButtonClickListener(presenter, sharedPreferenceUtils));
+        toggleAlarmBtn.setOnClickListener(new ButtonClickListener(presenter,sharedPreferenceUtils));
+        chooseAlarmToneBtn.setOnClickListener(new ButtonClickListener(presenter,sharedPreferenceUtils));
+        settingsBtn.setOnClickListener(new ButtonClickListener(presenter,sharedPreferenceUtils));
     }
 
     @Override
     public void showPasswordChangeDialog(String prevPassword) {
 
-        passwordChangeDialogFragment = new PasswordChangeDialogFragment(presenter);
+        passwordChangeDialogFragment = new PasswordChangeDialogFragment();
+        passwordChangeDialogFragment.setPresenter(presenter);
         passwordChangeDialogFragment.show(getSupportFragmentManager(), PasswordChangeDialogFragment.class.getSimpleName());
     }
 
     @Override
     public void showEnterPasswordDialog() {
         if(enterPasswordDialogFragment!=null && !enterPasswordDialogFragment.isAdded()){
-            enterPasswordDialogFragment = new EnterPasswordDialogFragment(presenter);
+            enterPasswordDialogFragment = new EnterPasswordDialogFragment();
+            enterPasswordDialogFragment.setPresenter(presenter);
             enterPasswordDialogFragment.show(getSupportFragmentManager(),"EnterPasswordDialogFragment");
         }
 
@@ -142,7 +149,8 @@ public class MainActivity extends BaseActivity implements MainView {
         stopService(intent);
         sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, false);
         sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_IS_ALARM_STARTED, false);
-        alarmCb.setChecked(false);
+        //alarmCb.setChecked(false);
+        uncheckAlarmSwitch();
     }
 
     @Override
@@ -152,12 +160,24 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void uncheckAlarmSwitch() {
-        alarmCb.setChecked(false);
+        //alarmCb.setChecked(false);
+        toggleAlarmBtn.setImageResource(R.mipmap.alarm_off);
     }
 
     @Override
     public String getSavedPassword() {
         return sharedPreferenceUtils.getString(PreferenceContants.KEY_PASSWORD,PreferenceContants.KEY_PASSWORD_DEFAULT_VALUE);
+    }
+
+    @Override
+    public void updateToggleButton(int resource) {
+        toggleAlarmBtn.setImageResource(resource);
+    }
+
+    @Override
+    public void showSettingsScreen() {
+        Intent intent = new Intent(this,SettingsActivity.class);
+        startActivity(intent);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

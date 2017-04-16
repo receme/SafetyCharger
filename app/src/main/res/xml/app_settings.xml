@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.preference.PreferenceCategory
+        android:title="General">
+
+        <android.support.v7.preference.EditTextPreference
+            android:key="key_password"
+            android:title="Password"
+            android:summary="Set password to stop the alarm" />
+
+        <android.support.v7.preference.CheckBoxPreference
+            android:key="key_vibration"
+            android:title="Vibration"
+            android:summary="Toggle vibration on/off"
+            android:defaultValue="true" />
+
+        <android.support.v7.preference.CheckBoxPreference
+            android:key="key_startautomatically"
+            android:title="Start Automatically"
+            android:summary="App will be opened automatically when plugged in"
+            android:defaultValue="false" />
+    </android.support.v7.preference.PreferenceCategory>
+
+    <android.support.v7.preference.PreferenceCategory
+        android:title="Others">
+
+        <android.support.v7.preference.EditTextPreference
+            android:key="key_instruction"
+            android:title="Instruction"
+            android:summary="" />
+
+        <android.support.v7.preference.EditTextPreference
+            android:key="key_about"
+            android:title="About"
+            android:summary="" />
+
+    </android.support.v7.preference.PreferenceCategory>
+
+</android.support.v7.preference.PreferenceScreen>

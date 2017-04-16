@@ -25,7 +25,6 @@ public class SafetyAlarmService extends Service implements SafetyAlarm {
 
     private MediaPlayer mediaPlayer;
     private AudioManager mAudioManager;
-    //private VolumeObserver volumeObserver;
 
     @Override
     public void onCreate() {
@@ -69,8 +68,6 @@ public class SafetyAlarmService extends Service implements SafetyAlarm {
             mediaPlayer.start();
         }
 
-        //volumeObserver = new VolumeObserver(this,new Handler());
-        //getApplicationContext().getContentResolver().registerContentObserver(Settings.System.CONTENT_URI, true, volumeObserver);
         SharedPreferenceUtils.getInstance(this).putBoolean(PreferenceContants.KEY_IS_ALARM_STARTED, true);
         EventBus.getDefault().post(new MainActivity.MessageEvent(false));
     }
