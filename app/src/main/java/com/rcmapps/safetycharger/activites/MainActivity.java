@@ -86,9 +86,10 @@ public class MainActivity extends BaseActivity implements MainView {
 //        alarmCb.setOnCheckedChangeListener(new AlarmStateListener(presenter));
 //        chooseAlarmBtn.setOnClickListener(new ButtonClickListener(presenter, sharedPreferenceUtils));
 //        setPasswrodBtn.setOnClickListener(new ButtonClickListener(presenter, sharedPreferenceUtils));
-        toggleAlarmBtn.setOnClickListener(new ButtonClickListener(presenter,sharedPreferenceUtils));
-        chooseAlarmToneBtn.setOnClickListener(new ButtonClickListener(presenter,sharedPreferenceUtils));
-        settingsBtn.setOnClickListener(new ButtonClickListener(presenter,sharedPreferenceUtils));
+        ButtonClickListener buttonClickListener = new ButtonClickListener(presenter,sharedPreferenceUtils);
+        toggleAlarmBtn.setOnClickListener(buttonClickListener);
+        chooseAlarmToneBtn.setOnClickListener(buttonClickListener);
+        settingsBtn.setOnClickListener(buttonClickListener);
     }
 
     @Override
@@ -137,6 +138,8 @@ public class MainActivity extends BaseActivity implements MainView {
             Intent intent = new Intent(this, SafetyAlarmService.class);
             startService(intent);
             sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, true);
+
+            toggleAlarmBtn.setImageResource(R.mipmap.alarm_on);
         }
         else{
             UtilMethods.printLog("Service is already running");
