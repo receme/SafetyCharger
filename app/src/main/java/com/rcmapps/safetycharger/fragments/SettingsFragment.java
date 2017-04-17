@@ -2,6 +2,7 @@ package com.rcmapps.safetycharger.fragments;
 
 
 import android.os.Bundle;
+import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.EditTextPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
@@ -11,13 +12,19 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.rcmapps.safetycharger.R;
+import com.rcmapps.safetycharger.interfaces.SettingsView;
+import com.rcmapps.safetycharger.presenters.SettingsFragmentPresenter;
 import com.rcmapps.safetycharger.utils.UtilMethods;
 
-public class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener {
+public class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener,SettingsView {
+
+    private SettingsFragmentPresenter presenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        presenter = new SettingsFragmentPresenter(this);
     }
 
     @Override
@@ -25,8 +32,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         addPreferencesFromResource(R.xml.app_settings);
 
         EditTextPreference passwordPref = (EditTextPreference) findPreference("key_password");
+        CheckBoxPreference vibrationPref = (CheckBoxPreference) findPreference("key_vibration");
+        CheckBoxPreference startautomaticallyPref = (CheckBoxPreference) findPreference("key_startautomatically");
         passwordPref.setOnPreferenceChangeListener(this);
-        passwordPref.
+        vibrationPref.setOnPreferenceChangeListener(this);
+        startautomaticallyPref.setOnPreferenceChangeListener(this);
     }
 
     @Override
