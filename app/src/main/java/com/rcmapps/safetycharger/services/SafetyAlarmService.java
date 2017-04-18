@@ -72,7 +72,7 @@ public class SafetyAlarmService extends Service implements SafetyAlarm {
             mediaPlayer.setLooping(true);
             mediaPlayer.start();
 
-            if(vibrator!=null){
+            if(vibrator!=null && SharedPreferenceUtils.getInstance(this).getBoolean(PreferenceContants.KEY_IS_VIBRATION_ON,false)){
                 vibrator.vibrate(new long[]{0,500,1000},0);
             }
         }

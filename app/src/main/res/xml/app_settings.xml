@@ -18,8 +18,8 @@
             android:defaultValue="true" />
 
         <android.support.v7.preference.CheckBoxPreference
-            android:key="key_startautomatically"
-            android:title="Start Automatically"
+            android:key="key_autorun"
+            android:title="Autorun"
             android:summary="@string/app_willbe_opened"
             android:defaultValue="false" />
     </android.support.v7.preference.PreferenceCategory>

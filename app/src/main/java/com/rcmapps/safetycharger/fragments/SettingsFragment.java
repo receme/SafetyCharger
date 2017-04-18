@@ -7,9 +7,6 @@ import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.EditTextPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
-import android.support.v7.preference.PreferenceManager;
-import android.support.v7.preference.PreferenceScreen;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.rcmapps.safetycharger.R;
@@ -17,7 +14,7 @@ import com.rcmapps.safetycharger.activites.AboutActivity;
 import com.rcmapps.safetycharger.activites.InstructionActivity;
 import com.rcmapps.safetycharger.interfaces.SettingsView;
 import com.rcmapps.safetycharger.presenters.SettingsFragmentPresenter;
-import com.rcmapps.safetycharger.utils.UtilMethods;
+import com.rcmapps.safetycharger.utils.PreferenceContants;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener,SettingsView {
 
@@ -34,9 +31,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.app_settings);
 
-        EditTextPreference passwordPref = (EditTextPreference) findPreference("key_password");
+        EditTextPreference passwordPref = (EditTextPreference) findPreference(PreferenceContants.KEY_PASSWORD);
         CheckBoxPreference vibrationPref = (CheckBoxPreference) findPreference("key_vibration");
-        CheckBoxPreference startautomaticallyPref = (CheckBoxPreference) findPreference("key_startautomatically");
+        CheckBoxPreference startautomaticallyPref = (CheckBoxPreference) findPreference("key_autorun");
         passwordPref.setOnPreferenceChangeListener(this);
         vibrationPref.setOnPreferenceChangeListener(this);
         startautomaticallyPref.setOnPreferenceChangeListener(this);
