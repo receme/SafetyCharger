@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Safety Charger</string>
+    <string name="settings">Settings</string>
+    <string name="instructions">Instructions</string>
+    <string name="about">About</string>
     <string name="current_password">Current password:</string>
     <string name="new_password">New password</string>
     <string name="confirm_password">Confirm password</string>
@@ -15,4 +18,7 @@
     <string name="set_password_first">Set a password first to enable safety alarm</string>
     <string name="to_stop_alarm">To stop the alarm, enter password</string>
     <string name="hint_password">Password</string>
+    <string name="set_password_to_stop_alarm">Set password to stop the alarm</string>
+    <string name="toggle_vibration">Toggle vibration on/off</string>
+    <string name="app_willbe_opened">App will be opened automatically when device is plugged in</string>
 </resources>

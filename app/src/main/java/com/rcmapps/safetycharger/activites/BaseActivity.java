@@ -10,7 +10,7 @@ import com.rcmapps.safetycharger.utils.PreferenceContants;
 import com.rcmapps.safetycharger.utils.SharedPreferenceUtils;
 import com.rcmapps.safetycharger.utils.UtilMethods;
 
-public class BaseActivity extends AppCompatActivity implements BaseView{
+public abstract class BaseActivity extends AppCompatActivity implements BaseView{
 
     public SharedPreferenceUtils sharedPreferenceUtils;
     public static int isAppOpen = 0;
@@ -18,7 +18,7 @@ public class BaseActivity extends AppCompatActivity implements BaseView{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setTitle(getActivityTitle());
         sharedPreferenceUtils = SharedPreferenceUtils.getInstance(this);
     }
 
@@ -74,4 +74,6 @@ public class BaseActivity extends AppCompatActivity implements BaseView{
             super.onBackPressed();
         }
     }
+
+    public abstract String getActivityTitle();
 }

@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.fragments.SettingsFragment;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends BaseActivity {
 
     final static String ACTION_PREFS_ONE = "com.example.prefs.PREFS_ONE";
 
@@ -25,6 +25,11 @@ public class SettingsActivity extends AppCompatActivity {
             ft.add(R.id.pref_container, preferenceFragment);
             ft.commit();
         }
+    }
+
+    @Override
+    public String getActivityTitle() {
+        return getString(R.string.settings);
     }
 
 

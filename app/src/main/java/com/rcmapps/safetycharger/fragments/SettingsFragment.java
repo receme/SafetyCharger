@@ -1,6 +1,7 @@
 package com.rcmapps.safetycharger.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.EditTextPreference;
@@ -12,6 +13,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.rcmapps.safetycharger.R;
+import com.rcmapps.safetycharger.activites.AboutActivity;
+import com.rcmapps.safetycharger.activites.InstructionActivity;
 import com.rcmapps.safetycharger.interfaces.SettingsView;
 import com.rcmapps.safetycharger.presenters.SettingsFragmentPresenter;
 import com.rcmapps.safetycharger.utils.UtilMethods;
@@ -43,12 +46,16 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     public boolean onPreferenceTreeClick(Preference preference) {
 
         switch (preference.getKey()) {
-            case "key_instruction":
-                UtilMethods.printLog("show instruction");
+            case "key_instruction": {
+                Intent intent = new Intent(getActivity(), InstructionActivity.class);
+                startActivity(intent);
                 break;
-            case "key_about":
-                UtilMethods.printLog("show about");
+            }
+            case "key_about": {
+                Intent intent = new Intent(getActivity(), AboutActivity.class);
+                startActivity(intent);
                 break;
+            }
         }
 
         return true;

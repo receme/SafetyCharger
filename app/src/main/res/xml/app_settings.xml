@@ -9,18 +9,18 @@
             android:key="key_password"
             android:title="Password"
             android:defaultValue=""
-            android:summary="Set password to stop the alarm" />
+            android:summary="@string/set_password_to_stop_alarm" />
 
         <android.support.v7.preference.CheckBoxPreference
             android:key="key_vibration"
             android:title="Vibration"
-            android:summary="Toggle vibration on/off"
+            android:summary="@string/toggle_vibration"
             android:defaultValue="true" />
 
         <android.support.v7.preference.CheckBoxPreference
             android:key="key_startautomatically"
             android:title="Start Automatically"
-            android:summary="App will be opened automatically when plugged in"
+            android:summary="@string/app_willbe_opened"
             android:defaultValue="false" />
     </android.support.v7.preference.PreferenceCategory>
 

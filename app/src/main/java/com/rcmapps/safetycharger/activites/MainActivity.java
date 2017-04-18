@@ -79,6 +79,11 @@ public class MainActivity extends BaseActivity implements MainView {
     }
 
     @Override
+    public String getActivityTitle() {
+        return getString(R.string.app_name);
+    }
+
+    @Override
     public void initView() {
 
 
