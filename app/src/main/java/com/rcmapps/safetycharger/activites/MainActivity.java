@@ -6,8 +6,6 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 
 import com.crashlytics.android.Crashlytics;
@@ -15,20 +13,19 @@ import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.fragments.EnterPasswordDialogFragment;
 import com.rcmapps.safetycharger.fragments.PasswordChangeDialogFragment;
 import com.rcmapps.safetycharger.interfaces.MainView;
-import com.rcmapps.safetycharger.listeners.AlarmStateListener;
 import com.rcmapps.safetycharger.listeners.ButtonClickListener;
 import com.rcmapps.safetycharger.presenters.MainPresenter;
 import com.rcmapps.safetycharger.services.SafetyAlarmService;
 import com.rcmapps.safetycharger.utils.PreferenceContants;
 import com.rcmapps.safetycharger.utils.UtilMethods;
 
-import io.fabric.sdk.android.Fabric;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends BaseActivity implements MainView {
 
@@ -41,7 +38,6 @@ public class MainActivity extends BaseActivity implements MainView {
 
 
     private MainPresenter presenter;
-    private PasswordChangeDialogFragment passwordChangeDialogFragment = new PasswordChangeDialogFragment();
     private EnterPasswordDialogFragment enterPasswordDialogFragment = new EnterPasswordDialogFragment();
     private AudioManager mAudioManager;
 
@@ -62,7 +58,7 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     protected void onResume() {
         super.onResume();
-        presenter.checkIfAlarmStarted(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_ALARM_STARTED,false));
+        presenter.checkIfAlarmStarted(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_ALARM_STARTED, false));
     }
 
     @Override
@@ -85,63 +81,45 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void initView() {
-
-
-        //alarmCb.setChecked(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, false));
         presenter.setAlarmToggleBtnState(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, false));
-
     }
 
     @Override
     public void defineClickListener() {
 
-//        alarmCb.setOnCheckedChangeListener(new AlarmStateListener(presenter));
-//        chooseAlarmBtn.setOnClickListener(new ButtonClickListener(presenter, sharedPreferenceUtils));
-//        setPasswrodBtn.setOnClickListener(new ButtonClickListener(presenter, sharedPreferenceUtils));
-        ButtonClickListener buttonClickListener = new ButtonClickListener(presenter,sharedPreferenceUtils);
+        ButtonClickListener buttonClickListener = new ButtonClickListener(presenter, sharedPreferenceUtils);
         toggleAlarmBtn.setOnClickListener(buttonClickListener);
         chooseAlarmToneBtn.setOnClickListener(buttonClickListener);
         settingsBtn.setOnClickListener(buttonClickListener);
     }
 
-//    @Override
-//    public void showPasswordChangeDialog(String prevPassword) {
-//
-//        passwordChangeDialogFragment = new PasswordChangeDialogFragment();
-//        passwordChangeDialogFragment.setPresenter(presenter);
-//        passwordChangeDialogFragment.show(getSupportFragmentManager(), PasswordChangeDialogFragment.class.getSimpleName());
-//    }
-
     @Override
     public void showEnterPasswordDialog() {
-        if(enterPasswordDialogFragment!=null && !enterPasswordDialogFragment.isAdded()){
+        if (enterPasswordDialogFragment != null && !enterPasswordDialogFragment.isAdded()) {
             enterPasswordDialogFragment = new EnterPasswordDialogFragment();
             enterPasswordDialogFragment.setPresenter(presenter);
-            enterPasswordDialogFragment.show(getSupportFragmentManager(),"EnterPasswordDialogFragment");
+            enterPasswordDialogFragment.show(getSupportFragmentManager(), "EnterPasswordDialogFragment");
         }
     }
 
     @Override
     public void closeEnterPasswordDialog() {
-        if(enterPasswordDialogFragment!=null && enterPasswordDialogFragment.isAdded()){
+        if (enterPasswordDialogFragment != null && enterPasswordDialogFragment.isAdded()) {
             enterPasswordDialogFragment.dismiss();
         }
     }
 
-
-
     @Override
     public void setSafetyAlarm() {
 
-        if(!UtilMethods.isServiceRunning(this,SafetyAlarmService.class)){
+        if (!UtilMethods.isServiceRunning(this, SafetyAlarmService.class)) {
             UtilMethods.printLog("Starting service");
             Intent intent = new Intent(this, SafetyAlarmService.class);
             startService(intent);
             sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, true);
 
             toggleAlarmBtn.setImageResource(R.mipmap.alarm_on);
-        }
-        else{
+        } else {
             UtilMethods.printLog("Service is already running");
         }
     }
@@ -152,7 +130,6 @@ public class MainActivity extends BaseActivity implements MainView {
         stopService(intent);
         sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, false);
         sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_IS_ALARM_STARTED, false);
-        //alarmCb.setChecked(false);
         uncheckAlarmSwitch();
     }
 
@@ -163,13 +140,12 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void uncheckAlarmSwitch() {
-        //alarmCb.setChecked(false);
         toggleAlarmBtn.setImageResource(R.mipmap.alarm_off);
     }
 
     @Override
     public String getSavedPassword() {
-        return sharedPreferenceUtils.getString(PreferenceContants.KEY_PASSWORD,PreferenceContants.KEY_PASSWORD_DEFAULT_VALUE);
+        return sharedPreferenceUtils.getString(PreferenceContants.KEY_PASSWORD, PreferenceContants.KEY_PASSWORD_DEFAULT_VALUE);
     }
 
     @Override
@@ -179,20 +155,19 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void showSettingsScreen() {
-        Intent intent = new Intent(this,SettingsActivity.class);
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(MessageEvent event){
+    public void onMessageEvent(MessageEvent event) {
         presenter.checkCableStatus(event.isCableConnected());
     }
-
 
     public static class MessageEvent {
         private boolean cableConnected;
 
-        public MessageEvent(boolean cableConnected){
+        public MessageEvent(boolean cableConnected) {
             this.cableConnected = cableConnected;
         }
 
@@ -204,8 +179,7 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public boolean onKeyLongPress(int keyCode, KeyEvent event) {
         super.onKeyLongPress(keyCode, event);
-        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)
-        {
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
             Log.w("onKeyLongPress", "I WORK BRO.");
             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), AudioManager.FLAG_PLAY_SOUND);
             return false;
@@ -215,8 +189,7 @@ public class MainActivity extends BaseActivity implements MainView {
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         super.onKeyDown(keyCode, event);
-        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)
-        {
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
             Log.w("onKeyDown", "I WORK BRO.");
             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), AudioManager.FLAG_PLAY_SOUND);
             return false;
