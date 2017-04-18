@@ -1,10 +1,12 @@
 package com.rcmapps.safetycharger.activites;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.rcmapps.safetycharger.interfaces.BaseView;
+import com.rcmapps.safetycharger.utils.PreferenceContants;
 import com.rcmapps.safetycharger.utils.SharedPreferenceUtils;
 import com.rcmapps.safetycharger.utils.UtilMethods;
 
@@ -24,6 +26,17 @@ public class BaseActivity extends AppCompatActivity implements BaseView{
     protected void onStart() {
         super.onStart();
         isAppOpen++;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_ALARM_STARTED,false)){
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -50,5 +63,15 @@ public class BaseActivity extends AppCompatActivity implements BaseView{
     @Override
     public void closeApp() {
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_ALARM_STARTED,false)){
+
+        }
+        else{
+            super.onBackPressed();
+        }
     }
 }
