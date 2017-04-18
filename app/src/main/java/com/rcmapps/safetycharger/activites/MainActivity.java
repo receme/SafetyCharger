@@ -1,7 +1,11 @@
 package com.rcmapps.safetycharger.activites;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -39,7 +43,7 @@ public class MainActivity extends BaseActivity implements MainView {
     private MainPresenter presenter;
     private PasswordChangeDialogFragment passwordChangeDialogFragment = new PasswordChangeDialogFragment();
     private EnterPasswordDialogFragment enterPasswordDialogFragment = new EnterPasswordDialogFragment();
-
+    private AudioManager mAudioManager;
 
 
     @Override
@@ -48,6 +52,8 @@ public class MainActivity extends BaseActivity implements MainView {
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.main);
         ButterKnife.bind(this);
+
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         presenter = new MainPresenter(this);
         presenter.init();
@@ -74,6 +80,7 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void initView() {
+
 
         //alarmCb.setChecked(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, false));
         presenter.setAlarmToggleBtnState(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, false));
@@ -107,7 +114,6 @@ public class MainActivity extends BaseActivity implements MainView {
             enterPasswordDialogFragment.setPresenter(presenter);
             enterPasswordDialogFragment.show(getSupportFragmentManager(),"EnterPasswordDialogFragment");
         }
-
     }
 
     @Override
@@ -199,5 +205,28 @@ public class MainActivity extends BaseActivity implements MainView {
         public boolean isCableConnected() {
             return cableConnected;
         }
+    }
+
+    @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        super.onKeyLongPress(keyCode, event);
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)
+        {
+            Log.w("onKeyLongPress", "I WORK BRO.");
+            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), AudioManager.FLAG_PLAY_SOUND);
+            return false;
+        }
+        return false;
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        super.onKeyDown(keyCode, event);
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)
+        {
+            Log.w("onKeyDown", "I WORK BRO.");
+            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), AudioManager.FLAG_PLAY_SOUND);
+            return false;
+        }
+        return true;
     }
 }

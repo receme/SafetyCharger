@@ -35,6 +35,7 @@ public class SafetyAlarmService extends Service implements SafetyAlarm {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         powerConnectionReceiver = new PowerConnectionReceiver(this);
+
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         registerReceiver(powerConnectionReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
@@ -63,6 +64,7 @@ public class SafetyAlarmService extends Service implements SafetyAlarm {
 
         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), AudioManager.FLAG_PLAY_SOUND);
         if (mediaPlayer == null) {
+
             mediaPlayer = MediaPlayer.create(this, R.raw.sound);
             mediaPlayer.setLooping(true);
             mediaPlayer.start();
@@ -82,11 +84,13 @@ public class SafetyAlarmService extends Service implements SafetyAlarm {
     }
 
     private void stopMediaPlayer() {
+        
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
             mediaPlayer.reset();
             mediaPlayer.release();
             mediaPlayer = null;
+
         }
     }
 }

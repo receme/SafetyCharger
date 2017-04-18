@@ -11,12 +11,25 @@ import com.rcmapps.safetycharger.utils.UtilMethods;
 public class BaseActivity extends AppCompatActivity implements BaseView{
 
     public SharedPreferenceUtils sharedPreferenceUtils;
+    public static int isAppOpen = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         sharedPreferenceUtils = SharedPreferenceUtils.getInstance(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        isAppOpen++;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        isAppOpen--;
     }
 
     @Override
