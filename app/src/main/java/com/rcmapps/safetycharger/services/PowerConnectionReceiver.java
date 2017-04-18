@@ -8,6 +8,8 @@ import android.os.BatteryManager;
 
 import com.rcmapps.safetycharger.activites.BaseActivity;
 import com.rcmapps.safetycharger.activites.MainActivity;
+import com.rcmapps.safetycharger.utils.PreferenceContants;
+import com.rcmapps.safetycharger.utils.SharedPreferenceUtils;
 import com.rcmapps.safetycharger.utils.UtilMethods;
 
 public class PowerConnectionReceiver extends BroadcastReceiver {
@@ -40,7 +42,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
             else{
                 safetyAlarmService.onPowerCableDisconnected();
 
-                if(BaseActivity.isAppOpen == 0){
+                if(BaseActivity.isAppOpen == 0 && SharedPreferenceUtils.getInstance(context).getBoolean(PreferenceContants.KEY_IS_AUTORUN_ON,false)){
                     Intent intent1 = new Intent(context, MainActivity.class);
                     intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent1);
