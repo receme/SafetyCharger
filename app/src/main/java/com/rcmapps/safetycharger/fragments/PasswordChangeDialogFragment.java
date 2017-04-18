@@ -13,6 +13,7 @@ import android.widget.EditText;
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.models.PasswordChanger;
 import com.rcmapps.safetycharger.presenters.MainPresenter;
+import com.rcmapps.safetycharger.presenters.SettingsFragmentPresenter;
 import com.rcmapps.safetycharger.utils.PreferenceContants;
 import com.rcmapps.safetycharger.utils.SharedPreferenceUtils;
 import com.rcmapps.safetycharger.utils.UtilMethods;
@@ -34,14 +35,14 @@ public class PasswordChangeDialogFragment extends AppCompatDialogFragment implem
     @BindView(R.id.confirmPasswordEdtxt)
     EditText confirmPasswordEdtxt;
 
-    private MainPresenter presenter;
+    private SettingsFragmentPresenter presenter;
     private String newPassword = "";
     private String confirmNewPassword = "";
 
     public PasswordChangeDialogFragment() {
     }
 
-    public void  setPresenter (MainPresenter presenter) {
+    public void  setPresenter (SettingsFragmentPresenter presenter) {
         this.presenter = presenter;
     }
 
@@ -70,7 +71,7 @@ public class PasswordChangeDialogFragment extends AppCompatDialogFragment implem
     @Override
     public void onClick(View view) {
         if (view.equals(confirmBtn)) {
-            presenter.confirmNewPassword(new PasswordChanger(presenter.getMainView(),
+            presenter.confirmNewPassword(new PasswordChanger(presenter.getSettingsView(),
                     newPasswordEdtxt.getText().toString(),
                     confirmPasswordEdtxt.getText().toString()));
 

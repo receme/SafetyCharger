@@ -104,13 +104,13 @@ public class MainActivity extends BaseActivity implements MainView {
         settingsBtn.setOnClickListener(buttonClickListener);
     }
 
-    @Override
-    public void showPasswordChangeDialog(String prevPassword) {
-
-        passwordChangeDialogFragment = new PasswordChangeDialogFragment();
-        passwordChangeDialogFragment.setPresenter(presenter);
-        passwordChangeDialogFragment.show(getSupportFragmentManager(), PasswordChangeDialogFragment.class.getSimpleName());
-    }
+//    @Override
+//    public void showPasswordChangeDialog(String prevPassword) {
+//
+//        passwordChangeDialogFragment = new PasswordChangeDialogFragment();
+//        passwordChangeDialogFragment.setPresenter(presenter);
+//        passwordChangeDialogFragment.show(getSupportFragmentManager(), PasswordChangeDialogFragment.class.getSimpleName());
+//    }
 
     @Override
     public void showEnterPasswordDialog() {
@@ -128,18 +128,7 @@ public class MainActivity extends BaseActivity implements MainView {
         }
     }
 
-    @Override
-    public void saveNewPassword(String newPassword) {
-        sharedPreferenceUtils.putString(PreferenceContants.KEY_PASSWORD, newPassword);
-    }
 
-    @Override
-    public void closePasswordChangeDialog() {
-
-        if (passwordChangeDialogFragment != null) {
-            passwordChangeDialogFragment.dismiss();
-        }
-    }
 
     @Override
     public void setSafetyAlarm() {

@@ -15,10 +15,13 @@ import com.rcmapps.safetycharger.activites.InstructionActivity;
 import com.rcmapps.safetycharger.interfaces.SettingsView;
 import com.rcmapps.safetycharger.presenters.SettingsFragmentPresenter;
 import com.rcmapps.safetycharger.utils.PreferenceContants;
+import com.rcmapps.safetycharger.utils.SharedPreferenceUtils;
+import com.rcmapps.safetycharger.utils.UtilMethods;
 
-public class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener,SettingsView {
+public class SettingsFragment extends PreferenceFragmentCompat  implements SettingsView {
 
     private SettingsFragmentPresenter presenter;
+    private PasswordChangeDialogFragment passwordChangeDialogFragment = new PasswordChangeDialogFragment();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,24 +34,28 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.app_settings);
 
-        EditTextPreference passwordPref = (EditTextPreference) findPreference(PreferenceContants.KEY_PASSWORD);
-        CheckBoxPreference vibrationPref = (CheckBoxPreference) findPreference("key_vibration");
-        CheckBoxPreference startautomaticallyPref = (CheckBoxPreference) findPreference("key_autorun");
-        passwordPref.setOnPreferenceChangeListener(this);
-        vibrationPref.setOnPreferenceChangeListener(this);
-        startautomaticallyPref.setOnPreferenceChangeListener(this);
+//        CheckBoxPreference vibrationPref = (CheckBoxPreference) findPreference("key_vibration");
+//        CheckBoxPreference startautomaticallyPref = (CheckBoxPreference) findPreference("key_autorun");
+
+        //vibrationPref.setOnPreferenceChangeListener(this);
+        //startautomaticallyPref.setOnPreferenceChangeListener(this);
     }
 
     @Override
     public boolean onPreferenceTreeClick(Preference preference) {
 
         switch (preference.getKey()) {
-            case "key_instruction": {
+            case PreferenceContants.KEY_PASSWORD:
+                passwordChangeDialogFragment = new PasswordChangeDialogFragment();
+                passwordChangeDialogFragment.setPresenter(presenter);
+                passwordChangeDialogFragment.show(getChildFragmentManager(), PasswordChangeDialogFragment.class.getSimpleName());
+                break;
+            case PreferenceContants.KEY_INSTRUCTION: {
                 Intent intent = new Intent(getActivity(), InstructionActivity.class);
                 startActivity(intent);
                 break;
             }
-            case "key_about": {
+            case PreferenceContants.KEY_ABOUT: {
                 Intent intent = new Intent(getActivity(), AboutActivity.class);
                 startActivity(intent);
                 break;
@@ -59,21 +66,54 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     }
 
 
+//    @Override
+//    public boolean onPreferenceChange(Preference preference, Object newValue) {
+//        if (preference.getKey().equals("key_password")) {
+//
+//            if (((String) newValue).isEmpty()) {
+//                Toast.makeText(getActivity(), getString(R.string.newpassword_notnull), Toast.LENGTH_SHORT).show();
+//                return false;
+//            }
+//
+//            if (((String) newValue).length() < 8) {
+//                Toast.makeText(getActivity(), getString(R.string.password_length), Toast.LENGTH_SHORT).show();
+//                return false;
+//            }
+//        }
+//
+//        return true;
+//    }
+
     @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference.getKey().equals("key_password")) {
+    public void saveNewPassword(String newPassword) {
+         SharedPreferenceUtils.getInstance(getActivity()).putString(PreferenceContants.KEY_PASSWORD, newPassword);
+    }
 
-            if (((String) newValue).isEmpty()) {
-                Toast.makeText(getActivity(), getString(R.string.newpassword_notnull), Toast.LENGTH_SHORT).show();
-                return false;
-            }
+    @Override
+    public void closePasswordChangeDialog() {
 
-            if (((String) newValue).length() < 8) {
-                Toast.makeText(getActivity(), getString(R.string.password_length), Toast.LENGTH_SHORT).show();
-                return false;
-            }
+        if (passwordChangeDialogFragment != null) {
+            passwordChangeDialogFragment.dismiss();
         }
+    }
 
-        return true;
+    @Override
+    public void showError(String title, String message) {
+        UtilMethods.showSimpleAlertWithMessage(getActivity(),title,message);
+    }
+
+    @Override
+    public String getResourceString(int stringId) {
+        return getActivity().getResources().getString(stringId);
+    }
+
+    @Override
+    public void showToast(String message) {
+        UtilMethods.showToastMessage(getActivity(),message);
+    }
+
+    @Override
+    public void closeApp() {
+
     }
 }

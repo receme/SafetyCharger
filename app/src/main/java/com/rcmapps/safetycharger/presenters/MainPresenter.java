@@ -17,32 +17,6 @@ public class MainPresenter {
         view.defineClickListener();
     }
 
-    public void setPassword(String prevPassword) throws IllegalArgumentException {
-
-        if(prevPassword == null){
-            throw new IllegalArgumentException("previous password cannot be null");
-        }
-
-        view.showPasswordChangeDialog(prevPassword);
-    }
-
-    public void confirmNewPassword(PasswordChanger passwordChanger) {
-        PasswordChanger.Response response = passwordChanger.isValid();
-
-        if(!response.isValid){
-            view.showError("",response.message);
-            return;
-        }
-
-        view.saveNewPassword(passwordChanger.getNewPassword());
-        view.closePasswordChangeDialog();
-        view.showToast(view.getResourceString(R.string.password_change_successful));
-    }
-
-    public void cancelPasswordChange() {
-        view.closePasswordChangeDialog();
-    }
-
     public void onCheckedChanged(boolean isChecked) {
         if(isChecked){
 
@@ -57,10 +31,6 @@ public class MainPresenter {
         else{
             view.stopSafetyAlarm();
         }
-    }
-
-    public MainView getMainView(){
-        return view;
     }
 
     public void checkIfAlarmStarted(boolean isAlarmOn) {

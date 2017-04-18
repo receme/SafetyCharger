@@ -8,4 +8,6 @@ public interface PreferenceContants {
     String KEY_IS_ALARM_STARTED = "key_isalarmstarted";
     String KEY_IS_VIBRATION_ON = "key_vibration";
     String KEY_IS_AUTORUN_ON = "key_autorun";
+    String KEY_INSTRUCTION = "key_instruction";
+    String KEY_ABOUT = "key_about";
 }

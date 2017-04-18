@@ -12,8 +12,6 @@ import com.rcmapps.safetycharger.fragments.SettingsFragment;
 
 public class SettingsActivity extends BaseActivity {
 
-    final static String ACTION_PREFS_ONE = "com.example.prefs.PREFS_ONE";
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
