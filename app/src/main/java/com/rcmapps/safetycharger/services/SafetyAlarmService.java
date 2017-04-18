@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.IBinder;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 
 import com.rcmapps.safetycharger.R;
@@ -25,6 +26,7 @@ public class SafetyAlarmService extends Service implements SafetyAlarm {
 
     private MediaPlayer mediaPlayer;
     private AudioManager mAudioManager;
+    private Vibrator vibrator;
 
     @Override
     public void onCreate() {
@@ -37,6 +39,7 @@ public class SafetyAlarmService extends Service implements SafetyAlarm {
         powerConnectionReceiver = new PowerConnectionReceiver(this);
 
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         registerReceiver(powerConnectionReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
         return START_STICKY;
@@ -65,9 +68,13 @@ public class SafetyAlarmService extends Service implements SafetyAlarm {
         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), AudioManager.FLAG_PLAY_SOUND);
         if (mediaPlayer == null) {
 
-            mediaPlayer = MediaPlayer.create(this, R.raw.sound);
+            mediaPlayer = MediaPlayer.create(this, R.raw.siren);
             mediaPlayer.setLooping(true);
             mediaPlayer.start();
+
+            if(vibrator!=null){
+                vibrator.vibrate(new long[]{0,500,1000},0);
+            }
         }
 
         SharedPreferenceUtils.getInstance(this).putBoolean(PreferenceContants.KEY_IS_ALARM_STARTED, true);
@@ -84,12 +91,16 @@ public class SafetyAlarmService extends Service implements SafetyAlarm {
     }
 
     private void stopMediaPlayer() {
-        
+
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
             mediaPlayer.reset();
             mediaPlayer.release();
             mediaPlayer = null;
+
+            if(vibrator!=null){
+                vibrator.cancel();
+            }
 
         }
     }
