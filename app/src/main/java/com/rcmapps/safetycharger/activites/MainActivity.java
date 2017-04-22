@@ -3,6 +3,8 @@ package com.rcmapps.safetycharger.activites;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -17,6 +19,7 @@ import com.rcmapps.safetycharger.listeners.ButtonClickListener;
 import com.rcmapps.safetycharger.presenters.MainPresenter;
 import com.rcmapps.safetycharger.services.SafetyAlarmService;
 import com.rcmapps.safetycharger.utils.PreferenceContants;
+import com.rcmapps.safetycharger.utils.SharedPreferenceUtils;
 import com.rcmapps.safetycharger.utils.UtilMethods;
 
 import org.greenrobot.eventbus.EventBus;
@@ -35,6 +38,8 @@ public class MainActivity extends BaseActivity implements MainView {
     ImageView settingsBtn;
     @BindView(R.id.chooseAlarmToneBtn)
     ImageView chooseAlarmToneBtn;
+
+    private static final int REQ_CODE_CHOOSE_ALARM_TONE = 0;
 
 
     private MainPresenter presenter;
@@ -157,6 +162,27 @@ public class MainActivity extends BaseActivity implements MainView {
     public void showSettingsScreen() {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void showAlarmChooser() {
+        Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALL);
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE, "Select alarm tone");
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, (Uri) null);
+        startActivityForResult(intent, REQ_CODE_CHOOSE_ALARM_TONE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQ_CODE_CHOOSE_ALARM_TONE && resultCode == RESULT_OK){
+            Uri uri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
+
+            if (uri != null)
+            {
+                sharedPreferenceUtils.putString(PreferenceContants.KEY_SELECTED_ALARM_TONE_URI,uri.toString());
+            }
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

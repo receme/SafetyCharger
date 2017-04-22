@@ -84,4 +84,8 @@ public class MainPresenter {
     public void onClickSettingsBtn() {
         view.showSettingsScreen();
     }
+
+    public void onClickChooseAlarmBtn() {
+        view.showAlarmChooser();
+    }
 }

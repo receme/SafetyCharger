@@ -10,12 +10,6 @@
             android:title="Password"
             android:summary="@string/set_password_to_stop_alarm" />
 
-        <!--<android.support.v7.preference.EditTextPreference-->
-            <!--android:key="key_password"-->
-            <!--android:title="Password"-->
-            <!--android:defaultValue=""-->
-            <!--android:summary="@string/set_password_to_stop_alarm" />-->
-
         <android.support.v7.preference.CheckBoxPreference
             android:key="key_vibration"
             android:title="Vibration"
@@ -27,6 +21,11 @@
             android:title="Autorun"
             android:summary="@string/app_willbe_opened"
             android:defaultValue="false" />
+
+        <android.support.v7.preference.Preference
+            android:key="key_reset_alarm"
+            android:title="Reset Alarm Tone"
+            android:summary="@string/reset_alarm" />
     </android.support.v7.preference.PreferenceCategory>
 
     <android.support.v7.preference.PreferenceCategory

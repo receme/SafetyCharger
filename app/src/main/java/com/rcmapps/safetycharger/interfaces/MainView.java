@@ -16,4 +16,6 @@ public interface MainView extends BaseView{
     void updateToggleButton(int resource);
 
     void showSettingsScreen();
+
+    void showAlarmChooser();
 }

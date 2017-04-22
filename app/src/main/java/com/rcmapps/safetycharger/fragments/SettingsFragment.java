@@ -42,6 +42,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
                 passwordChangeDialogFragment.setPresenter(presenter);
                 passwordChangeDialogFragment.show(getChildFragmentManager(), PasswordChangeDialogFragment.class.getSimpleName());
                 break;
+            case PreferenceContants.KEY_RESET_ALARM:
+                SharedPreferenceUtils.getInstance(getActivity()).clear(PreferenceContants.KEY_SELECTED_ALARM_TONE_URI);
+                break;
             case PreferenceContants.KEY_INSTRUCTION: {
                 Intent intent = new Intent(getActivity(), InstructionActivity.class);
                 startActivity(intent);

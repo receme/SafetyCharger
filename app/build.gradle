@@ -63,6 +63,8 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.android.support:preference-v7:25.3.1'
+    compile 'com.getkeepsafe.taptargetview:taptargetview:1.9.1'
+
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:2.+'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'

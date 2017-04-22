@@ -1,6 +1,8 @@
 package com.rcmapps.safetycharger.listeners;
 
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.view.View;
 
 import com.rcmapps.safetycharger.R;
@@ -30,8 +32,7 @@ public class ButtonClickListener implements View.OnClickListener {
                 presenter.onCheckedChanged(state);
                 break;
             case R.id.chooseAlarmToneBtn:
-                UtilMethods.printLog("pressed chooseAlarm btn");
-
+                presenter.onClickChooseAlarmBtn();
                 break;
             case R.id.settingsBtn:
                 presenter.onClickSettingsBtn();

@@ -10,4 +10,7 @@ public interface PreferenceContants {
     String KEY_IS_AUTORUN_ON = "key_autorun";
     String KEY_INSTRUCTION = "key_instruction";
     String KEY_ABOUT = "key_about";
+    String KEY_SELECTED_ALARM_TONE_URI = "key_alarm_tone_uri";
+    String KEY_RESET_ALARM = "key_reset_alarm";
+
 }
