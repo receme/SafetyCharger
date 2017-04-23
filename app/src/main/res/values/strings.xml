@@ -7,6 +7,7 @@
     <string name="current_password">Current password:</string>
     <string name="new_password">New password</string>
     <string name="confirm_password">Confirm password</string>
+    <string name="ok">Ok</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
     <string name="please_wait">Please wait...</string>
@@ -23,4 +24,5 @@
     <string name="toggle_vibration">Toggle vibration on/off</string>
     <string name="app_willbe_opened">App will be opened automatically when device is plugged in</string>
     <string name="reset_alarm">Change alarm tone to default</string>
+    <string name="sure_to_change_alarm">Are you sure to change the alarm sound to default?</string>
 </resources>

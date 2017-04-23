@@ -69,9 +69,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
         mediaPlayer.start();
 
         AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-        dialog.setTitle("Confirm");
-        dialog.setMessage("Are you sure to change alarm sound to default?");
-        dialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        dialog.setTitle(getResourceString(R.string.confirm));
+        dialog.setMessage(getResourceString(R.string.sure_to_change_alarm));
+        dialog.setPositiveButton(getResourceString(R.string.ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 SharedPreferenceUtils.getInstance(getActivity()).clear(PreferenceContants.KEY_SELECTED_ALARM_TONE_URI);
@@ -83,7 +83,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
 
             }
         });
-        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        dialog.setNegativeButton(getResourceString(R.string.cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if(mediaPlayer!=null){
@@ -91,7 +91,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
                     mediaPlayer.reset();
                     mediaPlayer.release();
                 }
-                
+
             }
         });
         dialog.setCancelable(false);
