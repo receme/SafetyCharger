@@ -1,8 +1,11 @@
 package com.rcmapps.safetycharger.fragments;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 
@@ -43,7 +46,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
                 passwordChangeDialogFragment.show(getChildFragmentManager(), PasswordChangeDialogFragment.class.getSimpleName());
                 break;
             case PreferenceContants.KEY_RESET_ALARM:
-                SharedPreferenceUtils.getInstance(getActivity()).clear(PreferenceContants.KEY_SELECTED_ALARM_TONE_URI);
+                showConfirmationDialog();
                 break;
             case PreferenceContants.KEY_INSTRUCTION: {
                 Intent intent = new Intent(getActivity(), InstructionActivity.class);
@@ -58,6 +61,42 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
         }
 
         return true;
+    }
+
+    private void showConfirmationDialog() {
+
+        final MediaPlayer mediaPlayer = MediaPlayer.create(getActivity(),R.raw.siren);
+        mediaPlayer.start();
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+        dialog.setTitle("Confirm");
+        dialog.setMessage("Are you sure to change alarm sound to default?");
+        dialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                SharedPreferenceUtils.getInstance(getActivity()).clear(PreferenceContants.KEY_SELECTED_ALARM_TONE_URI);
+                if(mediaPlayer!=null){
+                    mediaPlayer.stop();
+                    mediaPlayer.reset();
+                    mediaPlayer.release();
+                }
+
+            }
+        });
+        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(mediaPlayer!=null){
+                    mediaPlayer.stop();
+                    mediaPlayer.reset();
+                    mediaPlayer.release();
+                }
+                
+            }
+        });
+        dialog.setCancelable(false);
+        dialog.create();
+        dialog.show();
     }
 
     @Override

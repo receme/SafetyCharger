@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.IBinder;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
@@ -19,6 +20,8 @@ import com.rcmapps.safetycharger.utils.SharedPreferenceUtils;
 import com.rcmapps.safetycharger.utils.UtilMethods;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.io.File;
 
 public class SafetyAlarmService extends Service implements SafetyAlarm {
 
@@ -68,7 +71,19 @@ public class SafetyAlarmService extends Service implements SafetyAlarm {
         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), AudioManager.FLAG_PLAY_SOUND);
         if (mediaPlayer == null) {
 
-            mediaPlayer = MediaPlayer.create(this, R.raw.siren);
+            System.out.println(SharedPreferenceUtils.getInstance(this).getString(PreferenceContants.KEY_SELECTED_ALARM_TONE_URI,""));
+            Uri alarmToneUri = Uri.parse(SharedPreferenceUtils.getInstance(this).getString(PreferenceContants.KEY_SELECTED_ALARM_TONE_URI,""));
+            if(alarmToneUri!=null){
+                mediaPlayer = MediaPlayer.create(this, alarmToneUri);
+            }
+            else{
+                mediaPlayer = MediaPlayer.create(this, R.raw.siren);
+            }
+
+            if(mediaPlayer==null){
+                return;
+            }
+
             mediaPlayer.setLooping(true);
             mediaPlayer.start();
 
