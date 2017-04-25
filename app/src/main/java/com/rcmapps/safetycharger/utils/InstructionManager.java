@@ -19,7 +19,7 @@ public class InstructionManager {
                 .targets(TapTarget.forView(activity.findViewById(R.id.settingsBtn),
                         "To enable alarm, you have to set a password",
                         "Please tap here. This will show the settings page")
-                        .cancelable(false).id(1).dimColor(R.color.colorAccent))
+                        .cancelable(false).id(1).dimColor(android.R.color.black))
                 .listener(new TapTargetSequence.Listener() {
                     @Override
                     public void onSequenceFinish() {
@@ -45,7 +45,7 @@ public class InstructionManager {
 
         TapTargetView.showFor(fragment,TapTarget.forBounds(new Rect(10,100,400,400),
                 "Set a password","This password will be needed to stop the alarm")
-                        .cancelable(true).transparentTarget(true).targetRadius(100).dimColor(R.color.colorAccent),
+                        .cancelable(true).transparentTarget(true).targetRadius(100).dimColor(android.R.color.black),
 
                 new TapTargetView.Listener() {          // The listener can listen for regular clicks, long clicks or cancels
                     @Override
