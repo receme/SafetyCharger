@@ -2,6 +2,7 @@ package com.rcmapps.safetycharger.utils;
 
 public interface PreferenceContants {
 
+    String KEY_IS_FIRSTRUN = "key_isfirstrun";
     String KEY_PASSWORD = "key_password";
     String KEY_PASSWORD_DEFAULT_VALUE = "";
     String KEY_IS_SERVICE_RUNNING = "key_isservicerunning";

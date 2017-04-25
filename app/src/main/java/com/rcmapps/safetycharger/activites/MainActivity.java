@@ -2,6 +2,7 @@ package com.rcmapps.safetycharger.activites;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -11,6 +12,8 @@ import android.view.KeyEvent;
 import android.widget.ImageView;
 
 import com.crashlytics.android.Crashlytics;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.fragments.EnterPasswordDialogFragment;
 import com.rcmapps.safetycharger.fragments.PasswordChangeDialogFragment;
@@ -18,6 +21,7 @@ import com.rcmapps.safetycharger.interfaces.MainView;
 import com.rcmapps.safetycharger.listeners.ButtonClickListener;
 import com.rcmapps.safetycharger.presenters.MainPresenter;
 import com.rcmapps.safetycharger.services.SafetyAlarmService;
+import com.rcmapps.safetycharger.utils.InstructionManager;
 import com.rcmapps.safetycharger.utils.PreferenceContants;
 import com.rcmapps.safetycharger.utils.SharedPreferenceUtils;
 import com.rcmapps.safetycharger.utils.UtilMethods;
@@ -171,6 +175,11 @@ public class MainActivity extends BaseActivity implements MainView {
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE, "Select alarm tone");
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, (Uri) null);
         startActivityForResult(intent, REQ_CODE_CHOOSE_ALARM_TONE);
+    }
+
+    @Override
+    public void showInstruction() {
+        new InstructionManager().showIntructionOnTapSettingsBtn(this);
     }
 
     @Override

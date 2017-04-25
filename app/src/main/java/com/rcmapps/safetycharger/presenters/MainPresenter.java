@@ -3,6 +3,7 @@ package com.rcmapps.safetycharger.presenters;
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.interfaces.MainView;
 import com.rcmapps.safetycharger.models.PasswordChanger;
+import com.rcmapps.safetycharger.utils.PreferenceContants;
 
 public class MainPresenter {
 
@@ -15,6 +16,10 @@ public class MainPresenter {
     public void init() {
         view.initView();
         view.defineClickListener();
+
+        if(view.getBooleanPref(PreferenceContants.KEY_IS_FIRSTRUN,true)){
+            view.showInstruction();
+        }
     }
 
     public void onCheckedChanged(boolean isChecked) {

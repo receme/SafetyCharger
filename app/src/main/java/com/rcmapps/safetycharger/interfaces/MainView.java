@@ -18,4 +18,6 @@ public interface MainView extends BaseView{
     void showSettingsScreen();
 
     void showAlarmChooser();
+
+    void showInstruction();
 }

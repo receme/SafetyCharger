@@ -14,6 +14,7 @@ import com.rcmapps.safetycharger.activites.AboutActivity;
 import com.rcmapps.safetycharger.activites.InstructionActivity;
 import com.rcmapps.safetycharger.interfaces.SettingsView;
 import com.rcmapps.safetycharger.presenters.SettingsFragmentPresenter;
+import com.rcmapps.safetycharger.utils.InstructionManager;
 import com.rcmapps.safetycharger.utils.PreferenceContants;
 import com.rcmapps.safetycharger.utils.SharedPreferenceUtils;
 import com.rcmapps.safetycharger.utils.UtilMethods;
@@ -28,6 +29,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
         super.onCreate(savedInstanceState);
 
         presenter = new SettingsFragmentPresenter(this);
+
+        if(getBooleanPref(PreferenceContants.KEY_IS_FIRSTRUN,true)){
+
+            new InstructionManager().showInstructionOnTapPasswordPref(getActivity());
+
+            SharedPreferenceUtils.getInstance(getActivity()).putBoolean(PreferenceContants.KEY_IS_FIRSTRUN,false);
+        }
     }
 
     @Override
@@ -105,6 +113,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
     @Override
     public String getResourceString(int stringId) {
         return getActivity().getResources().getString(stringId);
+    }
+
+    @Override
+    public boolean getBooleanPref(String prefName, boolean defaultVal) {
+        return SharedPreferenceUtils.getInstance(getActivity()).getBoolean(prefName, defaultVal);
     }
 
     @Override

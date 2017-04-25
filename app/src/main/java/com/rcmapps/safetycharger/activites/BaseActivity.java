@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
+import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.interfaces.BaseView;
 import com.rcmapps.safetycharger.utils.PreferenceContants;
 import com.rcmapps.safetycharger.utils.SharedPreferenceUtils;
@@ -53,6 +55,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     @Override
     public String getResourceString(int stringId) {
         return getString(stringId);
+    }
+
+    @Override
+    public boolean getBooleanPref(String prefName,boolean defaultVal){
+        return sharedPreferenceUtils.getBoolean(prefName,defaultVal);
     }
 
     @Override

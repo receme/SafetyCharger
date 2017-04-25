@@ -5,6 +5,8 @@ public interface BaseView {
 
     String getResourceString(int stringId);
 
+    boolean getBooleanPref(String prefName,boolean defaultVal);
+
     void showToast(String message);
 
     void closeApp();
