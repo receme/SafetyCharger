@@ -22,7 +22,7 @@
     <string name="hint_password">Password</string>
     <string name="set_password_to_stop_alarm">Set password to stop the alarm</string>
     <string name="toggle_vibration">Toggle vibration on/off</string>
-    <string name="app_willbe_opened">App will be opened automatically when device is plugged in</string>
+    <string name="app_willbe_opened">App will be opened automatically when alarm will be set on</string>
     <string name="reset_alarm">Change alarm tone to default</string>
     <string name="sure_to_change_alarm">Are you sure to change the alarm sound to default?</string>
 </resources>

@@ -65,9 +65,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
 
     private void showConfirmationDialog() {
 
-        final MediaPlayer mediaPlayer = MediaPlayer.create(getActivity(),R.raw.siren);
-        mediaPlayer.start();
-
         AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
         dialog.setTitle(getResourceString(R.string.confirm));
         dialog.setMessage(getResourceString(R.string.sure_to_change_alarm));
@@ -75,23 +72,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 SharedPreferenceUtils.getInstance(getActivity()).clear(PreferenceContants.KEY_SELECTED_ALARM_TONE_URI);
-                if(mediaPlayer!=null){
-                    mediaPlayer.stop();
-                    mediaPlayer.reset();
-                    mediaPlayer.release();
-                }
-
             }
         });
         dialog.setNegativeButton(getResourceString(R.string.cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if(mediaPlayer!=null){
-                    mediaPlayer.stop();
-                    mediaPlayer.reset();
-                    mediaPlayer.release();
-                }
-
             }
         });
         dialog.setCancelable(false);

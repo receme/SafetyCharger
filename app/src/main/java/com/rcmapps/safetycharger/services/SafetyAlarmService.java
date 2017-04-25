@@ -71,9 +71,9 @@ public class SafetyAlarmService extends Service implements SafetyAlarm {
         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), AudioManager.FLAG_PLAY_SOUND);
         if (mediaPlayer == null) {
 
-            System.out.println(SharedPreferenceUtils.getInstance(this).getString(PreferenceContants.KEY_SELECTED_ALARM_TONE_URI,""));
-            Uri alarmToneUri = Uri.parse(SharedPreferenceUtils.getInstance(this).getString(PreferenceContants.KEY_SELECTED_ALARM_TONE_URI,""));
-            if(alarmToneUri!=null){
+            String uriStr = SharedPreferenceUtils.getInstance(this).getString(PreferenceContants.KEY_SELECTED_ALARM_TONE_URI,"");
+            if(uriStr!=null && !uriStr.isEmpty()){
+                Uri alarmToneUri = Uri.parse(uriStr);
                 mediaPlayer = MediaPlayer.create(this, alarmToneUri);
             }
             else{
