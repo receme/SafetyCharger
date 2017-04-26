@@ -3,7 +3,6 @@ package com.rcmapps.safetycharger.fragments;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
@@ -11,7 +10,6 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.activites.AboutActivity;
-import com.rcmapps.safetycharger.activites.InstructionActivity;
 import com.rcmapps.safetycharger.interfaces.SettingsView;
 import com.rcmapps.safetycharger.presenters.SettingsFragmentPresenter;
 import com.rcmapps.safetycharger.utils.InstructionManager;
@@ -56,11 +54,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
             case PreferenceContants.KEY_RESET_ALARM:
                 showConfirmationDialog();
                 break;
-            case PreferenceContants.KEY_INSTRUCTION: {
-                Intent intent = new Intent(getActivity(), InstructionActivity.class);
-                startActivity(intent);
-                break;
-            }
             case PreferenceContants.KEY_ABOUT: {
                 Intent intent = new Intent(getActivity(), AboutActivity.class);
                 startActivity(intent);

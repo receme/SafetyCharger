@@ -25,7 +25,7 @@ android {
         applicationId "com.rcmapps.safetycharger"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 3
+        versionCode 4
         versionName "1.0"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
@@ -57,6 +57,7 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.6.7@aar') {
         transitive = true;
     }
+
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.jakewharton:butterknife:8.4.0'
@@ -64,9 +65,12 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.android.support:preference-v7:25.3.1'
     compile 'com.getkeepsafe.taptargetview:taptargetview:1.9.1'
-
+    //compile 'com.google.firebase:firebase-core:10.2.1'
+    compile 'com.google.firebase:firebase-ads:10.2.1'
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:2.+'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 }
+
+apply plugin: 'com.google.gms.google-services'

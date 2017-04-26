@@ -32,11 +32,6 @@
         android:title="Others">
 
         <android.support.v7.preference.Preference
-            android:key="key_instruction"
-            android:title="Instruction"
-            android:summary="" />
-
-        <android.support.v7.preference.Preference
             android:key="key_about"
             android:title="About"
             android:summary="" />

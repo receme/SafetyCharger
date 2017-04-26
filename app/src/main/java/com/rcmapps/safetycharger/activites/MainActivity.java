@@ -21,6 +21,7 @@ import com.rcmapps.safetycharger.interfaces.MainView;
 import com.rcmapps.safetycharger.listeners.ButtonClickListener;
 import com.rcmapps.safetycharger.presenters.MainPresenter;
 import com.rcmapps.safetycharger.services.SafetyAlarmService;
+import com.rcmapps.safetycharger.utils.AdmobAdUtils;
 import com.rcmapps.safetycharger.utils.InstructionManager;
 import com.rcmapps.safetycharger.utils.PreferenceContants;
 import com.rcmapps.safetycharger.utils.SharedPreferenceUtils;
@@ -49,6 +50,7 @@ public class MainActivity extends BaseActivity implements MainView {
     private MainPresenter presenter;
     private EnterPasswordDialogFragment enterPasswordDialogFragment = new EnterPasswordDialogFragment();
     private AudioManager mAudioManager;
+    private AdmobAdUtils admobAdUtils;
 
 
     @Override
@@ -62,12 +64,16 @@ public class MainActivity extends BaseActivity implements MainView {
 
         presenter = new MainPresenter(this);
         presenter.init();
+        admobAdUtils = new AdmobAdUtils(this);
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         presenter.checkIfAlarmStarted(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_ALARM_STARTED, false));
+
+        admobAdUtils.startLoadingAd();
     }
 
     @Override
@@ -140,6 +146,7 @@ public class MainActivity extends BaseActivity implements MainView {
         sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, false);
         sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_IS_ALARM_STARTED, false);
         uncheckAlarmSwitch();
+        admobAdUtils.showAd();
     }
 
     @Override

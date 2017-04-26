@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -34,7 +36,7 @@ public class UtilMethods {
         progressDialog.setCancelable(false);
         progressDialog.setIndeterminate(true);
 
-        ((Activity)context).runOnUiThread(new Runnable() {
+        ((Activity) context).runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 progressDialog.show();
@@ -124,28 +126,28 @@ public class UtilMethods {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(activity,message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public static void printLog(String message){
-        Log.d("DEBUG",message);
+    public static void printLog(String message) {
+        Log.d("DEBUG", message);
     }
 
-    public static boolean isServiceRunning(Context context,Class<?> serviceClass){
-        final ActivityManager activityManager = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
+    public static boolean isServiceRunning(Context context, Class<?> serviceClass) {
+        final ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         final List<ActivityManager.RunningServiceInfo> services = activityManager.getRunningServices(Integer.MAX_VALUE);
 
         for (ActivityManager.RunningServiceInfo runningServiceInfo : services) {
-            if (runningServiceInfo.service.getClassName().equals(serviceClass.getName())){
+            if (runningServiceInfo.service.getClassName().equals(serviceClass.getName())) {
                 return true;
             }
         }
         return false;
     }
 
-    public static String getVesionText(Context context){
+    public static String getVesionText(Context context) {
         String versionName = "";
         int versionCode = -1;
         try {
@@ -156,7 +158,14 @@ public class UtilMethods {
             e.printStackTrace();
         }
 
-        return versionName+"."+versionCode;
+        return versionName + "." + versionCode;
     }
 
+    public static boolean isInternetAvailable(Context context) {
+
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 }
