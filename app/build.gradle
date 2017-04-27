@@ -25,7 +25,7 @@ android {
         applicationId "com.rcmapps.safetycharger"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 4
+        versionCode 5
         versionName "1.0"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
@@ -65,7 +65,6 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.android.support:preference-v7:25.3.1'
     compile 'com.getkeepsafe.taptargetview:taptargetview:1.9.1'
-    //compile 'com.google.firebase:firebase-core:10.2.1'
     compile 'com.google.firebase:firebase-ads:10.2.1'
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:2.+'
