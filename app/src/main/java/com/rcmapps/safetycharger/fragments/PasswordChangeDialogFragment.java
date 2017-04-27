@@ -26,8 +26,6 @@ public class PasswordChangeDialogFragment extends AppCompatDialogFragment implem
 
     @BindView(R.id.confirmBtn)
     Button confirmBtn;
-    @BindView(R.id.cancelBtn)
-    Button cancelBtn;
     @BindView(R.id.newPasswordEdtxt)
     EditText newPasswordEdtxt;
     @BindView(R.id.confirmPasswordEdtxt)
@@ -57,7 +55,6 @@ public class PasswordChangeDialogFragment extends AppCompatDialogFragment implem
     private void init() {
 
         confirmBtn.setOnClickListener(this);
-        cancelBtn.setOnClickListener(this);
 
         newPasswordEdtxt.setText(newPassword);
         confirmPasswordEdtxt.setText(confirmNewPassword);
@@ -71,9 +68,6 @@ public class PasswordChangeDialogFragment extends AppCompatDialogFragment implem
             presenter.confirmNewPassword(new PasswordChanger(presenter.getSettingsView(),
                     newPasswordEdtxt.getText().toString(),
                     confirmPasswordEdtxt.getText().toString()));
-
-        } else if (view.equals(cancelBtn)) {
-            presenter.cancelPasswordChange();
         }
     }
 }

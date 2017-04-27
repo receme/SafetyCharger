@@ -13,16 +13,23 @@ public class AdmobAdUtils {
 
     private static final String ADMOB_APP_ID = "ca-app-pub-3996731798982494/4759163715";
 
-    Context context;
-    InterstitialAd mInterstitialAd;
-    Random random;
+    private static Context context;
+    private static InterstitialAd mInterstitialAd;
+    private static AdmobAdUtils instance;
 
-    public AdmobAdUtils(Context context) {
+    public static AdmobAdUtils getInstance(Context ctx){
+
+        if(instance == null){
+            instance = new AdmobAdUtils(ctx);
+        }
+        return instance;
+    }
+
+
+    private AdmobAdUtils(Context context) {
         this.context = context;
         this.mInterstitialAd = new InterstitialAd(context);
         this.mInterstitialAd.setAdUnitId(ADMOB_APP_ID);
-
-        this.random = new Random();
 
         this.mInterstitialAd.setAdListener(new AdListener() {
             @Override
@@ -46,7 +53,7 @@ public class AdmobAdUtils {
     }
 
     public void showAd() {
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded() && random.nextInt() % 3 == 0) {
+        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
         }
     }
@@ -54,7 +61,7 @@ public class AdmobAdUtils {
     private void requestNewInterstitial() {
         if (UtilMethods.isInternetAvailable(context) && !mInterstitialAd.isLoaded()) {
             AdRequest adRequest = new AdRequest.Builder()
-                    //.addTestDevice("F0BC99DD3A2447A38D525DBA2A80CFA6")
+                    .addTestDevice("F0BC99DD3A2447A38D525DBA2A80CFA6")
                     .build();
 
             mInterstitialAd.loadAd(adRequest);

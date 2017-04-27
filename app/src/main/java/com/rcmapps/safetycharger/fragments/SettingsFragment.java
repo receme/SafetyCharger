@@ -10,6 +10,7 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.activites.AboutActivity;
+import com.rcmapps.safetycharger.interfaces.Callback;
 import com.rcmapps.safetycharger.interfaces.SettingsView;
 import com.rcmapps.safetycharger.presenters.SettingsFragmentPresenter;
 import com.rcmapps.safetycharger.utils.InstructionManager;
@@ -17,11 +18,11 @@ import com.rcmapps.safetycharger.utils.PreferenceContants;
 import com.rcmapps.safetycharger.utils.SharedPreferenceUtils;
 import com.rcmapps.safetycharger.utils.UtilMethods;
 
-public class SettingsFragment extends PreferenceFragmentCompat implements SettingsView {
+public class SettingsFragment extends PreferenceFragmentCompat implements SettingsView, Callback {
 
     private SettingsFragmentPresenter presenter;
     private PasswordChangeDialogFragment passwordChangeDialogFragment = new PasswordChangeDialogFragment();
-
+    private InstructionManager instructionManager = new InstructionManager();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +30,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
         presenter = new SettingsFragmentPresenter(this);
 
         if(getBooleanPref(PreferenceContants.KEY_IS_FIRSTRUN,true)){
-
-            new InstructionManager().showInstructionOnTapPasswordPref(getActivity());
-
-            SharedPreferenceUtils.getInstance(getActivity()).putBoolean(PreferenceContants.KEY_IS_FIRSTRUN,false);
+            instructionManager.showInstructionOnTapPasswordPref(getActivity(), this);
+            //SharedPreferenceUtils.getInstance(getActivity()).putBoolean(PreferenceContants.KEY_IS_FIRSTRUN,false);
         }
     }
 
@@ -47,9 +46,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
 
         switch (preference.getKey()) {
             case PreferenceContants.KEY_PASSWORD:
-                passwordChangeDialogFragment = new PasswordChangeDialogFragment();
-                passwordChangeDialogFragment.setPresenter(presenter);
-                passwordChangeDialogFragment.show(getChildFragmentManager(), PasswordChangeDialogFragment.class.getSimpleName());
+                showPasswordChangeDialog();
                 break;
             case PreferenceContants.KEY_RESET_ALARM:
                 showConfirmationDialog();
@@ -62,6 +59,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
         }
 
         return true;
+    }
+
+    private void showPasswordChangeDialog(){
+        passwordChangeDialogFragment = new PasswordChangeDialogFragment();
+        passwordChangeDialogFragment.setPresenter(presenter);
+        passwordChangeDialogFragment.show(getChildFragmentManager(), PasswordChangeDialogFragment.class.getSimpleName());
     }
 
     private void showConfirmationDialog() {
@@ -99,6 +102,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
     }
 
     @Override
+    public void continueInstruction() {
+        instructionManager.showInstructionOnTapBackButton(getActivity());
+    }
+
+    @Override
     public void showError(String title, String message) {
         UtilMethods.showSimpleAlertWithMessage(getActivity(), title, message);
     }
@@ -121,5 +129,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
     @Override
     public void closeApp() {
 
+    }
+
+    @Override
+    public void onTargetViewDismissed() {
+        showPasswordChangeDialog();
     }
 }

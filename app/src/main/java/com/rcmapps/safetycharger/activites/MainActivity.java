@@ -52,14 +52,17 @@ public class MainActivity extends BaseActivity implements MainView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
-        setContentView(R.layout.main);
+        //setContentView(R.layout.main);
         ButterKnife.bind(this);
 
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
+        //delete this
+        sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_IS_FIRSTRUN,true);
+
         presenter = new MainPresenter(this);
         presenter.init();
-        admobAdUtils = new AdmobAdUtils(this);
+        admobAdUtils = AdmobAdUtils.getInstance(this);
 
     }
 
@@ -87,6 +90,11 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public String getActivityTitle() {
         return getString(R.string.app_name);
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.main;
     }
 
     @Override

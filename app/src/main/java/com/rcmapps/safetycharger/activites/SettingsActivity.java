@@ -15,7 +15,9 @@ public class SettingsActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        //setContentView(R.layout.activity_settings);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (savedInstanceState == null) {
             Fragment preferenceFragment = new SettingsFragment();
@@ -28,6 +30,11 @@ public class SettingsActivity extends BaseActivity {
     @Override
     public String getActivityTitle() {
         return getString(R.string.settings);
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_settings;
     }
 
 

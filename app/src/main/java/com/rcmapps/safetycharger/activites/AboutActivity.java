@@ -22,9 +22,11 @@ public class AboutActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        //setContentView(R.layout.activity_about);
 
         ButterKnife.bind(this);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         versionTv.setText("Version "+ UtilMethods.getVesionText(this));
 
@@ -39,5 +41,10 @@ public class AboutActivity extends BaseActivity {
     @Override
     public String getActivityTitle() {
         return getString(R.string.about);
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_about;
     }
 }

@@ -2,14 +2,15 @@ package com.rcmapps.safetycharger.utils;
 
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.graphics.Rect;
+import android.support.v4.app.FragmentActivity;
 
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.getkeepsafe.taptargetview.TapTargetView;
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.activites.MainActivity;
+import com.rcmapps.safetycharger.interfaces.Callback;
 
 public class InstructionManager {
 
@@ -41,9 +42,9 @@ public class InstructionManager {
 
     }
 
-    public void showInstructionOnTapPasswordPref(final Activity fragment){
+    public void showInstructionOnTapPasswordPref(final Activity activity, final Callback callback){
 
-        TapTargetView.showFor(fragment,TapTarget.forBounds(new Rect(10,100,400,400),
+        TapTargetView.showFor(activity,TapTarget.forBounds(new Rect(10,100,400,400),
                 "Set a password","This password will be needed to stop the alarm")
                         .cancelable(true).transparentTarget(true).targetRadius(100).dimColor(android.R.color.black),
 
@@ -52,6 +53,17 @@ public class InstructionManager {
                     public void onTargetClick(TapTargetView view) {
                         super.onTargetClick(view);
                     }
+
+                    @Override
+                    public void onTargetDismissed(TapTargetView view, boolean userInitiated) {
+                        super.onTargetDismissed(view, userInitiated);
+
+                        callback.onTargetViewDismissed();
+                    }
                 });
+    }
+
+    public void showInstructionOnTapBackButton(Activity activity) {
+
     }
 }

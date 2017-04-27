@@ -20,7 +20,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(getActivityTitle());
+        setContentView(getLayoutId());
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(getActivityTitle());
+        setSupportActionBar(toolbar);
+
         sharedPreferenceUtils = SharedPreferenceUtils.getInstance(this);
     }
 
@@ -83,4 +87,5 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     }
 
     public abstract String getActivityTitle();
+    public abstract int getLayoutId();
 }
