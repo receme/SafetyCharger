@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="goto_settingspage_title">To enable alarm, you have to set a password</string>
+    <string name="goto_settingspage_desc">Please tap here. This will show the settings page</string>
+    <string name="set_password_title">Set a password</string>
+    <string name="set_password_desc">This password will be needed to stop the alarm</string>
+    <string name="goback_to_homescreen">Go back to home screen</string>
+    <string name="enable_alarm_instruction">Set alarm by pressing this button. Alarm will be fired immediately, if your device is not connected to any charging source.</string>
+</resources>

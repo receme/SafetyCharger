@@ -22,8 +22,8 @@ public class InstructionManager {
 
         new TapTargetSequence(activity)
                 .targets(TapTarget.forView(activity.findViewById(R.id.settingsBtn),
-                        "To enable alarm, you have to set a password",
-                        "Please tap here. This will show the settings page")
+                        activity.getString(R.string.goto_settingspage_title),
+                        activity.getString(R.string.goto_settingspage_desc))
                         .cancelable(false).id(1).dimColor(android.R.color.black))
                 .listener(new TapTargetSequence.Listener() {
                     @Override
@@ -49,7 +49,8 @@ public class InstructionManager {
     public void showInstructionOnTapPasswordPref(final Activity activity, final Callback callback) {
 
         TapTargetView.showFor(activity, TapTarget.forBounds(new Rect(10, 100, 400, 400),
-                "Set a password", "This password will be needed to stop the alarm")
+                activity.getString(R.string.set_password_title),
+                activity.getString(R.string.set_password_desc))
                         .cancelable(true).transparentTarget(true).targetRadius(100).dimColor(android.R.color.black),
 
                 new TapTargetView.Listener() {          // The listener can listen for regular clicks, long clicks or cancels
@@ -69,7 +70,8 @@ public class InstructionManager {
 
     public void showInstructionOnTapBackButton(final Activity activity, Toolbar toolbar) {
 
-        TapTargetView.showFor(activity, TapTarget.forToolbarNavigationIcon(toolbar, "Go back to home screen")
+        TapTargetView.showFor(activity, TapTarget.forToolbarNavigationIcon(toolbar,
+                activity.getString(R.string.goback_to_homescreen))
                 .cancelable(false).dimColor(android.R.color.black), new TapTargetView.Listener() {
             @Override
             public void onTargetDismissed(TapTargetView view, boolean userInitiated) {
@@ -87,8 +89,7 @@ public class InstructionManager {
 
         new TapTargetSequence(activity)
                 .targets(TapTarget.forView(activity.findViewById(R.id.toggleAlarmBtn),
-                        "To enable alarm you have to press this. Alarm will be fired immediately, " +
-                                "if your device is not connected to any charging source.")
+                        activity.getString(R.string.enable_alarm_instruction))
                         .cancelable(true).transparentTarget(true)
                         .targetRadius(120).dimColor(android.R.color.black))
                 .listener(new TapTargetSequence.Listener() {
