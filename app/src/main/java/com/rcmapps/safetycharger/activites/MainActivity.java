@@ -40,12 +40,13 @@ public class MainActivity extends BaseActivity implements MainView {
     ImageView chooseAlarmToneBtn;
 
     private static final int REQ_CODE_CHOOSE_ALARM_TONE = 0;
-
+    public static boolean isFromInstructionFlow = false;
 
     private MainPresenter presenter;
     private EnterPasswordDialogFragment enterPasswordDialogFragment = new EnterPasswordDialogFragment();
     private AudioManager mAudioManager;
     private AdmobAdUtils admobAdUtils;
+    private InstructionManager instructionManager = new InstructionManager();
 
 
     @Override
@@ -56,9 +57,6 @@ public class MainActivity extends BaseActivity implements MainView {
         ButterKnife.bind(this);
 
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
-        //delete this
-        sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_IS_FIRSTRUN,true);
 
         presenter = new MainPresenter(this);
         presenter.init();
@@ -78,6 +76,11 @@ public class MainActivity extends BaseActivity implements MainView {
     protected void onStart() {
         super.onStart();
         EventBus.getDefault().register(this);
+
+        if(isFromInstructionFlow){
+            isFromInstructionFlow = false;
+            instructionManager.showIntructionOnTapSetAlarmBtn(this);
+        }
     }
 
     @Override
@@ -189,7 +192,7 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void showInstruction() {
-        new InstructionManager().showIntructionOnTapSettingsBtn(this);
+        instructionManager.showIntructionOnTapSettingsBtn(this);
     }
 
     @Override

@@ -4,17 +4,21 @@ package com.rcmapps.safetycharger.utils;
 import android.app.Activity;
 import android.graphics.Rect;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.getkeepsafe.taptargetview.TapTargetView;
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.activites.MainActivity;
+import com.rcmapps.safetycharger.activites.SettingsActivity;
 import com.rcmapps.safetycharger.interfaces.Callback;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class InstructionManager {
 
-    public void showIntructionOnTapSettingsBtn(final MainActivity activity){
+    public void showIntructionOnTapSettingsBtn(final MainActivity activity) {
 
         new TapTargetSequence(activity)
                 .targets(TapTarget.forView(activity.findViewById(R.id.settingsBtn),
@@ -29,7 +33,7 @@ public class InstructionManager {
 
                     @Override
                     public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
-                        if(lastTarget.id()==1 && targetClicked){
+                        if (lastTarget.id() == 1 && targetClicked) {
                             activity.showSettingsScreen();
                         }
                     }
@@ -42,10 +46,10 @@ public class InstructionManager {
 
     }
 
-    public void showInstructionOnTapPasswordPref(final Activity activity, final Callback callback){
+    public void showInstructionOnTapPasswordPref(final Activity activity, final Callback callback) {
 
-        TapTargetView.showFor(activity,TapTarget.forBounds(new Rect(10,100,400,400),
-                "Set a password","This password will be needed to stop the alarm")
+        TapTargetView.showFor(activity, TapTarget.forBounds(new Rect(10, 100, 400, 400),
+                "Set a password", "This password will be needed to stop the alarm")
                         .cancelable(true).transparentTarget(true).targetRadius(100).dimColor(android.R.color.black),
 
                 new TapTargetView.Listener() {          // The listener can listen for regular clicks, long clicks or cancels
@@ -63,7 +67,32 @@ public class InstructionManager {
                 });
     }
 
-    public void showInstructionOnTapBackButton(Activity activity) {
+    public void showInstructionOnTapBackButton(final Activity activity, Toolbar toolbar, final Callback callback) {
 
+        TapTargetView.showFor(activity, TapTarget.forToolbarNavigationIcon(toolbar,"Go back to home screen")
+                .cancelable(false).dimColor(android.R.color.black),new TapTargetView.Listener(){
+            @Override
+            public void onTargetDismissed(TapTargetView view, boolean userInitiated) {
+                super.onTargetDismissed(view, userInitiated);
+
+                MainActivity.isFromInstructionFlow = true;
+                activity.finish();
+            }
+        });
+
+
+    }
+
+    public void showIntructionOnTapSetAlarmBtn(Activity activity) {
+//        TapTargetView.showFor(activity, TapTarget.forView(activity.findViewById(R.id.toggleAlarmBtn),
+//                "To enable alarm you have to press this. Alarm will be fired immediately, " +
+//                        "if your device is not connected to any charging source.")
+//        .cancelable(true).dimColor(android.R.color.black));
+
+        new TapTargetSequence(activity)
+                .targets(TapTarget.forView(activity.findViewById(R.id.toggleAlarmBtn),
+                        "To enable alarm you have to press this. Alarm will be fired immediately, " +
+                                "if your device is not connected to any charging source.")
+                        .cancelable(true).transparentTarget(true).targetRadius(120).dimColor(android.R.color.black)).start();
     }
 }

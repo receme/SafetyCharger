@@ -10,6 +10,7 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.activites.AboutActivity;
+import com.rcmapps.safetycharger.activites.SettingsActivity;
 import com.rcmapps.safetycharger.interfaces.Callback;
 import com.rcmapps.safetycharger.interfaces.SettingsView;
 import com.rcmapps.safetycharger.presenters.SettingsFragmentPresenter;
@@ -103,7 +104,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
 
     @Override
     public void continueInstruction() {
-        instructionManager.showInstructionOnTapBackButton(getActivity());
+        instructionManager.showInstructionOnTapBackButton(getActivity(), ((SettingsActivity)getActivity()).getToolbar(),this);
     }
 
     @Override

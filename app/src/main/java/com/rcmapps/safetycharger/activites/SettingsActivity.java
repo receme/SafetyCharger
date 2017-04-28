@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.fragments.SettingsFragment;
@@ -28,6 +30,15 @@ public class SettingsActivity extends BaseActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId() == android.R.id.home){
+            finish();
+        }
+        return true;
+    }
+
+    @Override
     public String getActivityTitle() {
         return getString(R.string.settings);
     }
@@ -36,6 +47,7 @@ public class SettingsActivity extends BaseActivity {
     public int getLayoutId() {
         return R.layout.activity_settings;
     }
+
 
 
 }

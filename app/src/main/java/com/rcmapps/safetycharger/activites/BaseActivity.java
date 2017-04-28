@@ -12,16 +12,22 @@ import com.rcmapps.safetycharger.utils.PreferenceContants;
 import com.rcmapps.safetycharger.utils.SharedPreferenceUtils;
 import com.rcmapps.safetycharger.utils.UtilMethods;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public abstract class BaseActivity extends AppCompatActivity implements BaseView{
 
     public SharedPreferenceUtils sharedPreferenceUtils;
     public static int isAppOpen = 0;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
+
         toolbar.setTitle(getActivityTitle());
         setSupportActionBar(toolbar);
 
@@ -84,6 +90,10 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         else{
             super.onBackPressed();
         }
+    }
+
+    public Toolbar getToolbar(){
+        return toolbar;
     }
 
     public abstract String getActivityTitle();
