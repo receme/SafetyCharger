@@ -9,9 +9,10 @@ public interface PreferenceContants {
     String KEY_IS_ALARM_STARTED = "key_isalarmstarted";
     String KEY_IS_VIBRATION_ON = "key_vibration";
     String KEY_IS_AUTORUN_ON = "key_autorun";
-    String KEY_INSTRUCTION = "key_instruction";
+    String KEY_REMOVE_AD = "key_removeads";
     String KEY_ABOUT = "key_about";
     String KEY_SELECTED_ALARM_TONE_URI = "key_alarm_tone_uri";
     String KEY_RESET_ALARM = "key_reset_alarm";
+    String KEY_PREMIUM = "key_premium";
 
 }

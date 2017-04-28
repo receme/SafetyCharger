@@ -32,6 +32,11 @@
         android:title="Others">
 
         <android.support.v7.preference.Preference
+            android:key="key_removeads"
+            android:title="Remove ad"
+            android:summary="" />
+
+        <android.support.v7.preference.Preference
             android:key="key_about"
             android:title="About"
             android:summary="" />

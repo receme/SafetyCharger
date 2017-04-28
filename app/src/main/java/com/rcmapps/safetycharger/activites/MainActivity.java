@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import com.crashlytics.android.Crashlytics;
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.fragments.EnterPasswordDialogFragment;
+import com.rcmapps.safetycharger.inappbilling.BillingCallback;
+import com.rcmapps.safetycharger.inappbilling.InappBillingManager;
 import com.rcmapps.safetycharger.interfaces.MainView;
 import com.rcmapps.safetycharger.listeners.ButtonClickListener;
 import com.rcmapps.safetycharger.presenters.MainPresenter;
@@ -30,7 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.fabric.sdk.android.Fabric;
 
-public class MainActivity extends BaseActivity implements MainView {
+public class MainActivity extends BaseActivity implements MainView, BillingCallback {
 
     @BindView(R.id.toggleAlarmBtn)
     ImageView toggleAlarmBtn;
@@ -47,7 +49,7 @@ public class MainActivity extends BaseActivity implements MainView {
     private AudioManager mAudioManager;
     private AdmobAdUtils admobAdUtils;
     private InstructionManager instructionManager = new InstructionManager();
-
+    private InappBillingManager billingManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,12 @@ public class MainActivity extends BaseActivity implements MainView {
         presenter = new MainPresenter(this);
         presenter.init();
         admobAdUtils = AdmobAdUtils.getInstance(this);
+
+        if(!sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_PREMIUM,false)){
+            billingManager = new InappBillingManager(this);
+            billingManager.setBillingCallback(this);
+            billingManager.setup();
+        }
 
     }
 
@@ -210,6 +218,21 @@ public class MainActivity extends BaseActivity implements MainView {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
         presenter.checkCableStatus(event.isCableConnected());
+    }
+
+    @Override
+    public void onRestorePurchase(boolean mIsPremium) {
+        sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_PREMIUM,true);
+    }
+
+    @Override
+    public void onPurchaseSuccess() {
+
+    }
+
+    @Override
+    public void onPurchaseFailure() {
+
     }
 
     public static class MessageEvent {

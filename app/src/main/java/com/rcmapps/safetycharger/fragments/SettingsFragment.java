@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.widget.Toast;
 
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.activites.AboutActivity;
 import com.rcmapps.safetycharger.activites.SettingsActivity;
+import com.rcmapps.safetycharger.inappbilling.BillingCallback;
+import com.rcmapps.safetycharger.inappbilling.InappBillingManager;
 import com.rcmapps.safetycharger.interfaces.Callback;
 import com.rcmapps.safetycharger.interfaces.SettingsView;
 import com.rcmapps.safetycharger.presenters.SettingsFragmentPresenter;
@@ -19,16 +22,21 @@ import com.rcmapps.safetycharger.utils.PreferenceContants;
 import com.rcmapps.safetycharger.utils.SharedPreferenceUtils;
 import com.rcmapps.safetycharger.utils.UtilMethods;
 
-public class SettingsFragment extends PreferenceFragmentCompat implements SettingsView, Callback {
+public class SettingsFragment extends PreferenceFragmentCompat implements SettingsView, Callback, BillingCallback {
 
     private SettingsFragmentPresenter presenter;
     private PasswordChangeDialogFragment passwordChangeDialogFragment = new PasswordChangeDialogFragment();
     private InstructionManager instructionManager = new InstructionManager();
+    private InappBillingManager billingManager;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         presenter = new SettingsFragmentPresenter(this);
+
+        billingManager = new InappBillingManager(getActivity());
+        billingManager.setBillingCallback(this);
+        billingManager.setup();
 
         if(getBooleanPref(PreferenceContants.KEY_IS_FIRSTRUN,true)){
             instructionManager.showInstructionOnTapPasswordPref(getActivity(), this);
@@ -49,6 +57,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
                 break;
             case PreferenceContants.KEY_RESET_ALARM:
                 showConfirmationDialog();
+                break;
+            case PreferenceContants.KEY_REMOVE_AD:
+                billingManager = new InappBillingManager(getActivity());
+
                 break;
             case PreferenceContants.KEY_ABOUT: {
                 Intent intent = new Intent(getActivity(), AboutActivity.class);
@@ -131,6 +143,27 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
     @Override
     public void continueInstruction() {
         instructionManager.showInstructionOnTapBackButton(getActivity(), ((SettingsActivity)getActivity()).getToolbar());
+    }
+
+    @Override
+    public void onRestorePurchase(boolean mIsPremium) {
+        if(mIsPremium){
+            UtilMethods.showSimpleAlertWithMessage(getActivity(),"Alert","Already purchased.");
+        }
+        else{
+            billingManager.startBilling();
+        }
+
+    }
+
+    @Override
+    public void onPurchaseSuccess() {
+        SharedPreferenceUtils.getInstance(getActivity()).putBoolean(PreferenceContants.KEY_PREMIUM,true);
+    }
+
+    @Override
+    public void onPurchaseFailure() {
+        Toast.makeText(getActivity(),"Purchase was not completed",Toast.LENGTH_SHORT).show();
     }
 
     @Override

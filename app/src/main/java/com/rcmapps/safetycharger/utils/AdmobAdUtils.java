@@ -53,7 +53,8 @@ public class AdmobAdUtils {
     }
 
     public void showAd() {
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
+        if (mInterstitialAd != null && mInterstitialAd.isLoaded()
+                && !SharedPreferenceUtils.getInstance(context).getBoolean(PreferenceContants.KEY_PREMIUM,false)) {
             mInterstitialAd.show();
         }
     }
