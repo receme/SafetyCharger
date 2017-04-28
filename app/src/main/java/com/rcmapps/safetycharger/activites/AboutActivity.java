@@ -23,12 +23,9 @@ public class AboutActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_about);
 
         ButterKnife.bind(this);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         versionTv.setText("Version "+ UtilMethods.getVesionText(this));
 
         licensesBtn.setOnClickListener(new View.OnClickListener() {

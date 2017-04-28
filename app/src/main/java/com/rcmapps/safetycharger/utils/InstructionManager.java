@@ -84,10 +84,6 @@ public class InstructionManager {
     }
 
     public void showIntructionOnTapSetAlarmBtn(Activity activity) {
-//        TapTargetView.showFor(activity, TapTarget.forView(activity.findViewById(R.id.toggleAlarmBtn),
-//                "To enable alarm you have to press this. Alarm will be fired immediately, " +
-//                        "if your device is not connected to any charging source.")
-//        .cancelable(true).dimColor(android.R.color.black));
 
         new TapTargetSequence(activity)
                 .targets(TapTarget.forView(activity.findViewById(R.id.toggleAlarmBtn),

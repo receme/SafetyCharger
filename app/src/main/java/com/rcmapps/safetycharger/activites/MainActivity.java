@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity implements MainView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
-        //setContentView(R.layout.main);
+
         ButterKnife.bind(this);
 
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
