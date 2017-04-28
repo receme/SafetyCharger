@@ -69,7 +69,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
         }
         else{
             AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-            dialog.setMessage("Password is already set. Do you really want to change it?");
+            dialog.setMessage(getActivity().getString(R.string.password_already_set));
             dialog.setCancelable(false);
             dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override

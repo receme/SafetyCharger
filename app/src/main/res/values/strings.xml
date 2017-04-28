@@ -25,4 +25,5 @@
     <string name="app_willbe_opened">App will be opened automatically when alarm will be set on</string>
     <string name="reset_alarm">Change alarm tone to default</string>
     <string name="sure_to_change_alarm">Are you sure to change the alarm sound to default?</string>
+    <string name="password_already_set">Password is already set. Do you really want to change it?</string>
 </resources>
