@@ -222,7 +222,12 @@ public class MainActivity extends BaseActivity implements MainView, BillingCallb
 
     @Override
     public void onRestorePurchase(boolean mIsPremium) {
-        sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_PREMIUM,true);
+        if(mIsPremium){
+            sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_PREMIUM,true);
+        }
+        else{
+            sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_PREMIUM,false);
+        }
     }
 
     @Override
@@ -231,7 +236,7 @@ public class MainActivity extends BaseActivity implements MainView, BillingCallb
     }
 
     @Override
-    public void onPurchaseFailure() {
+    public void onPurchaseFailure(String message) {
 
     }
 

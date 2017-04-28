@@ -36,7 +36,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
 
         billingManager = new InappBillingManager(getActivity());
         billingManager.setBillingCallback(this);
-        billingManager.setup();
 
         if(getBooleanPref(PreferenceContants.KEY_IS_FIRSTRUN,true)){
             instructionManager.showInstructionOnTapPasswordPref(getActivity(), this);
@@ -59,8 +58,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
                 showConfirmationDialog();
                 break;
             case PreferenceContants.KEY_REMOVE_AD:
-                billingManager = new InappBillingManager(getActivity());
-
+                if(billingManager!=null){
+                    billingManager.setup();
+                }
                 break;
             case PreferenceContants.KEY_ABOUT: {
                 Intent intent = new Intent(getActivity(), AboutActivity.class);
@@ -162,8 +162,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
     }
 
     @Override
-    public void onPurchaseFailure() {
-        Toast.makeText(getActivity(),"Purchase was not completed",Toast.LENGTH_SHORT).show();
+    public void onPurchaseFailure(String message) {
+        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
     }
 
     @Override

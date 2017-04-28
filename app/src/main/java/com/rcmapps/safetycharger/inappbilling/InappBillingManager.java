@@ -4,14 +4,16 @@ package com.rcmapps.safetycharger.inappbilling;
 import android.app.Activity;
 import android.util.Log;
 
+import com.rcmapps.safetycharger.BuildConfig;
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.inappbilling.utils.IabHelper;
 import com.rcmapps.safetycharger.inappbilling.utils.IabResult;
 import com.rcmapps.safetycharger.inappbilling.utils.Inventory;
 import com.rcmapps.safetycharger.inappbilling.utils.Purchase;
 
-public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListener{
+public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListener {
 
+    //private static final String TEST_ITEM_SKU = "android.test.purchased";
     private static final String ITEM_SKU_PURCHASED = "com.rcmapps.adfree";
     private static final String PAYLOAD = "adfreeversion";
 
@@ -22,7 +24,7 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
     private boolean mIsPremium;
     private BillingCallback callback;
 
-    public void setBillingCallback(BillingCallback callback){
+    public void setBillingCallback(BillingCallback callback) {
         this.callback = callback;
     }
 
@@ -30,32 +32,30 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
         this.activity = activity;
     }
 
-    public void setup(){
+    public void setup() {
         base64EncodedPublicKey = activity.getString(R.string.inappbilling_key);
-        iabHelper = new IabHelper(activity,base64EncodedPublicKey);
+        iabHelper = new IabHelper(activity, base64EncodedPublicKey);
 
         iabHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
             @Override
             public void onIabSetupFinished(IabResult result) {
-                if(result.isSuccess()){
+                if (result.isSuccess()) {
                     System.out.println("billing setup success");
 
                     iabHelper.queryInventoryAsync(mGotInventoryListener);
-                }
-                else{
+                } else {
                     System.out.println("billing setup failure");
                 }
             }
         });
     }
 
-    public void startBilling(){
-
+    public void startBilling() {
 
         try {
             iabHelper.launchPurchaseFlow(activity, ITEM_SKU_PURCHASED, 10001,
-                    this,PAYLOAD);
-        }catch (IllegalStateException e){
+                    this, PAYLOAD);
+        } catch (IllegalStateException e) {
             e.printStackTrace();
             System.out.println("Purchaged could not be done");
         }
@@ -64,19 +64,20 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
 
     @Override
     public void onIabPurchaseFinished(IabResult result, Purchase info) {
-        if(result.isSuccess()){
-            if(info.getSku().equals(ITEM_SKU_PURCHASED)){
+        if (result.isSuccess()) {
+            if (info.getSku().equals(ITEM_SKU_PURCHASED)) {
                 System.out.println("Purchase successful");
 
-                if(callback!=null){
+                if (callback != null) {
                     callback.onPurchaseSuccess();
                 }
             }
-        }
-        else {
+        } else {
             System.out.println("Purchase failed");
-            if(callback!=null){
-                callback.onPurchaseFailure();
+            if (callback != null) {
+                if (result.getResponse() == 7) {
+                    callback.onPurchaseFailure(result.getMessage());
+                }
             }
         }
     }
@@ -86,6 +87,13 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
         public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
             Log.d("TAG", "Query inventory finished.");
 
+            if (BuildConfig.DEBUG) {
+                if (callback != null) {
+                    callback.onRestorePurchase(false);
+                    return;
+                }
+            }
+
             // Have we been disposed of in the meantime? If so, quit.
             if (iabHelper == null) {
                 Log.d("TAG", "IabHelper instance was disposed. inventory finished.");
@@ -94,7 +102,7 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
 
             // Is it a failure?
             if (result.isFailure()) {
-                Log.d("TAG","Failed to query inventory: " + result);
+                Log.d("TAG", "Failed to query inventory: " + result);
                 return;
             }
 
@@ -108,7 +116,8 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
 
             // Do we have the premium upgrade?
             Purchase adfreePurchase = inventory.getPurchase(ITEM_SKU_PURCHASED);
-            mIsPremium = (adfreePurchase != null && verifyDeveloperPayload(adfreePurchase));
+            //mIsPremium = (adfreePurchase != null && verifyDeveloperPayload(adfreePurchase));
+            mIsPremium = (adfreePurchase != null);
             Log.d("TAG", "User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
 
 //            // Do we have the infinite gas plan?
@@ -127,7 +136,7 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
 //                return;
 //            }
 
-            if(callback!=null){
+            if (callback != null) {
                 callback.onRestorePurchase(mIsPremium);
             }
 
@@ -138,7 +147,7 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
 
     private boolean verifyDeveloperPayload(Purchase purchase) {
         String developerPayload = purchase.getDeveloperPayload();
-        if(developerPayload.equals(PAYLOAD)){
+        if (developerPayload.equals(PAYLOAD)) {
             return true;
         }
         return false;
