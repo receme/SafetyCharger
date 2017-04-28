@@ -67,10 +67,10 @@ public class InstructionManager {
                 });
     }
 
-    public void showInstructionOnTapBackButton(final Activity activity, Toolbar toolbar, final Callback callback) {
+    public void showInstructionOnTapBackButton(final Activity activity, Toolbar toolbar) {
 
-        TapTargetView.showFor(activity, TapTarget.forToolbarNavigationIcon(toolbar,"Go back to home screen")
-                .cancelable(false).dimColor(android.R.color.black),new TapTargetView.Listener(){
+        TapTargetView.showFor(activity, TapTarget.forToolbarNavigationIcon(toolbar, "Go back to home screen")
+                .cancelable(false).dimColor(android.R.color.black), new TapTargetView.Listener() {
             @Override
             public void onTargetDismissed(TapTargetView view, boolean userInitiated) {
                 super.onTargetDismissed(view, userInitiated);
@@ -83,12 +83,28 @@ public class InstructionManager {
 
     }
 
-    public void showIntructionOnTapSetAlarmBtn(Activity activity) {
+    public void showIntructionOnTapSetAlarmBtn(final Activity activity) {
 
         new TapTargetSequence(activity)
                 .targets(TapTarget.forView(activity.findViewById(R.id.toggleAlarmBtn),
                         "To enable alarm you have to press this. Alarm will be fired immediately, " +
                                 "if your device is not connected to any charging source.")
-                        .cancelable(true).transparentTarget(true).targetRadius(120).dimColor(android.R.color.black)).start();
+                        .cancelable(true).transparentTarget(true)
+                        .targetRadius(120).dimColor(android.R.color.black))
+                .listener(new TapTargetSequence.Listener() {
+                    @Override
+                    public void onSequenceFinish() {
+                        SharedPreferenceUtils.getInstance(activity).putBoolean(PreferenceContants.KEY_IS_FIRSTRUN, false);
+                    }
+
+                    @Override
+                    public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+                    }
+
+                    @Override
+                    public void onSequenceCanceled(TapTarget lastTarget) {
+                        SharedPreferenceUtils.getInstance(activity).putBoolean(PreferenceContants.KEY_IS_FIRSTRUN, false);
+                    }
+                }).start();
     }
 }

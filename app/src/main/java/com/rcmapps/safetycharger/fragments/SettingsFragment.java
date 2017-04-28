@@ -32,7 +32,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
 
         if(getBooleanPref(PreferenceContants.KEY_IS_FIRSTRUN,true)){
             instructionManager.showInstructionOnTapPasswordPref(getActivity(), this);
-            //SharedPreferenceUtils.getInstance(getActivity()).putBoolean(PreferenceContants.KEY_IS_FIRSTRUN,false);
         }
     }
 
@@ -104,7 +103,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
 
     @Override
     public void continueInstruction() {
-        instructionManager.showInstructionOnTapBackButton(getActivity(), ((SettingsActivity)getActivity()).getToolbar(),this);
+        instructionManager.showInstructionOnTapBackButton(getActivity(), ((SettingsActivity)getActivity()).getToolbar());
     }
 
     @Override

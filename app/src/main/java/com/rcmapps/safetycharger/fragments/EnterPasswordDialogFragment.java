@@ -20,8 +20,6 @@ public class EnterPasswordDialogFragment extends AppCompatDialogFragment {
 
     @BindView(R.id.confirmBtn)
     Button confirmBtn;
-    @BindView(R.id.cancelBtn)
-    Button cancelBtn;
     @BindView(R.id.passwordEdtxt)
     EditText passwordEdtxt;
 
@@ -52,14 +50,6 @@ public class EnterPasswordDialogFragment extends AppCompatDialogFragment {
             @Override
             public void onClick(View v) {
                 presenter.validatePassword(passwordEdtxt.getText().toString());
-            }
-        });
-
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-                presenter.closeApp();
             }
         });
     }
