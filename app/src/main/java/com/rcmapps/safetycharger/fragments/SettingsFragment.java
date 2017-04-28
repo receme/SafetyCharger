@@ -45,7 +45,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
 
         switch (preference.getKey()) {
             case PreferenceContants.KEY_PASSWORD:
-                showPasswordChangeDialog();
+                checkIfPasswordisAlreadySet();
                 break;
             case PreferenceContants.KEY_RESET_ALARM:
                 showConfirmationDialog();
@@ -58,6 +58,34 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
         }
 
         return true;
+    }
+
+    private void checkIfPasswordisAlreadySet(){
+
+        String password =SharedPreferenceUtils.getInstance(getActivity()).getString(PreferenceContants.KEY_PASSWORD,"");
+
+        if(password.isEmpty()){
+            showPasswordChangeDialog();
+        }
+        else{
+            AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+            dialog.setMessage("Password is already set. Do you really want to change it?");
+            dialog.setCancelable(false);
+            dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    showPasswordChangeDialog();
+                }
+            });
+            dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            dialog.create();
+            dialog.show();
+        }
     }
 
     private void showPasswordChangeDialog(){
