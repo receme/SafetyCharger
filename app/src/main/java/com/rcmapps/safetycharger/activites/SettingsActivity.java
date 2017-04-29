@@ -18,7 +18,7 @@ public class SettingsActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (savedInstanceState == null) {
             Fragment preferenceFragment = new SettingsFragment();
@@ -26,15 +26,6 @@ public class SettingsActivity extends BaseActivity {
             ft.add(R.id.pref_container, preferenceFragment);
             ft.commit();
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if(item.getItemId() == android.R.id.home){
-            finish();
-        }
-        return true;
     }
 
     @Override
