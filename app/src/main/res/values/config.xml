@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="inappbilling_key">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoqlWNHrKGPJPvGBh98tAxNFigjqcF5I52dqmhcxlPkXL727wLwj204vwk8vJKh6NfZYnuebFDjCHwMha6hdDb+U9C9wXLQl11sMDUwpeYh9WROThPVXrM6XrJHgG36ynX6uAPQCkyWCYVYwulnoYjucDQulzg4RdGv8fokBvUVmfaJqiPjStLG55NQ9Cx1t+0g87QnaqkbON5pwIaj71746oWZzIrnImtUrdXszgkQJHH5tepKuk2CvfMO2RkZYjHDpI7+sloLpC+fB6SH5FDH8u6+aBQLrb98twxhfBIpQ9i1SvlBwB6oN/gJ4SLHlkwkPtZCX+8D+08N3ON3m0+QIDAQAB</string>
-    <string name="admob_app_id">ca-app-pub-3996731798982494/4759163715</string>
+    <!--<string name="admob_app_id">ca-app-pub-3996731798982494/4759163715</string>-->
+    <!--for amazon release-->
+    <string name="admob_app_id">ca-app-pub-3996731798982494/3219894915</string>
 </resources>
