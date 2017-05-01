@@ -58,6 +58,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
                 showConfirmationDialog();
                 break;
             case PreferenceContants.KEY_REMOVE_AD:
+
                 if(billingManager!=null){
                     billingManager.setup();
                 }

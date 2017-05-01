@@ -41,12 +41,15 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
             public void onIabSetupFinished(IabResult result) {
                 if (result.isSuccess()) {
                     System.out.println("billing setup success");
-
                     iabHelper.queryInventoryAsync(mGotInventoryListener);
-                } else {
-                    System.out.println("billing setup failure");
+                }
+                else{
+                    if(callback!=null){
+                        callback.onPurchaseFailure(result.getMessage());
+                    }
                 }
             }
+
         });
     }
 
@@ -116,32 +119,14 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
 
             // Do we have the premium upgrade?
             Purchase adfreePurchase = inventory.getPurchase(ITEM_SKU_PURCHASED);
-            //mIsPremium = (adfreePurchase != null && verifyDeveloperPayload(adfreePurchase));
-            mIsPremium = (adfreePurchase != null);
-            Log.d("TAG", "User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
 
-//            // Do we have the infinite gas plan?
-//            Purchase infiniteGasPurchase = inventory.getPurchase(SKU_INFINITE_GAS);
-//            mSubscribedToInfiniteGas = (infiniteGasPurchase != null &&
-//                    verifyDeveloperPayload(infiniteGasPurchase));
-//            Log.d(TAG, "User " + (mSubscribedToInfiniteGas ? "HAS" : "DOES NOT HAVE")
-//                    + " infinite gas subscription.");
-//            if (mSubscribedToInfiniteGas) mTank = TANK_MAX;
-//
-//            // Check for gas delivery -- if we own gas, we should fill up the tank immediately
-//            Purchase gasPurchase = inventory.getPurchase(SKU_GAS);
-//            if (gasPurchase != null && verifyDeveloperPayload(gasPurchase)) {
-//                Log.d(TAG, "We have gas. Consuming it.");
-//                mHelper.consumeAsync(inventory.getPurchase(SKU_GAS), mConsumeFinishedListener);
-//                return;
-//            }
+            mIsPremium = (adfreePurchase != null && verifyDeveloperPayload(adfreePurchase));
+            Log.d("TAG", "User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
 
             if (callback != null) {
                 callback.onRestorePurchase(mIsPremium);
             }
 
-//            setWaitScreen(false);
-//            Log.d(TAG, "Initial inventory query finished; enabling main UI.");
         }
     };
 
