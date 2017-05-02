@@ -5,9 +5,8 @@ import android.content.Context;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.rcmapps.safetycharger.BuildConfig;
 import com.rcmapps.safetycharger.R;
-
-import java.util.Random;
 
 public class AdmobAdUtils {
 
@@ -15,9 +14,9 @@ public class AdmobAdUtils {
     private static InterstitialAd mInterstitialAd;
     private static AdmobAdUtils instance;
 
-    public static AdmobAdUtils getInstance(Context ctx){
+    public static AdmobAdUtils getInstance(Context ctx) {
 
-        if(instance == null){
+        if (instance == null) {
             instance = new AdmobAdUtils(ctx);
         }
         return instance;
@@ -52,18 +51,20 @@ public class AdmobAdUtils {
 
     public void showAd() {
         if (mInterstitialAd != null && mInterstitialAd.isLoaded()
-                && !SharedPreferenceUtils.getInstance(context).getBoolean(PreferenceContants.KEY_PREMIUM,false)) {
+                && !SharedPreferenceUtils.getInstance(context).getBoolean(PreferenceContants.KEY_PREMIUM, false)) {
             mInterstitialAd.show();
         }
     }
 
     private void requestNewInterstitial() {
         if (UtilMethods.isInternetAvailable(context) && !mInterstitialAd.isLoaded()) {
-            AdRequest adRequest = new AdRequest.Builder()
-                    //.addTestDevice("F0BC99DD3A2447A38D525DBA2A80CFA6")
-                    .build();
 
-            mInterstitialAd.loadAd(adRequest);
+            AdRequest.Builder adRequest = new AdRequest.Builder();
+            if (BuildConfig.DEBUG){
+                adRequest.addTestDevice("F0BC99DD3A2447A38D525DBA2A80CFA6");
+            }
+
+            mInterstitialAd.loadAd(adRequest.build());
         }
     }
 }

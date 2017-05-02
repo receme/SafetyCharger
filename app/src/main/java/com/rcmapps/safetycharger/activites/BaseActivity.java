@@ -48,7 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
         if(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_ALARM_STARTED,false)){
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
         }
     }
