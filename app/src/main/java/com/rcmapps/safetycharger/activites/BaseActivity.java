@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.interfaces.BaseView;
 import com.rcmapps.safetycharger.utils.PreferenceContants;
@@ -23,6 +24,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         sharedPreferenceUtils = SharedPreferenceUtils.getInstance(this);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
     }
 
     @Override

@@ -8,10 +8,12 @@ import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.activites.MainActivity;
 import com.rcmapps.safetycharger.interfaces.SafetyAlarm;
@@ -22,6 +24,7 @@ import com.rcmapps.safetycharger.utils.UtilMethods;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
+import java.util.Calendar;
 
 public class SafetyAlarmService extends Service implements SafetyAlarm {
 
@@ -30,6 +33,7 @@ public class SafetyAlarmService extends Service implements SafetyAlarm {
     private MediaPlayer mediaPlayer;
     private AudioManager mAudioManager;
     private Vibrator vibrator;
+    private FirebaseAnalytics firebaseAnalytics;
 
     @Override
     public void onCreate() {
@@ -44,6 +48,8 @@ public class SafetyAlarmService extends Service implements SafetyAlarm {
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         registerReceiver(powerConnectionReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         return START_STICKY;
     }
@@ -67,6 +73,16 @@ public class SafetyAlarmService extends Service implements SafetyAlarm {
     @Override
     public void onPowerCableDisconnected() {
         UtilMethods.printLog("power cable disconnected");
+
+        try {
+            if (firebaseAnalytics != null) {
+                Bundle bundle = new Bundle();
+                bundle.putString("DATETIME", Calendar.getInstance().getTime().toString());
+                firebaseAnalytics.logEvent("ALARM_FIRED", bundle);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), AudioManager.FLAG_PLAY_SOUND);
         if (mediaPlayer == null) {
