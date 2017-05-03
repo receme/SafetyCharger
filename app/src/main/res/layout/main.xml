@@ -25,12 +25,26 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
-            <ImageView
+            <!--<ImageView-->
+                <!--android:id="@+id/toggleAlarmBtn"-->
+                <!--android:layout_width="200dp"-->
+                <!--android:layout_height="200dp"-->
+                <!--android:clickable="true"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--app:srcCompat="@mipmap/alarm_on"/>-->
+
+            <com.github.zagum.switchicon.SwitchIconView
                 android:id="@+id/toggleAlarmBtn"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:clickable="true"
                 android:layout_centerInParent="true"
+                app:si_animation_duration="500"
+                app:si_disabled_alpha="1"
+                app:si_disabled_color="@color/red"
+                app:si_tint_color="@color/green"
+                app:si_enabled="false"
+                app:si_no_dash="false"
                 app:srcCompat="@mipmap/alarm_on"/>
         </RelativeLayout>
 

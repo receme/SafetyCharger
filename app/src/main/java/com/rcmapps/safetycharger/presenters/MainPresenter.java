@@ -75,16 +75,16 @@ public class MainPresenter {
         }
     }
 
-    public void setAlarmToggleBtnState(boolean isServiceRunning) {
-
-        int resource = R.mipmap.alarm_off;
-
-        if(isServiceRunning){
-            resource = R.mipmap.alarm_on;
-        }
-
-        view.updateToggleButton(resource);
-    }
+//    public void setAlarmToggleBtnState(boolean isServiceRunning) {
+//
+//        int resource = R.mipmap.alarm_off;
+//
+//        if(isServiceRunning){
+//            resource = R.mipmap.alarm_on;
+//        }
+//
+//        view.updateToggleButton(resource);
+//    }
 
     public void onClickSettingsBtn() {
         view.showSettingsScreen();

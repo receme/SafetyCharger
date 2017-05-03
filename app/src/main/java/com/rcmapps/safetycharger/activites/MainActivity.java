@@ -11,6 +11,7 @@ import android.view.KeyEvent;
 import android.widget.ImageView;
 
 import com.crashlytics.android.Crashlytics;
+import com.github.zagum.switchicon.SwitchIconView;
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.fragments.EnterPasswordDialogFragment;
 import com.rcmapps.safetycharger.inappbilling.BillingCallback;
@@ -34,8 +35,10 @@ import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends BaseActivity implements MainView, BillingCallback {
 
+//    @BindView(R.id.toggleAlarmBtn)
+//    ImageView toggleAlarmBtn;
     @BindView(R.id.toggleAlarmBtn)
-    ImageView toggleAlarmBtn;
+    SwitchIconView toggleAlarmBtn;
     @BindView(R.id.settingsBtn)
     ImageView settingsBtn;
     @BindView(R.id.chooseAlarmToneBtn)
@@ -57,6 +60,8 @@ public class MainActivity extends BaseActivity implements MainView, BillingCallb
         Fabric.with(this, new Crashlytics());
 
         ButterKnife.bind(this);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
@@ -110,7 +115,8 @@ public class MainActivity extends BaseActivity implements MainView, BillingCallb
 
     @Override
     public void initView() {
-        presenter.setAlarmToggleBtnState(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, false));
+
+        toggleAlarmBtn.setIconEnabled(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, false));
     }
 
     @Override
@@ -147,7 +153,8 @@ public class MainActivity extends BaseActivity implements MainView, BillingCallb
             startService(intent);
             sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, true);
 
-            toggleAlarmBtn.setImageResource(R.mipmap.alarm_on);
+            //toggleAlarmBtn.setImageResource(R.mipmap.alarm_on);
+            toggleAlarmBtn.setIconEnabled(true,true);
         } else {
             UtilMethods.printLog("Service is already running");
         }
@@ -170,7 +177,8 @@ public class MainActivity extends BaseActivity implements MainView, BillingCallb
 
     @Override
     public void uncheckAlarmSwitch() {
-        toggleAlarmBtn.setImageResource(R.mipmap.alarm_off);
+        //toggleAlarmBtn.setImageResource(R.mipmap.alarm_off);
+        toggleAlarmBtn.setIconEnabled(false,true);
     }
 
     @Override
