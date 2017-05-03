@@ -18,12 +18,24 @@ import butterknife.ButterKnife;
 
 public class LicenseActivity extends BaseActivity {
 
+    private String[] licenseName = new String[]{
+            "Butter Knife",
+            "Android Open Source",
+            "Eventbus",
+            "Firebase",
+            "TapTargetView",
+            "Crescento",
+            "Android-SwitchIcon"};
+
+
     private int[] licenseFile = new int[]{
             R.raw.butterknife,
             R.raw.androidopensource,
             R.raw.eventbus,
             R.raw.firebase,
-            R.raw.taptargetview};
+            R.raw.taptargetview,
+            R.raw.crescento,
+            R.raw.switchicon};
 
     @BindView(R.id.listview)
     ListView listView;
@@ -36,7 +48,7 @@ public class LicenseActivity extends BaseActivity {
         List<String> licenses = new ArrayList<>();
 
         for (int i = 0; i < licenseFile.length; i++) {
-            licenses.add(readFileContent(licenseFile[i]));
+            licenses.add(readFileContent(licenseFile[i], licenseName[i]));
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, licenses);
         listView.setAdapter(adapter);
@@ -52,7 +64,7 @@ public class LicenseActivity extends BaseActivity {
         return R.layout.activity_license;
     }
 
-    private String readFileContent(int fileId) {
+    private String readFileContent(int fileId,String licenseName) {
         InputStream is = getResources().openRawResource(fileId);
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         String line;

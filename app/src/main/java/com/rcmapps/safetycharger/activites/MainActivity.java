@@ -167,6 +167,7 @@ public class MainActivity extends BaseActivity implements MainView, BillingCallb
         sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_IS_SERVICE_RUNNING, false);
         sharedPreferenceUtils.putBoolean(PreferenceContants.KEY_IS_ALARM_STARTED, false);
         uncheckAlarmSwitch();
+
         admobAdUtils.showAd();
     }
 

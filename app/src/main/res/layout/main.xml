@@ -20,10 +20,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <developer.shivam.library.CrescentoContainer
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:elevation="20dp"
+            android:scaleType="centerCrop"
+            app:curvature="80dp">
 
             <!--<ImageView-->
                 <!--android:id="@+id/toggleAlarmBtn"-->
@@ -33,27 +36,41 @@
                 <!--android:layout_centerInParent="true"-->
                 <!--app:srcCompat="@mipmap/alarm_on"/>-->
 
-            <com.github.zagum.switchicon.SwitchIconView
-                android:id="@+id/toggleAlarmBtn"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:clickable="true"
-                android:layout_centerInParent="true"
-                app:si_animation_duration="500"
-                app:si_disabled_alpha="1"
-                app:si_disabled_color="@color/red"
-                app:si_tint_color="@color/green"
-                app:si_enabled="false"
-                app:si_no_dash="false"
-                app:srcCompat="@mipmap/alarm_on"/>
-        </RelativeLayout>
+            <!--<com.flaviofaria.kenburnsview.KenBurnsView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:src="@mipmap/wallpaper3_optimized" />-->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_togglebtn"/>
+
+
+                <com.github.zagum.switchicon.SwitchIconView
+                    android:id="@+id/toggleAlarmBtn"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:paddingBottom="20dp"
+                    android:clickable="true"
+                    android:layout_centerInParent="true"
+                    app:si_animation_duration="500"
+                    app:si_disabled_alpha="1"
+                    app:si_disabled_color="@color/red"
+                    app:si_tint_color="@color/green"
+                    app:si_enabled="false"
+                    app:si_no_dash="false"
+
+                    app:srcCompat="@mipmap/alarm_on"/>
+
+
+
+        </developer.shivam.library.CrescentoContainer>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="#E8E9E9"
-            android:elevation="5dp"
             android:orientation="horizontal">
 
             <RelativeLayout

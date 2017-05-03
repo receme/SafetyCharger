@@ -1,6 +1,7 @@
 package com.rcmapps.safetycharger.utils;
 
 import android.content.Context;
+import android.os.Handler;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -52,7 +53,14 @@ public class AdmobAdUtils {
     public void showAd() {
         if (mInterstitialAd != null && mInterstitialAd.isLoaded()
                 && !SharedPreferenceUtils.getInstance(context).getBoolean(PreferenceContants.KEY_PREMIUM, false)) {
-            mInterstitialAd.show();
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mInterstitialAd.show();
+                }
+            },2000);
+
         }
     }
 
