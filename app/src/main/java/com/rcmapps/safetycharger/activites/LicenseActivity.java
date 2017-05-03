@@ -69,6 +69,7 @@ public class LicenseActivity extends BaseActivity {
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         String line;
         StringBuilder entireFile = new StringBuilder();
+        entireFile.append(licenseName+"\n\n");
         try {
             while ((line = br.readLine()) != null) { // <--------- place readLine() inside loop
                 entireFile.append(line);

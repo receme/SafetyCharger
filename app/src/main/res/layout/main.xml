@@ -87,26 +87,27 @@
                     android:background="@drawable/btn_selector"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"/>
-            </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
+        </RelativeLayout>
 
-                <ImageView
-                    android:id="@+id/settingsBtn"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:clickable="true"
-                    android:background="@drawable/btn_selector"
-                    android:layout_centerInParent="true"
-                    android:src="@mipmap/settings"/>
-            </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/settingsBtn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:clickable="true"
+                android:background="@drawable/btn_selector"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/settings"/>
+        </RelativeLayout>
 
     </LinearLayout>
+
+</LinearLayout>
 
 </RelativeLayout>
 

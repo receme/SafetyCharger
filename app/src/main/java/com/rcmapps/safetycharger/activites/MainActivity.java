@@ -6,6 +6,7 @@ import android.media.AudioManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.ImageView;
@@ -35,8 +36,6 @@ import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends BaseActivity implements MainView, BillingCallback {
 
-//    @BindView(R.id.toggleAlarmBtn)
-//    ImageView toggleAlarmBtn;
     @BindView(R.id.toggleAlarmBtn)
     SwitchIconView toggleAlarmBtn;
     @BindView(R.id.settingsBtn)
@@ -74,6 +73,16 @@ public class MainActivity extends BaseActivity implements MainView, BillingCallb
             billingManager.setBillingCallback(this);
             billingManager.setup();
         }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(!sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_ALARM_STARTED, false)
+                        && !sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_FIRSTRUN,false)){
+                    admobAdUtils.showAd();
+                }
+            }
+        },4000);
 
     }
 
