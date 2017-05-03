@@ -29,10 +29,6 @@ public class PasswordChanger {
             return new Response(false, baseView.getResourceString(R.string.newpassword_notnull));
         }
 
-        if (newPassword.length() < 8) {
-            return new Response(false, baseView.getResourceString(R.string.password_length));
-        }
-
         if (!newPassword.equals(confirmPassword)) {
             return new Response(false, baseView.getResourceString(R.string.password_not_match));
         }
