@@ -51,8 +51,11 @@ public class AdmobAdUtils {
     }
 
     public void showAd() {
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded()
-                && !SharedPreferenceUtils.getInstance(context).getBoolean(PreferenceContants.KEY_PREMIUM, false)) {
+
+        boolean isPremium = SharedPreferenceUtils.getInstance(context).getBoolean(PreferenceContants.KEY_PREMIUM,false);
+        System.out.println(isPremium?"Premium: Yes":"Premium: No");
+
+        if (mInterstitialAd != null && mInterstitialAd.isLoaded() && !isPremium) {
 
             new Handler().postDelayed(new Runnable() {
                 @Override

@@ -2,6 +2,7 @@ package com.rcmapps.safetycharger.inappbilling;
 
 
 import android.app.Activity;
+import android.os.RemoteException;
 import android.util.Log;
 
 import com.rcmapps.safetycharger.BuildConfig;
@@ -13,8 +14,8 @@ import com.rcmapps.safetycharger.inappbilling.utils.Purchase;
 
 public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListener {
 
-    //private static final String TEST_ITEM_SKU = "android.test.purchased";
-    private static final String ITEM_SKU_PURCHASED = "com.rcmapps.adfree";
+    private static final String ITEM_SKU_PURCHASED = "android.test.purchased";
+    //private static final String ITEM_SKU_PURCHASED = "com.rcmapps.adfree";
     private static final String PAYLOAD = "adfreeversion";
 
     private String base64EncodedPublicKey;
@@ -35,7 +36,6 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
     public void setup() {
         base64EncodedPublicKey = activity.getString(R.string.inappbilling_key);
         iabHelper = new IabHelper(activity, base64EncodedPublicKey);
-
         iabHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
             @Override
             public void onIabSetupFinished(IabResult result) {
@@ -43,19 +43,30 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
                     System.out.println("billing setup success");
                     iabHelper.queryInventoryAsync(mGotInventoryListener);
                 }
-                else{
-                    if(callback!=null){
-                        callback.onPurchaseFailure(result.getMessage());
-                    }
-                }
             }
 
         });
     }
 
+    public void consumeTestPurchase(){
+
+        String purchaseToken = "inapp:" + activity.getPackageName() + ":android.test.purchased";
+
+        try {
+            iabHelper.mService.consumePurchase(3,activity.getPackageName(),purchaseToken);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void startBilling() {
 
         try {
+
+            if(BuildConfig.DEBUG){
+                consumeTestPurchase();
+            }
+
             iabHelper.launchPurchaseFlow(activity, ITEM_SKU_PURCHASED, 10001,
                     this, PAYLOAD);
         } catch (IllegalStateException e) {

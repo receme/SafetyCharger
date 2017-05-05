@@ -29,7 +29,7 @@ public class SharedPreferenceUtils {
     public void putString(String prefKey,String value){
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(prefKey,value);
-        editor.apply();
+        editor.commit();
     }
 
     public int getInt(String prefKey,int defaultValue){
@@ -39,7 +39,7 @@ public class SharedPreferenceUtils {
     public void putInt(String prefKey,int value){
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(prefKey,value);
-        editor.apply();
+        editor.commit();
     }
 
     public boolean getBoolean(String prefKey,boolean defaultValue){
@@ -49,13 +49,13 @@ public class SharedPreferenceUtils {
     public void putBoolean(String prefKey,boolean value){
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(prefKey,value);
-        editor.apply();
+        editor.commit();
     }
 
     public void clear(String key){
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(key);
-        editor.apply();
+        editor.commit();
     }
 
     public void clear(){

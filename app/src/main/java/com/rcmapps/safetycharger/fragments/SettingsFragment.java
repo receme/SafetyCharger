@@ -28,6 +28,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
     private PasswordChangeDialogFragment passwordChangeDialogFragment = new PasswordChangeDialogFragment();
     private InstructionManager instructionManager = new InstructionManager();
     private InappBillingManager billingManager;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +38,19 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
         billingManager = new InappBillingManager(getActivity());
         billingManager.setBillingCallback(this);
 
+
+
         if(getBooleanPref(PreferenceContants.KEY_IS_FIRSTRUN,true)){
             instructionManager.showInstructionOnTapPasswordPref(getActivity(), this);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if(billingManager!=null){
+            billingManager.setup();
         }
     }
 
@@ -59,9 +71,15 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
                 break;
             case PreferenceContants.KEY_REMOVE_AD:
 
-                if(billingManager!=null){
-                    billingManager.setup();
+                if(SharedPreferenceUtils.getInstance(getActivity()).getBoolean(PreferenceContants.KEY_PREMIUM,false)){
+                    UtilMethods.showSimpleAlertWithMessage(getActivity(),"Alert","Already purchased.");
                 }
+                else {
+                    if(billingManager!=null){
+                        billingManager.startBilling();
+                    }
+                }
+
                 break;
             case PreferenceContants.KEY_ABOUT: {
                 Intent intent = new Intent(getActivity(), AboutActivity.class);
@@ -148,13 +166,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
 
     @Override
     public void onRestorePurchase(boolean mIsPremium) {
-        if(mIsPremium){
-            UtilMethods.showSimpleAlertWithMessage(getActivity(),"Alert","Already purchased.");
-        }
-        else{
-            billingManager.startBilling();
-        }
 
+        SharedPreferenceUtils.getInstance(getActivity()).putBoolean(PreferenceContants.KEY_PREMIUM,mIsPremium);
     }
 
     @Override
