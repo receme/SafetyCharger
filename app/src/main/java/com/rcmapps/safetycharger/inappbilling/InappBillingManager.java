@@ -14,8 +14,8 @@ import com.rcmapps.safetycharger.inappbilling.utils.Purchase;
 
 public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListener {
 
-    private static final String ITEM_SKU_PURCHASED = "android.test.purchased";
-    //private static final String ITEM_SKU_PURCHASED = "com.rcmapps.adfree";
+    //private static final String ITEM_SKU_PURCHASED = "android.test.purchased";
+    private static final String ITEM_SKU_PURCHASED = "com.rcmapps.adfree";
     private static final String PAYLOAD = "adfreeversion";
 
     private String base64EncodedPublicKey;
