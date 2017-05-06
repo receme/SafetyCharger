@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "350050326765-0n82jdj6hm8bhfihcqqtctkf2kup00f5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.receme.app1",
+            "certificate_hash": "5f4449dbb70a785755561388bb09bdc83d24a7fe"
+          }
+        },
+        {
           "client_id": "350050326765-ehea21ahlquq0bc6ekljruuiacajb4om.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -46,6 +54,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "350050326765-vnvnjs4qfoc8gkmva51t8rnondliclgs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rcmapps.safetycharger",
+            "certificate_hash": "e29a4711b6c90e718de6852f7227ec623239a8cf"
+          }
+        },
+        {
           "client_id": "350050326765-ehea21ahlquq0bc6ekljruuiacajb4om.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -60,8 +76,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350050326765-ehea21ahlquq0bc6ekljruuiacajb4om.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
