@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.activites.AboutActivity;
+import com.rcmapps.safetycharger.activites.InstructionActivity;
 import com.rcmapps.safetycharger.activites.SettingsActivity;
 import com.rcmapps.safetycharger.inappbilling.BillingCallback;
 import com.rcmapps.safetycharger.inappbilling.InappBillingManager;
@@ -38,9 +39,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
         billingManager = new InappBillingManager(getActivity());
         billingManager.setBillingCallback(this);
 
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
 
-        if(getBooleanPref(PreferenceContants.KEY_IS_FIRSTRUN,true)){
+        if (getBooleanPref(PreferenceContants.KEY_IS_FIRSTRUN, true)) {
             instructionManager.showInstructionOnTapPasswordPref(getActivity(), this);
         }
     }
@@ -49,7 +54,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
     public void onResume() {
         super.onResume();
 
-        if(billingManager!=null){
+        if (billingManager != null) {
             billingManager.setup();
         }
     }
@@ -69,13 +74,17 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
             case PreferenceContants.KEY_RESET_ALARM:
                 showConfirmationDialog();
                 break;
+            case PreferenceContants.KEY_INSTRUCTION: {
+                Intent intent = new Intent(getActivity(), InstructionActivity.class);
+                startActivity(intent);
+                break;
+            }
             case PreferenceContants.KEY_REMOVE_AD:
 
-                if(SharedPreferenceUtils.getInstance(getActivity()).getBoolean(PreferenceContants.KEY_PREMIUM,false)){
-                    UtilMethods.showSimpleAlertWithMessage(getActivity(),"Alert","Already purchased.");
-                }
-                else {
-                    if(billingManager!=null){
+                if (SharedPreferenceUtils.getInstance(getActivity()).getBoolean(PreferenceContants.KEY_PREMIUM, false)) {
+                    UtilMethods.showSimpleAlertWithMessage(getActivity(), "Alert", "Already purchased.");
+                } else {
+                    if (billingManager != null) {
                         billingManager.startBilling();
                     }
                 }
@@ -91,14 +100,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
         return true;
     }
 
-    private void checkIfPasswordisAlreadySet(){
+    private void checkIfPasswordisAlreadySet() {
 
-        String password =SharedPreferenceUtils.getInstance(getActivity()).getString(PreferenceContants.KEY_PASSWORD,"");
+        String password = SharedPreferenceUtils.getInstance(getActivity()).getString(PreferenceContants.KEY_PASSWORD, "");
 
-        if(password.isEmpty()){
+        if (password.isEmpty()) {
             showPasswordChangeDialog();
-        }
-        else{
+        } else {
             AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
             dialog.setMessage(getActivity().getString(R.string.password_already_set));
             dialog.setCancelable(false);
@@ -119,7 +127,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
         }
     }
 
-    private void showPasswordChangeDialog(){
+    private void showPasswordChangeDialog() {
         passwordChangeDialogFragment = new PasswordChangeDialogFragment();
         passwordChangeDialogFragment.setPresenter(presenter);
         passwordChangeDialogFragment.show(getChildFragmentManager(), PasswordChangeDialogFragment.class.getSimpleName());
@@ -161,23 +169,23 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
 
     @Override
     public void continueInstruction() {
-        instructionManager.showInstructionOnTapBackButton(getActivity(), ((SettingsActivity)getActivity()).getToolbar());
+        instructionManager.showInstructionOnTapBackButton(getActivity(), ((SettingsActivity) getActivity()).getToolbar());
     }
 
     @Override
     public void onRestorePurchase(boolean mIsPremium) {
 
-        SharedPreferenceUtils.getInstance(getActivity()).putBoolean(PreferenceContants.KEY_PREMIUM,mIsPremium);
+        SharedPreferenceUtils.getInstance(getActivity()).putBoolean(PreferenceContants.KEY_PREMIUM, mIsPremium);
     }
 
     @Override
     public void onPurchaseSuccess() {
-        SharedPreferenceUtils.getInstance(getActivity()).putBoolean(PreferenceContants.KEY_PREMIUM,true);
+        SharedPreferenceUtils.getInstance(getActivity()).putBoolean(PreferenceContants.KEY_PREMIUM, true);
     }
 
     @Override
     public void onPurchaseFailure(String message) {
-        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

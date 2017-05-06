@@ -26,7 +26,6 @@ public class AboutActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         ButterKnife.bind(this);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         versionTv.setText("Version "+ UtilMethods.getVesionText(this));
 
         licensesBtn.setOnClickListener(new View.OnClickListener() {

@@ -77,8 +77,7 @@ public class MainActivity extends BaseActivity implements MainView, BillingCallb
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(!sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_ALARM_STARTED, false)
-                        && !sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_FIRSTRUN,false)){
+                if(!sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_ALARM_STARTED, false)){
                     admobAdUtils.showAd();
                 }
             }
