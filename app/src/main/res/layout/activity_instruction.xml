@@ -50,7 +50,7 @@
                 android:background="@drawable/btn_selector"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:text="View Instruction"/>
+                android:text="View Instructions"/>
         </LinearLayout>
 
     </ScrollView>

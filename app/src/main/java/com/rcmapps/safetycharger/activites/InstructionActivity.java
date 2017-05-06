@@ -30,7 +30,7 @@ public class InstructionActivity extends BaseActivity {
 
     @Override
     public String getActivityTitle() {
-        return "Instruction";
+        return "Instructions";
     }
 
     @Override
