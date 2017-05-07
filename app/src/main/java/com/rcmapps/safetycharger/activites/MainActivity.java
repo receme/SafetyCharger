@@ -148,7 +148,7 @@ public class MainActivity extends BaseActivity implements MainView, BillingCallb
     @Override
     public void closeEnterPasswordDialog() {
         if (enterPasswordDialogFragment != null && enterPasswordDialogFragment.isAdded()) {
-            enterPasswordDialogFragment.dismiss();
+            enterPasswordDialogFragment.dismissAllowingStateLoss();
         }
     }
 

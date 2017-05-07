@@ -24,6 +24,7 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
 
     private boolean mIsPremium;
     private BillingCallback callback;
+    private boolean isSetupSuccess = true;
 
     public void setBillingCallback(BillingCallback callback) {
         this.callback = callback;
@@ -42,19 +43,24 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
                 if (result.isSuccess()) {
                     System.out.println("billing setup success");
                     iabHelper.queryInventoryAsync(mGotInventoryListener);
+                    isSetupSuccess = true;
+                } else {
+                    isSetupSuccess = false;
                 }
             }
 
         });
     }
 
-    public void consumeTestPurchase(){
+    public void consumeTestPurchase() {
 
         String purchaseToken = "inapp:" + activity.getPackageName() + ":android.test.purchased";
 
         try {
-            iabHelper.mService.consumePurchase(3,activity.getPackageName(),purchaseToken);
+            iabHelper.mService.consumePurchase(3, activity.getPackageName(), purchaseToken);
         } catch (RemoteException e) {
+            e.printStackTrace();
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
     }
@@ -63,12 +69,19 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
 
         try {
 
-            if(BuildConfig.DEBUG){
+            if (BuildConfig.DEBUG) {
                 consumeTestPurchase();
             }
 
-            iabHelper.launchPurchaseFlow(activity, ITEM_SKU_PURCHASED, 10001,
-                    this, PAYLOAD);
+            if (isSetupSuccess) {
+                iabHelper.launchPurchaseFlow(activity, ITEM_SKU_PURCHASED, 10001,
+                        this, PAYLOAD);
+            } else {
+                if (callback != null) {
+                    callback.onPurchaseFailure("In-app billing setup was failed. Perhaps google play service is not available in this device.");
+                }
+            }
+
         } catch (IllegalStateException e) {
             e.printStackTrace();
             System.out.println("Purchaged could not be done");
