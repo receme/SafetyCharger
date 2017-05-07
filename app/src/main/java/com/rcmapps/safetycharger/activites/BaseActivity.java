@@ -1,6 +1,7 @@
 package com.rcmapps.safetycharger.activites;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.interfaces.BaseView;
 import com.rcmapps.safetycharger.utils.PreferenceContants;
@@ -39,6 +41,25 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         sharedPreferenceUtils = SharedPreferenceUtils.getInstance(this);
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        
+        System.out.println(FirebaseInstanceId.getInstance().getToken());
+
+        //handle firebase notification data
+        if (getIntent().getExtras() != null) {
+            String url = null;
+            for (String key : getIntent().getExtras().keySet()) {
+                Object value = getIntent().getExtras().get(key);
+                //Log.d(TAG, "Key: " + key + " Value: " + value);
+                if(key.equals("URL")){
+                    url = value.toString();
+                }
+            }
+            if(url!=null && !url.isEmpty()){
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        }
     }
 
     @Override

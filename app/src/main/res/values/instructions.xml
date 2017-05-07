@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="to_view_instruction">To view the startup instructions again, please click this button</string>
-    <string name="general_instruction">"Safe charger" will protect your device from stealing, when it is connected to public charging points.\n\n
+    <string name="general_instruction">"Charger safety" will protect your device from stealing, when it is connected to public charging points.\n\n
     This app will notify you if someone tries to steal your device. If the theft alarm is enabled, when the device is disconnected from USB or AC charge cable, it will set alarm on.\n\n
     To enable the anti-theft alarm you have to set a password. The alarm can be stopped using the password you set at first.\n\n
     Important note:\n
