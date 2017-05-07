@@ -55,7 +55,6 @@ public class PasswordChangeDialogFragment extends AppCompatDialogFragment implem
     private void init() {
 
         confirmBtn.setOnClickListener(this);
-
         newPasswordEdtxt.setText(newPassword);
         confirmPasswordEdtxt.setText(confirmNewPassword);
 

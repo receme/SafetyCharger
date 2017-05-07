@@ -130,7 +130,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
     private void showPasswordChangeDialog() {
         passwordChangeDialogFragment = new PasswordChangeDialogFragment();
         passwordChangeDialogFragment.setPresenter(presenter);
-        passwordChangeDialogFragment.show(getChildFragmentManager(), PasswordChangeDialogFragment.class.getSimpleName());
+        passwordChangeDialogFragment.show(getChildFragmentManager().beginTransaction(),PasswordChangeDialogFragment.class.getSimpleName());
     }
 
     private void showConfirmationDialog() {
