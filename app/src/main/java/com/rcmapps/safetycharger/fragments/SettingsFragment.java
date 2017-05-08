@@ -1,12 +1,17 @@
 package com.rcmapps.safetycharger.fragments;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.rcmapps.safetycharger.R;
@@ -29,32 +34,49 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
     private PasswordChangeDialogFragment passwordChangeDialogFragment = new PasswordChangeDialogFragment();
     private InstructionManager instructionManager = new InstructionManager();
     private InappBillingManager billingManager;
+    private boolean isGooglePlayserviceAvailable;
+    private Activity activity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         presenter = new SettingsFragmentPresenter(this);
+    }
 
-        billingManager = new InappBillingManager(getActivity());
-        billingManager.setBillingCallback(this);
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
+        activity = getActivity();
+        initBillingManager(activity);
     }
 
     @Override
     public void onStart() {
         super.onStart();
 
+        if(activity!=null){
+            initBillingManager(activity);
+        }
+
         if (getBooleanPref(PreferenceContants.KEY_IS_FIRSTRUN, true)) {
             instructionManager.showInstructionOnTapPasswordPref(getActivity(), this);
         }
+    }
+
+    private void initBillingManager(Activity activity){
+        isGooglePlayserviceAvailable = UtilMethods.isGooglePlayServicesAvailable(activity);
+
+        billingManager = new InappBillingManager(activity);
+        billingManager.setBillingCallback(this);
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        if (billingManager != null) {
+        if (billingManager != null && isGooglePlayserviceAvailable) {
             billingManager.setup();
         }
     }
@@ -84,8 +106,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
                 if (SharedPreferenceUtils.getInstance(getActivity()).getBoolean(PreferenceContants.KEY_PREMIUM, false)) {
                     UtilMethods.showSimpleAlertWithMessage(getActivity(), "Alert", "Already purchased.");
                 } else {
-                    if (billingManager != null) {
+
+                    if (isGooglePlayserviceAvailable) {
                         billingManager.startBilling();
+                    }
+                    else{
+                        showToast("Google play service not available. In-app purchase not possible.");
                     }
                 }
 

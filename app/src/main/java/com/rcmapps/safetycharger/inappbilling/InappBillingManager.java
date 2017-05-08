@@ -53,6 +53,9 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
     }
 
     public void consumeTestPurchase() {
+        if (activity == null) {
+            return;
+        }
 
         String purchaseToken = "inapp:" + activity.getPackageName() + ":android.test.purchased";
 
