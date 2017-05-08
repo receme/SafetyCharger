@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="to_view_instruction">To view the startup instructions again, please click this button</string>
-    <string name="general_instruction">"Charger safety" will protect your device from stealing, when it is connected to public charging points.\n\n
-    This app will notify you if someone tries to steal your device. If the theft alarm is enabled, when the device is disconnected from USB or AC charge cable, it will set alarm on.\n\n
-    To enable the anti-theft alarm you have to set a password. The alarm can be stopped using the password you set at first.\n\n
-    Important note:\n
-- If you use any task killer app, please add this app to ignore list. Otherwise the app may not work properly.\n
-- You should depend on this app only if your are near your device. Otherwise it may not help because the thief can switch off the device or set the volume down.</string>
-    <string name="goto_settingspage_title">To enable alarm, you have to set a password</string>
-    <string name="goto_settingspage_desc">Please tap here. This will show the settings page</string>
-    <string name="set_password_title">Set a password</string>
-    <string name="set_password_desc">This password will be needed to stop the alarm</string>
-    <string name="goback_to_homescreen">Go back to home screen</string>
-    <string name="enable_alarm_instruction">Set alarm by pressing this button. Alarm will be fired immediately, if your device is not connected to any charging source.</string>
+    <string name="to_view_instruction">За да видите инструкциите за стартиране отново, моля, кликнете върху този бутон</string>
+    <string name="general_instruction">"Charger Safety" ще предпази устройството от кражба, когато е свързано с обществени зарядни точки.\n\n
+        Това приложение ще ви уведоми, ако някой се опита да открадне устройството ви. Ако алармата за кражба е активирана, когато устройството е прекъснато от USB или AC зареждащия кабел, ще се включи аларма.\n\n
+    За да активирате алармата срещу кражба, трябва да зададете парола. Алармата може да бъде спряна с паролата, която сте задали първо.\n\n
+    Важна забележка:\n
+- Ако използвате приложение за убийства на задачи, моля, добавете това приложение в списъка за игнориране. В противен случай приложението може да не работи правилно.\n
+- Трябва да зависите от това приложение само ако сте близо до устройството си. В противен случай може да не помогне, защото крадецът може да изключи устройството или да настрои нивото на звука надолу.</string>
+    <string name="goto_settingspage_title">За да активирате аларма, трябва да зададете парола</string>
+    <string name="goto_settingspage_desc">Моля, докоснете тук. Това ще покаже страницата с настройки</string>
+    <string name="set_password_title">Задайте парола</string>
+    <string name="set_password_desc">Тази парола ще бъде необходима, за да спрете алармата</string>
+    <string name="goback_to_homescreen">Върнете се към началния екран</string>
+    <string name="enable_alarm_instruction">Задайте аларма, като натиснете този бутон. Алармата ще бъде задействана незабавно, ако устройството ви не е свързано към източник на зареждане.</string>
 </resources>
