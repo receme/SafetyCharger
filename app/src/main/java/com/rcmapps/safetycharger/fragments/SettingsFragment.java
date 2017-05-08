@@ -9,9 +9,6 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.rcmapps.safetycharger.R;
@@ -56,7 +53,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
     public void onStart() {
         super.onStart();
 
-        if(activity!=null){
+        if (activity != null) {
             initBillingManager(activity);
         }
 
@@ -65,7 +62,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
         }
     }
 
-    private void initBillingManager(Activity activity){
+    private void initBillingManager(Activity activity) {
         isGooglePlayserviceAvailable = UtilMethods.isGooglePlayServicesAvailable(activity);
 
         billingManager = new InappBillingManager(activity);
@@ -89,6 +86,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
     @Override
     public boolean onPreferenceTreeClick(Preference preference) {
 
+        if (activity == null) {
+            return false;
+        }
+
         switch (preference.getKey()) {
             case PreferenceContants.KEY_PASSWORD:
                 checkIfPasswordisAlreadySet();
@@ -103,14 +104,18 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
             }
             case PreferenceContants.KEY_REMOVE_AD:
 
+                if(!UtilMethods.isInternetAvailable(activity)){
+                    showToast("Internet is not available");
+                    return false;
+                }
+
                 if (SharedPreferenceUtils.getInstance(getActivity()).getBoolean(PreferenceContants.KEY_PREMIUM, false)) {
                     UtilMethods.showSimpleAlertWithMessage(getActivity(), "Alert", "Already purchased.");
                 } else {
 
                     if (isGooglePlayserviceAvailable) {
                         billingManager.startBilling();
-                    }
-                    else{
+                    } else {
                         showToast("Google play service not available. In-app purchase not possible.");
                     }
                 }
@@ -156,7 +161,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
     private void showPasswordChangeDialog() {
         passwordChangeDialogFragment = new PasswordChangeDialogFragment();
         passwordChangeDialogFragment.setPresenter(presenter);
-        passwordChangeDialogFragment.show(getChildFragmentManager().beginTransaction(),PasswordChangeDialogFragment.class.getSimpleName());
+        passwordChangeDialogFragment.show(getChildFragmentManager().beginTransaction(), PasswordChangeDialogFragment.class.getSimpleName());
     }
 
     private void showConfirmationDialog() {

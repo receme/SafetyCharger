@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity implements MainView, BillingCallb
         admobAdUtils = AdmobAdUtils.getInstance(this);
 
         if(!sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_PREMIUM,false)){
-            if(UtilMethods.isGooglePlayServicesAvailable(this)){
+            if(UtilMethods.isGooglePlayServicesAvailable(this) && UtilMethods.isInternetAvailable(this)){
                 billingManager = new InappBillingManager(this);
                 billingManager.setBillingCallback(this);
                 billingManager.setup();
