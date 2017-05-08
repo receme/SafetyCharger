@@ -81,7 +81,7 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
                         this, PAYLOAD);
             } else {
                 if (callback != null) {
-                    callback.onPurchaseFailure("In-app billing setup was failed. Perhaps google play service is not available in this device.");
+                    callback.onPurchaseFailure(activity.getString(R.string.billing_service_setup_failed));
                 }
             }
 

@@ -68,7 +68,7 @@ public class UtilMethods {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle(title);
                 builder.setMessage(message);
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
@@ -100,7 +100,7 @@ public class UtilMethods {
         }
 
         if (titleCancel.isEmpty()) {
-            titleCancel = "Cancel";
+            titleCancel = context.getString(R.string.cancel);
         }
 
         builder.setNegativeButton(titleCancel, new DialogInterface.OnClickListener() {

@@ -32,10 +32,6 @@ public class SettingsFragmentPresenter {
         }
     }
 
-//    public void cancelPasswordChange() {
-//        view.closePasswordChangeDialog();
-//    }
-
     public SettingsView getSettingsView() {
         return view;
     }

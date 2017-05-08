@@ -26,7 +26,7 @@ public class AboutActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         ButterKnife.bind(this);
-        versionTv.setText("Version "+ UtilMethods.getVesionText(this));
+        versionTv.setText(getString(R.string.version)+" "+ UtilMethods.getVesionText(this));
 
         licensesBtn.setOnClickListener(new View.OnClickListener() {
             @Override

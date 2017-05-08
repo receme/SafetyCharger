@@ -105,18 +105,18 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
             case PreferenceContants.KEY_REMOVE_AD:
 
                 if(!UtilMethods.isInternetAvailable(activity)){
-                    showToast("Internet is not available");
+                    showToast(getResourceString(R.string.internet_not_available));
                     return false;
                 }
 
                 if (SharedPreferenceUtils.getInstance(getActivity()).getBoolean(PreferenceContants.KEY_PREMIUM, false)) {
-                    UtilMethods.showSimpleAlertWithMessage(getActivity(), "Alert", "Already purchased.");
+                    UtilMethods.showSimpleAlertWithMessage(getActivity(), getResourceString(R.string.alert), getResourceString(R.string.item_already_purchased));
                 } else {
 
                     if (isGooglePlayserviceAvailable) {
                         billingManager.startBilling();
                     } else {
-                        showToast("Google play service not available. In-app purchase not possible.");
+                        showToast(getResourceString(R.string.google_playservice_not_available));
                     }
                 }
 
@@ -141,13 +141,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
             AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
             dialog.setMessage(getActivity().getString(R.string.password_already_set));
             dialog.setCancelable(false);
-            dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            dialog.setPositiveButton(getResourceString(R.string.yes), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     showPasswordChangeDialog();
                 }
             });
-            dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            dialog.setNegativeButton(getResourceString(R.string.no), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 

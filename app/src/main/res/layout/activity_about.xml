@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:textColor="@color/colorPrimary"
-            android:text="Version"/>
+            android:text="@string/version"/>
 
         <ImageView
             android:id="@+id/imageView"
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/btn_selector"
-            android:text="LICENSES"/>
+            android:text="@string/licenses"/>
 
     </LinearLayout>
 

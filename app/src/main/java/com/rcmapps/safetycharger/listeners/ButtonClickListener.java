@@ -36,7 +36,6 @@ public class ButtonClickListener implements View.OnClickListener {
                 break;
             case R.id.settingsBtn:
                 presenter.onClickSettingsBtn();
-                //presenter.setPassword(sharedPreferenceUtils.getString(PreferenceContants.KEY_PASSWORD,PreferenceContants.KEY_PASSWORD_DEFAULT_VALUE));
                 break;
         }
     }
