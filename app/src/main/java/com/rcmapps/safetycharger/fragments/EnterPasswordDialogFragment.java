@@ -49,7 +49,10 @@ public class EnterPasswordDialogFragment extends AppCompatDialogFragment {
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.validatePassword(passwordEdtxt.getText().toString());
+                if(presenter!=null){
+                    presenter.validatePassword(passwordEdtxt.getText().toString());
+                }
+                
             }
         });
     }
