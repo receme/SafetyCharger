@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="to_view_instruction">To view the startup instructions again, please click this button</string>
-    <string name="general_instruction">"Charger safety" will protect your device from stealing, when it is connected to public charging points.\n\n
-    This app will notify you if someone tries to steal your device. If the theft alarm is enabled, when the device is disconnected from USB or AC charge cable, it will set alarm on.\n\n
-    To enable the anti-theft alarm you have to set a password. The alarm can be stopped using the password you set at first.\n\n
-    Important note:\n
-- If you use any task killer app, please add this app to ignore list. Otherwise the app may not work properly.\n
-- You should depend on this app only if your are near your device. Otherwise it may not help because the thief can switch off the device or set the volume down.</string>
-    <string name="goto_settingspage_title">To enable alarm, you have to set a password</string>
-    <string name="goto_settingspage_desc">Please tap here. This will show the settings page</string>
-    <string name="set_password_title">Set a password</string>
-    <string name="set_password_desc">This password will be needed to stop the alarm</string>
-    <string name="goback_to_homescreen">Go back to home screen</string>
-    <string name="enable_alarm_instruction">Set alarm by pressing this button. Alarm will be fired immediately, if your device is not connected to any charging source.</string>
+    <string name="to_view_instruction">Um die Anleitung erneut anzuzeigen, klicken Sie bitte auf diese Schaltfläche</string>
+    <string name="general_instruction">"Charger Safety" wird Ihr Gerät vor dem Diebstahl schützen, wenn es mit öffentlichen Ladestationen verbunden ist.\n\n
+    Diese App wird Sie benachrichtigen, wenn jemand versucht, Ihr Gerät zu stehlen. Wenn der Diebstahlalarm aktiviert ist, wird das Gerät, wenn das Gerät vom USB- oder AC-Ladekabel getrennt ist, eingeschaltet.\n\n
+        Um den Anti-Diebstahl-Alarm zu aktivieren, müssen Sie ein Passwort setzen. Der Alarm kann mit dem Passwort, das Sie zuerst eingestellt haben, gestoppt werden.\n\n
+    Wichtige Notiz:\n
+- Wenn Sie eine beliebige Task-Killer-App verwenden, fügen Sie bitte diese App hinzu, um die Liste zu ignorieren. Andernfalls funktioniert die App möglicherweise nicht ordnungsgemäß.\n
+- Sie sollten von dieser App nur abhängen, wenn Sie sich in Ihrer Nähe befinden. Andernfalls kann es nicht helfen, weil der Dieb das Gerät ausschalten oder die Lautstärke einstellen kann.</string>
+    <string name="goto_settingspage_title">Um einen Alarm zu aktivieren, müssen Sie ein Passwort setzen</string>
+    <string name="goto_settingspage_desc">Bitte hier tippen Hier wird die Einstellungsseite angezeigt</string>
+    <string name="set_password_title">Kennwort festlegen</string>
+    <string name="set_password_desc">Dieses Passwort wird benötigt, um den Alarm zu stoppen</string>
+    <string name="goback_to_homescreen">Gehe zurück zum Heimbildschirm</string>
+    <string name="enable_alarm_instruction">Alarm durch Drücken dieser Taste einstellen. Der Alarm wird sofort ausgelöst, wenn Ihr Gerät nicht mit einer Ladequelle verbunden ist.</string>
 </resources>
