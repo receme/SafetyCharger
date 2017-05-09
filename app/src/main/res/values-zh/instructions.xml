@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="to_view_instruction">To view the startup instructions again, please click this button</string>
-    <string name="general_instruction">"Charger safety" will protect your device from stealing, when it is connected to public charging points.\n\n
-    This app will notify you if someone tries to steal your device. If the theft alarm is enabled, when the device is disconnected from USB or AC charge cable, it will set alarm on.\n\n
-    To enable the anti-theft alarm you have to set a password. The alarm can be stopped using the password you set at first.\n\n
-    Important note:\n
-- If you use any task killer app, please add this app to ignore list. Otherwise the app may not work properly.\n
-- You should depend on this app only if your are near your device. Otherwise it may not help because the thief can switch off the device or set the volume down.</string>
-    <string name="goto_settingspage_title">To enable alarm, you have to set a password</string>
-    <string name="goto_settingspage_desc">Please tap here. This will show the settings page</string>
-    <string name="set_password_title">Set a password</string>
-    <string name="set_password_desc">This password will be needed to stop the alarm</string>
-    <string name="goback_to_homescreen">Go back to home screen</string>
-    <string name="enable_alarm_instruction">Set alarm by pressing this button. Alarm will be fired immediately, if your device is not connected to any charging source.</string>
+    <string name="to_view_instruction">要再次查看启动说明，请点击此按钮Yào zàicì chákàn qǐdòng shuōmíng, qǐng diǎnjī cǐ ànniǔ</string>
+    <string name="general_instruction">当应用程序连接到公共充电点时，该应用程序将保护您的设备不被窃取。\n\n
+        如果有人试图窃取您的设备，此应用将通知您。如果盗用警报启用，当设备与USB或AC充电电缆断开连接时，将会启动警报。\n\n
+        要启用防盗报警，您必须设置密码。可以使用您首先设置的密码停止闹钟。\n\n
+        重要的提示:\n
+- 如果您使用任何杀手级应用程序，请将此应用程序添加到忽略列表。否则应用程序可能无法正常工作。\n
+- 只有在您的设备附近，您才应该依赖此应用程序。否则可能无法帮助，因为小偷可以关闭设备或设置音量。</string>
+    <string name="goto_settingspage_title">要启用警报，您必须设置密码</string>
+    <string name="goto_settingspage_desc">请点击这里。这将显示设置页面</string>
+    <string name="set_password_title">设置密码</string>
+    <string name="set_password_desc">此密码将需要停止报警</string>
+    <string name="goback_to_homescreen">回到主屏幕</string>
+    <string name="enable_alarm_instruction">按此按钮设置闹钟。如果您的设备未连接到任何充电源，警报将立即触发。</string>
 </resources>

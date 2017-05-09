@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="to_view_instruction">To view the startup instructions again, please click this button</string>
-    <string name="general_instruction">"Charger safety" will protect your device from stealing, when it is connected to public charging points.\n\n
-    This app will notify you if someone tries to steal your device. If the theft alarm is enabled, when the device is disconnected from USB or AC charge cable, it will set alarm on.\n\n
-    To enable the anti-theft alarm you have to set a password. The alarm can be stopped using the password you set at first.\n\n
-    Important note:\n
-- If you use any task killer app, please add this app to ignore list. Otherwise the app may not work properly.\n
-- You should depend on this app only if your are near your device. Otherwise it may not help because the thief can switch off the device or set the volume down.</string>
-    <string name="goto_settingspage_title">To enable alarm, you have to set a password</string>
-    <string name="goto_settingspage_desc">Please tap here. This will show the settings page</string>
-    <string name="set_password_title">Set a password</string>
-    <string name="set_password_desc">This password will be needed to stop the alarm</string>
-    <string name="goback_to_homescreen">Go back to home screen</string>
-    <string name="enable_alarm_instruction">Set alarm by pressing this button. Alarm will be fired immediately, if your device is not connected to any charging source.</string>
+    <string name="to_view_instruction">หากต้องการดูคำแนะนำในการเริ่มต้นอีกครั้งโปรดคลิกปุ่มนี้</string>
+    <string name="general_instruction">แอปจะปกป้องอุปกรณ์ของคุณจากการขโมยเมื่อเชื่อมต่อกับจุดชาร์จสาธารณะ\n\n
+        แอปนี้จะแจ้งให้คุณทราบหากมีผู้พยายามขโมยอุปกรณ์ของคุณ หากมีการเปิดใช้งานการเตือนการโจรกรรมเมื่ออุปกรณ์ถูกตัดการเชื่อมต่อจากสายชาร์จ USB หรือ AC เครื่องจะตั้งการปลุก\n\n
+        ในการเปิดใช้งานการป้องกันการโจรกรรมคุณต้องตั้งรหัสผ่าน คุณสามารถหยุดการปลุกโดยใช้รหัสผ่านที่คุณตั้งไว้ในตอนแรก\n\n
+        โน๊ตสำคัญ:\n
+    - หากคุณใช้แอปนักฆ่างานใด ๆ โปรดเพิ่มแอปนี้เพื่อละเว้นรายการ มิฉะนั้นแอปอาจทำงานไม่ถูกต้อง\n
+- คุณควรขึ้นอยู่กับแอปพลิเคชันนี้เฉพาะเมื่ออยู่ใกล้อุปกรณ์เท่านั้น มิเช่นนั้นอาจไม่เป็นประโยชน์เพราะขโมยสามารถปิดอุปกรณ์หรือตั้งระดับเสียงลงได้</string>
+    <string name="goto_settingspage_title">ในการเปิดใช้งานการปลุกคุณต้องตั้งรหัสผ่าน</string>
+    <string name="goto_settingspage_desc">กรุณาแตะที่นี่ การดำเนินการนี้จะแสดงหน้าการตั้งค่า</string>
+    <string name="set_password_title">ตั้งรหัสผ่าน</string>
+    <string name="set_password_desc">รหัสผ่านนี้จะต้องใช้ในการหยุดการปลุก</string>
+    <string name="goback_to_homescreen">กลับไปที่หน้าจอหลัก</string>
+    <string name="enable_alarm_instruction">ตั้งปลุกโดยการกดปุ่มนี้ ระบบจะแจ้งเตือนโดยทันทีหากอุปกรณ์ของคุณไม่ได้เชื่อมต่อกับแหล่งชาร์จใด ๆ</string>
 </resources>
