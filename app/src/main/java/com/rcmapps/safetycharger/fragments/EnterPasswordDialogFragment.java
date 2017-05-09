@@ -52,7 +52,7 @@ public class EnterPasswordDialogFragment extends AppCompatDialogFragment {
                 if(presenter!=null){
                     presenter.validatePassword(passwordEdtxt.getText().toString());
                 }
-                
+
             }
         });
     }

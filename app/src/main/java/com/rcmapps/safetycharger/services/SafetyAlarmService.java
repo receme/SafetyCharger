@@ -84,7 +84,22 @@ public class SafetyAlarmService extends Service implements SafetyAlarm {
             e.printStackTrace();
         }
 
-        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), AudioManager.FLAG_PLAY_SOUND);
+        try {
+            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), AudioManager.FLAG_PLAY_SOUND);
+        }catch (Exception e){
+            e.printStackTrace();
+
+            try {
+                if (firebaseAnalytics != null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("DATETIME", Calendar.getInstance().getTime().toString());
+                    firebaseAnalytics.logEvent("ERROR_ON_VOLUME_CHANGE", bundle);
+                }
+            }catch (Exception e1){
+                e1.printStackTrace();
+            }
+        }
+
         if (mediaPlayer == null) {
 
             String uriStr = SharedPreferenceUtils.getInstance(this).getString(PreferenceContants.KEY_SELECTED_ALARM_TONE_URI,"");
