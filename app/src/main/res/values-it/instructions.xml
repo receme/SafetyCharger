@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="to_view_instruction">To view the startup instructions again, please click this button</string>
-    <string name="general_instruction">"Charger safety" will protect your device from stealing, when it is connected to public charging points.\n\n
-    This app will notify you if someone tries to steal your device. If the theft alarm is enabled, when the device is disconnected from USB or AC charge cable, it will set alarm on.\n\n
-    To enable the anti-theft alarm you have to set a password. The alarm can be stopped using the password you set at first.\n\n
-    Important note:\n
-- If you use any task killer app, please add this app to ignore list. Otherwise the app may not work properly.\n
-- You should depend on this app only if your are near your device. Otherwise it may not help because the thief can switch off the device or set the volume down.</string>
-    <string name="goto_settingspage_title">To enable alarm, you have to set a password</string>
-    <string name="goto_settingspage_desc">Please tap here. This will show the settings page</string>
-    <string name="set_password_title">Set a password</string>
-    <string name="set_password_desc">This password will be needed to stop the alarm</string>
-    <string name="goback_to_homescreen">Go back to home screen</string>
-    <string name="enable_alarm_instruction">Set alarm by pressing this button. Alarm will be fired immediately, if your device is not connected to any charging source.</string>
+    <string name="to_view_instruction">Per visualizzare nuovamente le istruzioni di avvio, fai clic su questo pulsante</string>
+    <string name="general_instruction">"Charger Safety" proteggerà il dispositivo da rubare quando è collegato a punti di ricarica pubblici.\n\n
+        Questa applicazione ti informerà se qualcuno cerca di rubare il tuo dispositivo. Se l\'allarme di furto è abilitato, quando il dispositivo viene scollegato dal cavo di carica USB o AC, verrà impostato l\'allarme.\n\n
+        Per abilitare l\'allarme antifurto è necessario impostare una password. L\'allarme può essere interrotto utilizzando la password impostata in un primo momento.\n\n
+        Nota importante:\n
+- Se utilizzi un\'applicazione killer di attività, ti preghiamo di aggiungere questa applicazione per ignorare l\'elenco. Altrimenti l\'applicazione potrebbe non funzionare correttamente.\n
+- Devi dipendere da questa applicazione solo se sei vicino al tuo dispositivo. Altrimenti potrebbe non essere utile perché il ladro può disattivare il dispositivo o impostare il volume.</string>
+    <string name="goto_settingspage_title">Per abilitare l\'allarme, è necessario impostare una password</string>
+    <string name="goto_settingspage_desc">Tocca qui. Questo mostrerà la pagina delle impostazioni</string>
+    <string name="set_password_title">Impostare una password</string>
+    <string name="set_password_desc">Questa password sarà necessaria per arrestare l\'allarme</string>
+    <string name="goback_to_homescreen">Tornare alla schermata iniziale</string>
+    <string name="enable_alarm_instruction">Impostare l\'allarme premendo questo pulsante. L\'allarme verrà sparito immediatamente, se il dispositivo non è collegato a qualsiasi sorgente di carica.</string>
 </resources>
