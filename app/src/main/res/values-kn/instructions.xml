@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="to_view_instruction">To view the startup instructions again, please click this button</string>
-    <string name="general_instruction">"Charger safety" will protect your device from stealing, when it is connected to public charging points.\n\n
-    This app will notify you if someone tries to steal your device. If the theft alarm is enabled, when the device is disconnected from USB or AC charge cable, it will set alarm on.\n\n
-    To enable the anti-theft alarm you have to set a password. The alarm can be stopped using the password you set at first.\n\n
-    Important note:\n
-- If you use any task killer app, please add this app to ignore list. Otherwise the app may not work properly.\n
-- You should depend on this app only if your are near your device. Otherwise it may not help because the thief can switch off the device or set the volume down.</string>
-    <string name="goto_settingspage_title">To enable alarm, you have to set a password</string>
-    <string name="goto_settingspage_desc">Please tap here. This will show the settings page</string>
-    <string name="set_password_title">Set a password</string>
-    <string name="set_password_desc">This password will be needed to stop the alarm</string>
-    <string name="goback_to_homescreen">Go back to home screen</string>
-    <string name="enable_alarm_instruction">Set alarm by pressing this button. Alarm will be fired immediately, if your device is not connected to any charging source.</string>
+    <string name="to_view_instruction">ಆರಂಭಿಕ ಸೂಚನೆಗಳನ್ನು ಮತ್ತೆ ವೀಕ್ಷಿಸಲು, ದಯವಿಟ್ಟು ಈ ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡಿ</string>
+    <string name="general_instruction">"Charger Safety" ನಿಮ್ಮ ಸಾಧನವನ್ನು ಸಾರ್ವಜನಿಕ ಚಾರ್ಜಿಂಗ್ ಪಾಯಿಂಟ್ಗಳೊಂದಿಗೆ ಸಂಪರ್ಕಿಸಿದಾಗ ಕಳ್ಳತನದಿಂದ ರಕ್ಷಿಸುತ್ತದೆ.\n\n
+        ನಿಮ್ಮ ಸಾಧನವನ್ನು ಯಾರಾದರೂ ಕದಿಯಲು ಪ್ರಯತ್ನಿಸಿದರೆ ಈ ಅಪ್ಲಿಕೇಶನ್ ನಿಮಗೆ ತಿಳಿಸುತ್ತದೆ. ಥೆಫ್ಟ್ ಅಲಾರ್ಮ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿದಲ್ಲಿ, ಯುಎಸ್ಬಿ ಅಥವಾ ಎಸಿ ಚಾರ್ಜ್ ಕೇಬಲ್ನಿಂದ ಸಾಧನವು ಸಂಪರ್ಕ ಕಡಿತಗೊಂಡಾಗ, ಅದು ಅಲಾರಮ್ ಅನ್ನು ಹೊಂದಿಸುತ್ತದೆ.\n\n
+        ಕಳ್ಳತನ ವಿರೋಧಿ ಎಚ್ಚರಿಕೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ನೀವು ಪಾಸ್ವರ್ಡ್ ಹೊಂದಿಸಬೇಕು. ಮೊದಲಿಗೆ ನೀವು ಹೊಂದಿಸಿದ ಪಾಸ್ವರ್ಡ್ ಅನ್ನು ಎಚ್ಚರಕವನ್ನು ನಿಲ್ಲಿಸಬಹುದು.\n\n
+    ಪ್ರಮುಖ ಟಿಪ್ಪಣಿ:\n
+- ನೀವು ಯಾವುದೇ ಕೆಲಸ ಕೊಲೆಗಾರ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಬಳಸಿದರೆ, ದಯವಿಟ್ಟು ಈ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ನಿರ್ಲಕ್ಷಿಸಿ ಪಟ್ಟಿ ಸೇರಿಸಿ. ಇಲ್ಲವಾದರೆ ಅಪ್ಲಿಕೇಶನ್ ಸರಿಯಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸದೆ ಇರಬಹುದು.\n
+- ನಿಮ್ಮ ಸಾಧನದ ಸಮೀಪದಲ್ಲಿದ್ದರೆ ಮಾತ್ರ ನೀವು ಈ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಅವಲಂಬಿಸಿರಬೇಕು. ಕಳ್ಳನು ಸಾಧನವನ್ನು ಆಫ್ ಮಾಡಬಹುದು ಅಥವಾ ಪರಿಮಾಣವನ್ನು ಕೆಳಗೆ ಇಡಬಹುದು ಏಕೆಂದರೆ ಅದು ಸಹಾಯವಾಗುವುದಿಲ್ಲ.</string>
+    <string name="goto_settingspage_title">ಎಚ್ಚರಕವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು, ನೀವು ಪಾಸ್ವರ್ಡ್ ಹೊಂದಿಸಬೇಕು</string>
+    <string name="goto_settingspage_desc">ದಯವಿಟ್ಟು ಇಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಿ. ಇದು ಸೆಟ್ಟಿಂಗ್ಗಳ ಪುಟವನ್ನು ತೋರಿಸುತ್ತದೆ</string>
+    <string name="set_password_title">ಪಾಸ್ವರ್ಡ್ ಹೊಂದಿಸಿ</string>
+    <string name="set_password_desc">ಎಚ್ಚರಿಕೆಯನ್ನು ನಿಲ್ಲಿಸಲು ಈ ಪಾಸ್ವರ್ಡ್ ಅಗತ್ಯವಿದೆ</string>
+    <string name="goback_to_homescreen">ಹೋಮ್ ಪರದೆಗೆ ಹಿಂತಿರುಗಿ</string>
+    <string name="enable_alarm_instruction">ಈ ಗುಂಡಿಯನ್ನು ಒತ್ತುವುದರ ಮೂಲಕ ಎಚ್ಚರಕವನ್ನು ಹೊಂದಿಸಿ. ನಿಮ್ಮ ಸಾಧನವು ಯಾವುದೇ ಚಾರ್ಜಿಂಗ್ ಮೂಲಕ್ಕೆ ಸಂಪರ್ಕ ಹೊಂದಿಲ್ಲದಿದ್ದರೆ ಅಲಾರಮ್ ಅನ್ನು ತಕ್ಷಣವೇ ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ.</string>
 </resources>
