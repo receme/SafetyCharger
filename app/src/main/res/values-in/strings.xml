@@ -37,4 +37,11 @@
     <string name="no">Tidak</string>
     <string name="billing_service_setup_failed">Penyiapan penagihan dalam aplikasi gagal. Mungkin layanan google play tidak tersedia di perangkat ini.</string>
     <string name="view_instructions">Lihat Instruksi</string>
+    <string name="general">Umum</string>
+    <string name="password">Kata sandi</string>
+    <string name="vibration">Getaran</string>
+    <string name="autorun">Lari otomatis</string>
+    <string name="reset_alarm_tone">Reset Alarm Nada</string>
+    <string name="others">Lainnya</string>
+    <string name="remove_ad">Hapus iklan</string>
 </resources>

@@ -37,4 +37,11 @@
     <string name="no">नहीं</string>
     <string name="billing_service_setup_failed">इन-ऐप बिलिंग सेटअप विफल हो गया था। शायद इस उपकरण में Google Play सेवा उपलब्ध नहीं है</string>
     <string name="view_instructions">निर्देश देखें</string>
+    <string name="general">सामान्य</string>
+    <string name="password">पासवर्ड</string>
+    <string name="vibration">कंपन</string>
+    <string name="autorun">ऑटो रन</string>
+    <string name="reset_alarm_tone">अलार्म टोन रीसेट करें</string>
+    <string name="others">अन्य लोग</string>
+    <string name="remove_ad">विज्ञापन निकालें</string>
 </resources>

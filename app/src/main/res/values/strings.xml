@@ -37,4 +37,11 @@
     <string name="no">No</string>
     <string name="billing_service_setup_failed">In-app billing setup was failed. Perhaps google play service is not available in this device.</string>
     <string name="view_instructions">View Instructions</string>
+    <string name="general">General</string>
+    <string name="password">Password</string>
+    <string name="vibration">Vibration</string>
+    <string name="autorun">Autorun</string>
+    <string name="reset_alarm_tone">Reset Alarm Tone</string>
+    <string name="others">Others</string>
+    <string name="remove_ad">Remove ad</string>
 </resources>

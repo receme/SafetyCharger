@@ -37,4 +37,11 @@
     <string name="no">Не</string>
     <string name="billing_service_setup_failed">Настройката за таксуване в приложение бе неуспешна. Възможно е услугата Google Play да не е налице в това устройство.</string>
     <string name="view_instructions">Преглед на инструкциите</string>
+    <string name="general">Общ</string>
+    <string name="password">парола</string>
+    <string name="vibration">вибрация</string>
+    <string name="autorun">Автоматично изпълнение</string>
+    <string name="reset_alarm_tone">Нулирайте тона на алармата</string>
+    <string name="others">Други</string>
+    <string name="remove_ad">Премахване рекламирам</string>
 </resources>

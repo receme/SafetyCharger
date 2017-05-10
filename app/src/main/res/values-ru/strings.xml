@@ -37,4 +37,11 @@
     <string name="no">нет</string>
     <string name="billing_service_setup_failed">Не удалось установить биллинг в приложении. Возможно, сервис google play недоступен на этом устройстве.</string>
     <string name="view_instructions">Просмотр инструкций</string>
+    <string name="general">Генеральная</string>
+    <string name="password">пароль</string>
+    <string name="vibration">вибрация</string>
+    <string name="autorun">Автозапуск</string>
+    <string name="reset_alarm_tone">Сбросить сигнал будильника</string>
+    <string name="others">другие</string>
+    <string name="remove_ad">Удалить рекламу</string>
 </resources>

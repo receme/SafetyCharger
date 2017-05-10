@@ -37,4 +37,11 @@
     <string name="no">ไม่</string>
     <string name="billing_service_setup_failed">การตั้งค่าการเรียกเก็บเงินในแอปล้มเหลว บางทีบริการเล่น google ไม่มีในอุปกรณ์นี้</string>
     <string name="view_instructions">ดูคำแนะนำ</string>
+    <string name="general">ทั่วไป</string>
+    <string name="password">รหัสผ่าน</string>
+    <string name="vibration">การสั่นสะเทือน</string>
+    <string name="autorun">ทำงานโดยอัตโนมัติ</string>
+    <string name="reset_alarm_tone">รีเซ็ตสัญญาณเตือน</string>
+    <string name="others">คนอื่น ๆ</string>
+    <string name="remove_ad">ลบโฆษณา</string>
 </resources>

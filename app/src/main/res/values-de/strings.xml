@@ -37,4 +37,11 @@
     <string name="no">Nein</string>
     <string name="billing_service_setup_failed">In-App-Abrechnung wurde fehlgeschlagen. Vielleicht ist der Google Play-Service in diesem Gerät nicht verfügbar.</string>
     <string name="view_instructions">Anleitung anzeigen</string>
+    <string name="general">General</string>
+    <string name="password">Passwort</string>
+    <string name="vibration">Vibration</string>
+    <string name="autorun">Auto laufen</string>
+    <string name="reset_alarm_tone">Alarmton zurücksetzen</string>
+    <string name="others">Andere</string>
+    <string name="remove_ad">Entfernen werben</string>
 </resources>

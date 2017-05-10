@@ -37,4 +37,11 @@
     <string name="no">Ingen</string>
     <string name="billing_service_setup_failed">Opdatering af app-fakturering blev mislykket. Måske er Google Play-tjeneste ikke tilgængelig på denne enhed.</string>
     <string name="view_instructions">Se vejledning</string>
+    <string name="general">Generel</string>
+    <string name="password">Adgangskode</string>
+    <string name="vibration">Vibration</string>
+    <string name="autorun">Automatisk kørsel</string>
+    <string name="reset_alarm_tone">Nulstil alarmtone</string>
+    <string name="others">Andre</string>
+    <string name="remove_ad">Fjern annoncer</string>
 </resources>

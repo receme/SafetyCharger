@@ -37,4 +37,11 @@
     <string name="no">ના</string>
     <string name="billing_service_setup_failed">ઇન-એપ્લિકેશન બિલિંગ સેટઅપ નિષ્ફળ થયું. કદાચ Google Play સેવા આ ઉપકરણમાં ઉપલબ્ધ નથી.</string>
     <string name="view_instructions">સૂચનાઓ જુઓ</string>
+    <string name="general">જનરલ</string>
+    <string name="password">પાસવર્ડ</string>
+    <string name="vibration">કંપન</string>
+    <string name="autorun">ઓટો રન</string>
+    <string name="reset_alarm_tone">અલાર્મ ટોન ફરીથી સેટ કરો</string>
+    <string name="others">અન્ય</string>
+    <string name="remove_ad">જાહેરાત દૂર કરો</string>
 </resources>

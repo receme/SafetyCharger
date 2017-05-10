@@ -37,4 +37,11 @@
     <string name="no">Ne</string>
     <string name="billing_service_setup_failed">Nastavení fakturace v aplikaci selhalo. Možná, že služba Google Play není v tomto zařízení k dispozici.</string>
     <string name="view_instructions">Zobrazit pokyny</string>
+    <string name="general">Všeobecné</string>
+    <string name="password">Heslo</string>
+    <string name="vibration">Vibrace</string>
+    <string name="autorun">Automatické spuštění</string>
+    <string name="reset_alarm_tone">Obnovit tón alarmu</string>
+    <string name="others">Ostatní</string>
+    <string name="remove_ad">Odstranit inzerovat</string>
 </resources>

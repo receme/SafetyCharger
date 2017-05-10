@@ -37,4 +37,11 @@
     <string name="no">No</string>
     <string name="billing_service_setup_failed">Se ha producido un error en la configuración de facturación en la aplicación. Tal vez el servicio de Google Play no está disponible en este dispositivo.</string>
     <string name="view_instructions">Ver instrucciones</string>
+    <string name="general">General</string>
+    <string name="password">Contraseña</string>
+    <string name="vibration">Vibración</string>
+    <string name="autorun">Carrera automática</string>
+    <string name="reset_alarm_tone">Restablecer tono de alarma</string>
+    <string name="others">Otros</string>
+    <string name="remove_ad">Eliminar publicidad</string>
 </resources>

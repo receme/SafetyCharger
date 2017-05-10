@@ -37,4 +37,11 @@
     <string name="no">Não</string>
     <string name="billing_service_setup_failed">A configuração de faturamento no aplicativo falhou. Talvez o serviço de reprodução do Google não esteja disponível neste dispositivo.</string>
     <string name="view_instructions">Ver instruções</string>
+    <string name="general">Geral</string>
+    <string name="password">Senha</string>
+    <string name="vibration">Vibração</string>
+    <string name="autorun">Execução automática</string>
+    <string name="reset_alarm_tone">Repor tom de alarme</string>
+    <string name="others">Outras</string>
+    <string name="remove_ad">Remover anúncios</string>
 </resources>

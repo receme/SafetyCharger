@@ -37,4 +37,11 @@
     <string name="no">没有</string>
     <string name="billing_service_setup_failed">应用内结算设置失败。也许Google Play服务在此设备中不可用。</string>
     <string name="view_instructions">查看说明</string>
+    <string name="general">一般</string>
+    <string name="password">密码</string>
+    <string name="vibration">振动</string>
+    <string name="autorun">自动运行</string>
+    <string name="reset_alarm_tone">复位报警音</string>
+    <string name="others">其他</string>
+    <string name="remove_ad">删除广告</string>
 </resources>

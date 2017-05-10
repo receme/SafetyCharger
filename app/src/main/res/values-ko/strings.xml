@@ -37,4 +37,11 @@
     <string name="no">아니</string>
     <string name="billing_service_setup_failed">인앱 결제 설정에 실패했습니다. 아마도이 기기에서는 Google Play 서비스를 사용할 수 없습니다</string>
     <string name="view_instructions">지침보기</string>
+    <string name="general">일반</string>
+    <string name="password">암호</string>
+    <string name="vibration">진동</string>
+    <string name="autorun">자동 실행</string>
+    <string name="reset_alarm_tone">알람 음 재설정</string>
+    <string name="others">기타</string>
+    <string name="remove_ad">광고 제거</string>
 </resources>

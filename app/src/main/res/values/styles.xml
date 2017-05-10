@@ -15,7 +15,7 @@
 
     <style name="confirm_btn_theme">
         <item name="android:background">@drawable/confirm_btn_selector</item>
-        <item name="android:text">Confirm</item>
+        <item name="android:text">@string/confirm</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 

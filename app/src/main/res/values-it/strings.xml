@@ -37,4 +37,11 @@
     <string name="no">No</string>
     <string name="billing_service_setup_failed">Impossibile impostare la fatturazione in-app. Forse il servizio di Google Play non è disponibile in questo dispositivo.</string>
     <string name="view_instructions">Visualizza le istruzioni</string>
+    <string name="general">Generale</string>
+    <string name="password">Parola d\'ordine</string>
+    <string name="vibration">Vibrazione</string>
+    <string name="autorun">Funzionamento automatico</string>
+    <string name="reset_alarm_tone">Azzerare il tono di allarme</string>
+    <string name="others">Altri</string>
+    <string name="remove_ad">Rimuovi gli annunci</string>
 </resources>

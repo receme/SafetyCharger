@@ -37,4 +37,11 @@
     <string name="no">Οχι</string>
     <string name="billing_service_setup_failed">Η ρύθμιση χρέωσης εντός εφαρμογής αποτύχει. Ίσως η υπηρεσία Google Play δεν είναι διαθέσιμη σε αυτή τη συσκευή.</string>
     <string name="view_instructions">Προβολή οδηγιών</string>
+    <string name="general">Γενικός</string>
+    <string name="password">Κωδικός πρόσβασης</string>
+    <string name="vibration">Δόνηση</string>
+    <string name="autorun">Αυτόματη εκτέλεση</string>
+    <string name="reset_alarm_tone">Επαναφορά τόνου συναγερμού</string>
+    <string name="others">Οι υπολοιποι</string>
+    <string name="remove_ad">Καταργήστε τη διαφήμιση</string>
 </resources>

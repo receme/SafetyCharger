@@ -3,47 +3,47 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <android.support.v7.preference.PreferenceCategory
-        android:title="General">
+        android:title="@string/general">
 
         <android.support.v7.preference.Preference
             android:key="key_password"
-            android:title="Password"
+            android:title="@string/password"
             android:summary="@string/set_password_to_stop_alarm" />
 
         <android.support.v7.preference.CheckBoxPreference
             android:key="key_vibration"
-            android:title="Vibration"
+            android:title="@string/vibration"
             android:summary="@string/toggle_vibration"
             android:defaultValue="true" />
 
         <android.support.v7.preference.CheckBoxPreference
             android:key="key_autorun"
-            android:title="Autorun"
+            android:title="@string/autorun"
             android:summary="@string/app_willbe_opened"
             android:defaultValue="false" />
 
         <android.support.v7.preference.Preference
             android:key="key_reset_alarm"
-            android:title="Reset Alarm Tone"
+            android:title="@string/reset_alarm_tone"
             android:summary="@string/reset_alarm" />
     </android.support.v7.preference.PreferenceCategory>
 
     <android.support.v7.preference.PreferenceCategory
-        android:title="Others">
+        android:title="@string/others">
 
         <android.support.v7.preference.Preference
             android:key="key_instruction"
-            android:title="Instructions"
+            android:title="@string/instructions"
             android:summary="" />
 
         <android.support.v7.preference.Preference
             android:key="key_removeads"
-            android:title="Remove ad"
+            android:title="@string/remove_ad"
             android:summary="" />
 
         <android.support.v7.preference.Preference
             android:key="key_about"
-            android:title="About"
+            android:title="@string/about"
             android:summary="" />
 
     </android.support.v7.preference.PreferenceCategory>
