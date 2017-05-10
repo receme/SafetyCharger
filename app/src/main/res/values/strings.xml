@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Charger Safety</string>
+    <string name="app_name">Charger Safety</string>
     <string name="copyright">\@2017 SR Apps Studio\nAll rights reserved</string>
     <string name="settings">Settings</string>
     <string name="instructions">Instructions</string>
