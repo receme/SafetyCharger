@@ -160,10 +160,15 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
     }
 
     private void showPasswordChangeDialog() {
-        passwordChangeDialogFragment = new PasswordChangeDialogFragment();
-        passwordChangeDialogFragment.setPresenter(presenter);
-        android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
-        passwordChangeDialogFragment.show(fragmentManager, PasswordChangeDialogFragment.class.getSimpleName());
+        try {
+            passwordChangeDialogFragment = new PasswordChangeDialogFragment();
+            passwordChangeDialogFragment.setPresenter(presenter);
+            android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
+            passwordChangeDialogFragment.show(fragmentManager, PasswordChangeDialogFragment.class.getSimpleName());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     private void showConfirmationDialog() {

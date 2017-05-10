@@ -37,19 +37,26 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
     public void setup() {
         base64EncodedPublicKey = activity.getString(R.string.inappbilling_key);
         iabHelper = new IabHelper(activity, base64EncodedPublicKey);
-        iabHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-            @Override
-            public void onIabSetupFinished(IabResult result) {
-                if (result.isSuccess()) {
-                    System.out.println("billing setup success");
-                    iabHelper.queryInventoryAsync(mGotInventoryListener);
-                    isSetupSuccess = true;
-                } else {
-                    isSetupSuccess = false;
-                }
-            }
 
-        });
+        try{
+            iabHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+                @Override
+                public void onIabSetupFinished(IabResult result) {
+                    if (result.isSuccess()) {
+                        System.out.println("billing setup success");
+                        iabHelper.queryInventoryAsync(mGotInventoryListener);
+                        isSetupSuccess = true;
+                    } else {
+                        isSetupSuccess = false;
+                    }
+                }
+
+            });
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public void consumeTestPurchase() {

@@ -20,6 +20,7 @@ import com.rcmapps.safetycharger.utils.UtilMethods;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.fabric.sdk.android.Fabric;
 
 
 public class PasswordChangeDialogFragment extends AppCompatDialogFragment implements View.OnClickListener {
@@ -64,9 +65,12 @@ public class PasswordChangeDialogFragment extends AppCompatDialogFragment implem
     @Override
     public void onClick(View view) {
         if (view.equals(confirmBtn)) {
-            presenter.confirmNewPassword(new PasswordChanger(presenter.getSettingsView(),
-                    newPasswordEdtxt.getText().toString(),
-                    confirmPasswordEdtxt.getText().toString()));
+            if(presenter!=null){
+                presenter.confirmNewPassword(new PasswordChanger(presenter.getSettingsView(),
+                        newPasswordEdtxt.getText().toString(),
+                        confirmPasswordEdtxt.getText().toString()));
+            }
+
         }
     }
 }
