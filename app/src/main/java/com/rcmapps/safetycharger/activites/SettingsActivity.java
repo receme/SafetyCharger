@@ -18,14 +18,13 @@ public class SettingsActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if (savedInstanceState == null) {
+        //if (savedInstanceState == null) {
             Fragment preferenceFragment = new SettingsFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.add(R.id.pref_container, preferenceFragment);
             ft.commit();
-        }
+        //}
     }
 
     @Override

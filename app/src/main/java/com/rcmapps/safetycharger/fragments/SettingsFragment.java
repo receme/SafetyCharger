@@ -2,6 +2,7 @@ package com.rcmapps.safetycharger.fragments;
 
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -161,7 +162,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
     private void showPasswordChangeDialog() {
         passwordChangeDialogFragment = new PasswordChangeDialogFragment();
         passwordChangeDialogFragment.setPresenter(presenter);
-        passwordChangeDialogFragment.show(getChildFragmentManager().beginTransaction(), PasswordChangeDialogFragment.class.getSimpleName());
+        android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
+        passwordChangeDialogFragment.show(fragmentManager, PasswordChangeDialogFragment.class.getSimpleName());
     }
 
     private void showConfirmationDialog() {
