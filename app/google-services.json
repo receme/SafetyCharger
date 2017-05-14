@@ -88,6 +88,94 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350050326765:android:a47174a24b90428c",
+        "android_client_info": {
+          "package_name": "com.rcmapps.bikebuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350050326765-goau2t4f79sj85p0sasiqt89gn60jgtu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rcmapps.bikebuddy",
+            "certificate_hash": "e29a4711b6c90e718de6852f7227ec623239a8cf"
+          }
+        },
+        {
+          "client_id": "350050326765-ehea21ahlquq0bc6ekljruuiacajb4om.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB79E8gJWpP8-d6PhjwkMPj3fzBXYoE8w4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350050326765-ehea21ahlquq0bc6ekljruuiacajb4om.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350050326765:android:d59bdd5553a87ad7",
+        "android_client_info": {
+          "package_name": "com.rcmapps.safetycharger_bangla"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350050326765-3f3qpupuh8uc9b9kcgr428ke6q6u1sa5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rcmapps.safetycharger_bangla",
+            "certificate_hash": "e29a4711b6c90e718de6852f7227ec623239a8cf"
+          }
+        },
+        {
+          "client_id": "350050326765-ehea21ahlquq0bc6ekljruuiacajb4om.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB79E8gJWpP8-d6PhjwkMPj3fzBXYoE8w4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350050326765-ehea21ahlquq0bc6ekljruuiacajb4om.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"
