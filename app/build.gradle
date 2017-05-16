@@ -25,8 +25,8 @@ android {
         applicationId "com.rcmapps.safetycharger_bangla"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 20
-        versionName "1.4"
+        versionCode 21
+        versionName "1.5"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
     buildTypes {

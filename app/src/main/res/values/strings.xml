@@ -12,7 +12,7 @@
     <string name="confirm">আমি নিশ্চিত</string>
     <string name="cancel">বন্ধ করুন</string>
     <string name="please_wait">একটু অপেক্ষা করুন...</string>
-    <string name="newpassword_notnull">পাসওয়ার্ড ছাড়া আপটি ব্যবহার করা যাবে না</string>
+    <string name="newpassword_notnull">পাসওয়ার্ড ছাড়া অ্যাপটি ব্যবহার করা যাবে না</string>
     <string name="confirmpassword_notnull">পাসওয়ার্ড নিশ্চিত করতে হবে</string>
     <string name="password_not_match">পাসওয়ার্ডটি ঠিক ভাবে নিশ্চিত করা হইনি</string>
     <string name="wrong_password">ভুল পাসওয়ার্ড দেয়া হয়েছে</string>
@@ -22,11 +22,11 @@
     <string name="hint_password">পাসওয়ার্ড</string>
     <string name="set_password_to_stop_alarm">অ্যালার্ম বন্ধ করার জন্য পাসওয়ার্ড সেট করুন</string>
     <string name="toggle_vibration">ভাইব্রেশন অন বা অফ করুন</string>
-    <string name="app_willbe_opened">যখন অ্যালার্ম বাজা শুরু করবে, তখন স্বয়ংক্রিয় ভাবে আপটি ওপেন হবে</string>
+    <string name="app_willbe_opened">যখন অ্যালার্ম বাজা শুরু করবে, তখন স্বয়ংক্রিয় ভাবে অ্যাপটি ওপেন হবে</string>
     <string name="reset_alarm">অ্যালার্মের জন্য ডিফল্ট শব্দটি ঠিক করুন</string>
     <string name="sure_to_change_alarm">আপনি কি নিশ্চিত ভাবে অ্যালার্মের জন্য ডিফল্ট শব্দটি ঠিক করতে চাচ্ছেন?</string>
     <string name="password_already_set">পাসওয়ার্ড আগেই একবার ঠিক করা হয়েছে। আপনি কি পাসওয়ার্ডটি পরিবর্তন করতে চাচ্ছেন</string>
-    <string name="version">আপ ভার্সন</string>
+    <string name="version">অ্যাপ ভার্সন</string>
     <string name="select_alarm_tone">অ্যালার্মের শব্দ ঠিক করুন</string>
     <string name="internet_not_available">ইন্টারনেট সংযোগ পাওয়া যাচ্ছে না</string>
     <string name="alert">আপনার দৃষ্টি আকর্ষণ করছি</string>
@@ -42,5 +42,5 @@
     <string name="autorun">স্বয়ংক্রিয় ভাবে চালু</string>
     <string name="reset_alarm_tone">অ্যালার্মের শব্দ রিসেট করুন</string>
     <string name="others">অন্যান্য</string>
-    <string name="remove_ad">আপ-এ Advertisement বন্ধ করুন</string>
+    <string name="remove_ad">অ্যাপ-এ Advertisement বন্ধ করুন</string>
 </resources>
