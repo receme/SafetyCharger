@@ -41,8 +41,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         sharedPreferenceUtils = SharedPreferenceUtils.getInstance(this);
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        
-        System.out.println(FirebaseInstanceId.getInstance().getToken());
+
+        //System.out.println(FirebaseInstanceId.getInstance().getToken());
 
         //handle firebase notification data
         if (getIntent().getExtras() != null) {
