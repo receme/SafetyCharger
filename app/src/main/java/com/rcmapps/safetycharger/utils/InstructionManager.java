@@ -96,6 +96,8 @@ public class InstructionManager {
                     @Override
                     public void onSequenceFinish() {
                         SharedPreferenceUtils.getInstance(activity).putBoolean(PreferenceContants.KEY_IS_FIRSTRUN, false);
+
+                        AdmobAdUtils.getInstance(activity).showAd();
                     }
 
                     @Override

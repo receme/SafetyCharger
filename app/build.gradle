@@ -25,7 +25,7 @@ android {
         applicationId "com.rcmapps.safetycharger_bangla"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 22
+        versionCode 23
         versionName "1.5"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
@@ -56,8 +56,6 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
         transitive = true;
     }
-
-
 
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:palette-v7:25.3.1'

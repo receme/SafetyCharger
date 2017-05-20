@@ -42,5 +42,5 @@
     <string name="autorun">স্বয়ংক্রিয় ভাবে চালু</string>
     <string name="reset_alarm_tone">অ্যালার্মের শব্দ রিসেট করুন</string>
     <string name="others">অন্যান্য</string>
-    <string name="remove_ad">অ্যাপ-এ Advertisement বন্ধ করুন</string>
+    <string name="remove_ad">অ্যাপ-এ Ad বন্ধ করুন</string>
 </resources>

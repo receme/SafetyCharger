@@ -9,7 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.rcmapps.safetycharger.R;
 import com.rcmapps.safetycharger.interfaces.BaseView;
 import com.rcmapps.safetycharger.utils.PreferenceContants;
@@ -19,7 +18,7 @@ import com.rcmapps.safetycharger.utils.UtilMethods;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public abstract class BaseActivity extends AppCompatActivity implements BaseView{
+public abstract class BaseActivity extends AppCompatActivity implements BaseView {
 
     public SharedPreferenceUtils sharedPreferenceUtils;
     public static int isAppOpen = 0;
@@ -50,16 +49,17 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
             for (String key : getIntent().getExtras().keySet()) {
                 Object value = getIntent().getExtras().get(key);
                 //Log.d(TAG, "Key: " + key + " Value: " + value);
-                if(key.equals("URL")){
+                if (key.equals("URL")) {
                     url = value.toString();
                 }
             }
-            if(url!=null && !url.isEmpty()){
+            if (url != null && !url.isEmpty()) {
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
                 startActivity(i);
             }
         }
+
     }
 
     @Override
@@ -69,11 +69,17 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
 
-        if(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_ALARM_STARTED,false)){
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        if (sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_ALARM_STARTED, false)) {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
         }
@@ -83,11 +89,12 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     protected void onStop() {
         super.onStop();
         isAppOpen--;
+
     }
 
     @Override
     public void showError(String title, String message) {
-        UtilMethods.showSimpleAlertWithMessage(this,title,message);
+        UtilMethods.showSimpleAlertWithMessage(this, title, message);
     }
 
     @Override
@@ -96,13 +103,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     }
 
     @Override
-    public boolean getBooleanPref(String prefName,boolean defaultVal){
-        return sharedPreferenceUtils.getBoolean(prefName,defaultVal);
+    public boolean getBooleanPref(String prefName, boolean defaultVal) {
+        return sharedPreferenceUtils.getBoolean(prefName, defaultVal);
     }
 
     @Override
     public void showToast(String message) {
-        UtilMethods.showToastMessage(this,message);
+        UtilMethods.showToastMessage(this, message);
     }
 
     @Override
@@ -112,10 +119,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
     @Override
     public void onBackPressed() {
-        if(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_ALARM_STARTED,false)){
+        if (sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_ALARM_STARTED, false)) {
 
-        }
-        else{
+        } else {
             super.onBackPressed();
         }
     }
@@ -123,17 +129,18 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if(item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             finish();
         }
 
         return true;
     }
 
-    public Toolbar getToolbar(){
+    public Toolbar getToolbar() {
         return toolbar;
     }
 
     public abstract String getActivityTitle();
+
     public abstract int getLayoutId();
 }

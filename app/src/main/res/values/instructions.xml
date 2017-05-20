@@ -12,5 +12,5 @@
     <string name="set_password_title">পাসওয়ার্ড নির্ধারণ করুন</string>
     <string name="set_password_desc">এই পাসওয়ার্ডটি-ই পরে অ্যালার্ম বন্ধ করার জন্য ব্যবহার করতে হবে</string>
     <string name="goback_to_homescreen">হোম পেইজ-এ পুনরায় যান</string>
-    <string name="enable_alarm_instruction">এই বাটন চেপে পাসওয়ার্ড ঠিক করুন। যদি আপনার মোবাইল চার্জারের সাথে সংযুক্ত না থাকে, অ্যালার্ম সাথে সাথে বেজে উটবে।</string>
+    <string name="enable_alarm_instruction">এই বাটন চেপে অ্যালার্ম সেট করুন। যদি আপনার মোবাইল চার্জারের সাথে সংযুক্ত না থাকে, অ্যালার্ম সাথে সাথে বেজে উটবে।</string>
 </resources>
