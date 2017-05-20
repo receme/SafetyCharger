@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity implements MainView, BillingCallb
                     admobAdUtils.showAd();
                 }
             }
-        },4000);
+        },3000);
 
     }
 
