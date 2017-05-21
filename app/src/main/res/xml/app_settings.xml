@@ -42,6 +42,11 @@
             android:summary="" />
 
         <android.support.v7.preference.Preference
+            android:key="key_updateapp"
+            android:title="@string/update_app"
+            android:summary="" />
+
+        <android.support.v7.preference.Preference
             android:key="key_about"
             android:title="@string/about"
             android:summary="" />

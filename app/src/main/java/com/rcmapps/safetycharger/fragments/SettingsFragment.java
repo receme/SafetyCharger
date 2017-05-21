@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
@@ -119,6 +120,18 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
                     } else {
                         showToast(getResourceString(R.string.google_playservice_not_available));
                     }
+                }
+
+                break;
+            case  PreferenceContants.KEY_UPDATE_APP:
+
+                try{
+                    Intent resultIntent = new Intent(Intent.ACTION_VIEW);
+                    resultIntent.setData(Uri.parse(getResourceString(R.string.app_url)));
+                    startActivity(resultIntent);
+
+                } catch (Exception e){
+                    e.printStackTrace();
                 }
 
                 break;

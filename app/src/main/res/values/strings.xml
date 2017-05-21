@@ -42,6 +42,7 @@
     <string name="autorun">স্বয়ংক্রিয় ভাবে চালু</string>
     <string name="reset_alarm_tone">অ্যালার্মের শব্দ রিসেট করুন</string>
     <string name="others">অন্যান্য</string>
+    <string name="update_app">অ্যাপটি আপডেট করুন</string>
     <string name="remove_ad">অ্যাপ-এ Ad বন্ধ করুন</string>
     <string name="share">অ্যাপটি শেয়ার করুন</string>
     <string name="app_url">https://play.google.com/store/apps/details?id=com.rcmapps.safetycharger_bangla</string>
