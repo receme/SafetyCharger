@@ -4,5 +4,5 @@
     <string name="admob_app_id" translatable="false">ca-app-pub-3996731798982494/4759163715</string>
     <!--for amazon release-->
     <!--<string name="admob_app_id">ca-app-pub-3996731798982494/3219894915</string>-->
-    <string name="app_url">https://play.google.com/store/apps/details?id=com.rcmapps.safetycharger</string>
+    <string name="app_url" translatable="false">https://play.google.com/store/apps/details?id=com.rcmapps.safetycharger</string>
 </resources>
