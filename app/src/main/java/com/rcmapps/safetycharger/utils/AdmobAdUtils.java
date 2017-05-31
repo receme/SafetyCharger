@@ -56,7 +56,7 @@ public class AdmobAdUtils {
         System.out.println(isPremium?"Premium: Yes":"Premium: No");
         boolean isFirstRun = SharedPreferenceUtils.getInstance(context).getBoolean(PreferenceContants.KEY_IS_FIRSTRUN,true);
 
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded() && !isPremium && !isFirstRun) {
+        if (mInterstitialAd != null && mInterstitialAd.isLoaded() && !isPremium) {
 
             new Handler().postDelayed(new Runnable() {
                 @Override
