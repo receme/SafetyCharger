@@ -43,9 +43,15 @@ public class InappBillingManager implements IabHelper.OnIabPurchaseFinishedListe
                 @Override
                 public void onIabSetupFinished(IabResult result) {
                     if (result.isSuccess()) {
+
                         System.out.println("billing setup success");
-                        iabHelper.queryInventoryAsync(mGotInventoryListener);
-                        isSetupSuccess = true;
+                        try {
+                            iabHelper.queryInventoryAsync(mGotInventoryListener);
+                            isSetupSuccess = true;
+                        }
+                        catch (Exception e){
+                            e.printStackTrace();
+                        }
                     } else {
                         isSetupSuccess = false;
                     }
