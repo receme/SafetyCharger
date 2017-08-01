@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <link>https://play.google.com/store/apps/details?id=com.pextor.batterychargeralarm</link>
-    <link>https://play.google.com/store/apps/details?id=com.ralok.antitheftalarm</link>
-    <link>https://play.google.com/store/apps/details?id=smart.dev.antitheft</link>
-    <link>https://play.google.com/store/apps/details?id=mmapps.mobile.anti.theft.alarm</link>
-    <link>https://play.google.com/store/apps/details?id=com.apps_era.anti_theft_alarm</link>
-    <link>https://play.google.com/store/apps/details?id=com.batuka.macbook.donttouchmyphone</link>
-    <link>https://play.google.com/store/apps/details?id=com.smartapp.donottouch</link>
-    <link>https://play.google.com/store/apps/details?id=soft.tous.alarmv1</link>
+    <data>
+        <name>Full Battery and Theft Alarm</name>
+        <link>https://play.google.com/store/apps/details?id=com.pextor.batterychargeralarm</link>
+    </data>
+    <data>
+        <name>Anti-theft alarm</name>
+        <link>https://play.google.com/store/apps/details?id=com.ralok.antitheftalarm</link>
+    </data>
+    <data>
+        <name>Anti Theft Alarm</name>
+        <link>https://play.google.com/store/apps/details?id=smart.dev.antitheft</link>
+    </data>
+    <data>
+        <name>Anti Theft Alarm</name>
+        <link>https://play.google.com/store/apps/details?id=mmapps.mobile.anti.theft.alarm</link>
+    </data>
+    <data>
+        <name>Anti Theft Alarm</name>
+        <link>https://play.google.com/store/apps/details?id=com.apps_era.anti_theft_alarm</link>
+    </data>
+    <data>
+        <name>Dont touch my phone</name>
+        <link>https://play.google.com/store/apps/details?id=com.batuka.macbook.donttouchmyphone</link>
+    </data>
+    <data>
+        <name>Don't Touch My Phone</name>
+        <link>https://play.google.com/store/apps/details?id=com.smartapp.donottouch</link>
+    </data>
+    <data>
+        <name>Don't touch my phone</name>
+        <link>https://play.google.com/store/apps/details?id=soft.tous.alarmv1</link>
+    </data>
 </resources>
