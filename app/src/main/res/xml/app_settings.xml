@@ -46,6 +46,11 @@
             android:title="@string/about"
             android:summary="" />
 
+        <android.support.v7.preference.Preference
+            android:key="key_other_apps"
+            android:title="@string/other_apps"
+            android:summary="" />
+
     </android.support.v7.preference.PreferenceCategory>
 
 </android.support.v7.preference.PreferenceScreen>

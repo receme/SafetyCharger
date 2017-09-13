@@ -6,10 +6,17 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.support.v7.widget.PopupMenu;
+import android.view.ContextMenu;
+import android.view.Gravity;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.rcmapps.safetycharger.R;
@@ -38,14 +45,18 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         presenter = new SettingsFragmentPresenter(this);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        registerForContextMenu(getListView());
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
         activity = getActivity();
         initBillingManager(activity);
     }
@@ -127,7 +138,49 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
                 startActivity(intent);
                 break;
             }
+            case PreferenceContants.KEY_OTHER_APPS: {
+                activity.openContextMenu(getListView());
+                break;
+            }
         }
+
+        return true;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        activity.getMenuInflater().inflate(R.menu.app_links,menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        String url = null;
+
+        switch (item.getItemId()){
+            case R.id.app1:
+                url = activity.getResources().getString(R.string.app1_url);
+                break;
+            case R.id.app2:
+                url = activity.getResources().getString(R.string.app2_url);
+                break;
+            case R.id.app3:
+                url = activity.getResources().getString(R.string.app3_url);
+                break;
+            case R.id.app4:
+                url = activity.getResources().getString(R.string.app4_url);
+                break;
+            case R.id.app5:
+                url = activity.getResources().getString(R.string.app5_url);
+                break;
+            case R.id.app6:
+                url = activity.getResources().getString(R.string.app6_url);
+                break;
+        }
+
+        Uri webpage = Uri.parse(url);
+        Intent myIntent = new Intent(Intent.ACTION_VIEW, webpage);
+        startActivity(myIntent);
 
         return true;
     }
@@ -255,4 +308,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
     public void onTargetViewDismissed() {
         showPasswordChangeDialog();
     }
+
+
 }

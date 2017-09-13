@@ -4,6 +4,7 @@
     <string name="settings">การตั้งค่า</string>
     <string name="instructions">คำแนะนำ</string>
     <string name="about">เกี่ยวกับ</string>
+    <string name="other_apps">แอปอื่น ๆ</string>
     <string name="licenses">ใบอนุญาต</string>
     <string name="set_password">ตั้งรหัสผ่าน</string>
     <string name="new_password">รหัสผ่านใหม่</string>

@@ -4,6 +4,7 @@
     <string name="settings">설정</string>
     <string name="instructions">명령</string>
     <string name="about">약</string>
+    <string name="other_apps">기타 앱</string>
     <string name="licenses">라이선스</string>
     <string name="set_password">암호 설정</string>
     <string name="new_password">새 비밀번호</string>

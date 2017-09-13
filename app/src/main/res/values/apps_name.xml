@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app1">Full Battery and Theft Alarm</string>
+    <string name="app1_url">https://play.google.com/store/apps/details?id=com.pextor.batterychargeralarm</string>
+    <string name="app2">Anti-theft alarm</string>
+    <string name="app2_url">https://play.google.com/store/apps/details?id=com.ralok.antitheftalarm</string>
+    <string name="app3">Don\'t Touch My Phone - Anti Theft Alarm</string>
+    <string name="app3_url">https://play.google.com/store/apps/details?id=com.smartapp.donottouch</string>
+    <string name="app4">Anti Theft Alarm</string>
+    <string name="app4_url">https://play.google.com/store/apps/details?id=mmapps.mobile.anti.theft.alarm</string>
+    <string name="app5">Dr. Battery - Fast Charger - Super Cleaner</string>
+    <string name="app5_url">https://play.google.com/store/apps/details?id=batterydoctor.fastcharger.batterysaver</string>
+    <string name="app6">DU Battery Saver - Battery Charger and Battery Life</string>
+    <string name="app6_url">https://play.google.com/store/apps/details?id=com.dianxinos.dxbs</string>
+</resources>
