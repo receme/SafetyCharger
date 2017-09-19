@@ -18,6 +18,9 @@ import com.rcmapps.safetycharger.utils.UtilMethods;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.microsoft.azure.mobile.MobileCenter;
+import com.microsoft.azure.mobile.analytics.Analytics;
+import com.microsoft.azure.mobile.crashes.Crashes;
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseView{
 
@@ -33,6 +36,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
+
+        MobileCenter.start(getApplication(), "3d022c75-8d71-4435-b840-6d0f4fa7488d",
+                Analytics.class, Crashes.class);
 
         toolbar.setTitle(getActivityTitle());
         setSupportActionBar(toolbar);
