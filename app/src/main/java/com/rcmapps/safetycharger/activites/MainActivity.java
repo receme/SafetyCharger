@@ -90,10 +90,10 @@ public class MainActivity extends BaseActivity implements MainView, BillingCallb
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        presenter.checkIfAlarmStarted(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_ALARM_STARTED, false));
+    protected void onPostResume() {
+        super.onPostResume();
 
+        presenter.checkIfAlarmStarted(sharedPreferenceUtils.getBoolean(PreferenceContants.KEY_IS_ALARM_STARTED, false));
         admobAdUtils.startLoadingAd();
     }
 
